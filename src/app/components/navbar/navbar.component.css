@@ -1,0 +1,54 @@
+.home-component{
+    background: white;
+    height: 50px;
+    Color: red;
+}
+.logo_lab{
+    
+    Color: red;
+}
+
+.one { color: hsl(0, 94%, 50%); } 
+.two { color: hsl(204, 79%, 45%); } 
+.three { color: hsl(108, 91%, 42%); } 
+
+/* .c-dropdown{
+    position: absolute;
+    right: -206px;
+    background: #fff;
+    border: solid;
+    bottom: 0;
+} */
+
+
+
+.c-dropdown{
+    position: absolute;
+    left: 257px;
+    top: 0;
+    background: #fff;
+    padding-left: 0;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+    padding: 15px 0;
+    border-radius: 0.4rem;
+    position: absolute;
+    left: 256px;
+}
+.c-dropdownp{
+    position: relative;
+    width: 100%;
+    margin-right: 8px;
+    margin: 0;
+    min-width: 16rem;
+
+}
+.c-dropdown-item{
+    padding-left: 15px;
+    margin-right: 5px;
+    padding-right: 0;
+    padding-left: 25px;
+}
+.c-dropdown li{
+    width: 100%;
+    margin: 0;
+}

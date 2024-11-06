@@ -1,0 +1,274 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+
+    <div class="container-fluid">
+        <div  *ngIf="Entry_View">
+            <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+                <div class="dt-card mb-0 pb-1 " >        
+                <div class="dt-card__body">
+                <div class="mb-0">          
+                <div class="form-row">                    
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                    <div class="col-md-3 col-sm-3 mb-1">
+                    <input type="text"  class="form-control"  id="Course_" name="Course_"  [matAutocomplete]="auto_Course"
+                    [(ngModel)]="Course_" (click)="Search_Course_Typeahead($event)" (keyup)="Search_Course_Typeahead($event)" (ngModelChange)="Course_change()" /></div>  
+                    <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+                        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+                        <ng-container *ngIf="!issLoading">
+                        <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+                        <span>{{Course.Course_Name}}</span>
+                        </mat-option>
+                        </ng-container>
+                    </mat-autocomplete>  
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Batch<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                    <div class="col-md-2 col-sm-4 mb-1">
+                        <input type="text"  class="form-control"  id="Batch_" name="Batch_"  [matAutocomplete]="auto_Batch"
+                        [(ngModel)]="Batch_" (click)="Search_Batch_Typeahead_New($event)" (keyup)="Search_Batch_Typeahead_New($event)"/></div>  
+                        <mat-autocomplete #auto_Batch="matAutocomplete" [displayWith]="display_Batch">
+                        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+                        <ng-container *ngIf="!issLoading">
+                        <mat-option *ngFor="let Batch_ of Batch_Data_Filter" [value]="Batch_">
+                        <span>{{Batch_.Batch_Name}}</span>
+                        </mat-option>
+                        </ng-container>
+                        </mat-autocomplete>  
+                        
+                        
+                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Student Name/Phone</label>
+                        <div class="col-md-3 col-sm-3 mb-1">
+                        <input  type="text" [(ngModel)]="Student_Name_Search" name="Student_Name_Search" class="form-control" placeholder=" ">
+                         </div>
+    
+                    
+
+
+                    <div class="col-md-0 col-sm-0">  
+                    <button (click)="Close_Click()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">Close</button>
+                    <button mat-raised-button type="submit" [hidden]="Attendance_Save==false" id="Save_Button" class="save-button-style pull-right mr-1" (click)="Save_Exam_Result_Final()">Save</button>            
+                   <button (click)="Search_ExamResult_Final()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">Search Student</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>        
+                </div>
+            
+                <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+                <div class="dt-card mb-0 pb-1" style="background-color: white;" >  
+                    
+            
+                <div class="card-body card-body-for-searchedit-lead-section ">
+                <div class="table-responsive"  [style.height.px]="myInnerHeightNew" style="overflow-y: scroll;"> <table class="table table-hover table-for-sale-search-section-diary">
+                    
+                <thead>
+                    <th > </th> 
+                <th >Student </th> 
+                <th >Entry Level</th> 
+                <th >Personality & Professionalism</th> 
+                <th >Mid Level</th> 
+                <th >Personality & Professionalism</th> 
+                <th >Exit Level</th> 
+                <th >Personality & Professionalism</th> 
+                <th >Project Score</th> 
+                <th style="width: 45%;">Project URL</th> 
+                <th >Total Mark </th> 
+                <th>Mark Status</th>
+                </thead>
+                <tbody  *ngFor="let Exam_ResultDetails_t of Level_Score_Details_Data; let j = index" >
+                <tr>
+                <td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+                    <div _ngcontent-xmy-c9="" class="form-check">
+                    <label _ngcontent-xmy-c9="" class="form-check-label">
+                    <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                    [(ngModel)]="Exam_ResultDetails_t.Check_Box" type="checkbox" name={{Exam_ResultDetails_t.Student_Id}}{{Exam_ResultDetails_t.Student_Id}} 
+                    [checked]="Exam_ResultDetails_t.Check_Box" value="">
+                    <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top: 15px;margin-left: 11px;">
+                    <span _ngcontent-xmy-c9="" class="check"></span>
+                    </span>
+                    </label>
+                    </div>
+                    </td>
+                   
+                        <td  class="td-padding">{{Exam_ResultDetails_t["Student_Name"]}}</td>
+                        <td> <input type="number" [(ngModel)]="Exam_ResultDetails_t.Entry_Level"   (ngModelChange)="Calculate_Total_Mark(j)"
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}b{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td> 
+
+                        <td> <input type="number" [(ngModel)]="Exam_ResultDetails_t.Personality_and_Professionalism_Entrylevel"  (ngModelChange)="Calculate_Total_Mark(j)"
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}c{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td>
+
+                        <td> <input type="number" [(ngModel)]="Exam_ResultDetails_t.Mid_Level"  (ngModelChange)="Calculate_Total_Mark(j)"
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}d{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td> 
+
+                        <td> <input type="number" [(ngModel)]="Exam_ResultDetails_t.Personality_and_Professionalism_Midlevel"  (ngModelChange)="Calculate_Total_Mark(j)"
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}e{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td>
+
+                        <td> <input type="number" [(ngModel)]="Exam_ResultDetails_t.Exit_Level"  (ngModelChange)="Calculate_Total_Mark(j)"
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}f{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td>
+
+                        <td> <input type="number" [(ngModel)]="Exam_ResultDetails_t.Personality_and_Professionalism_Exitlevel"  (ngModelChange)="Calculate_Total_Mark(j)"
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}f{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td>
+
+                        <td> <input type="number" [(ngModel)]="Exam_ResultDetails_t.Project_Score"  (ngModelChange)="Calculate_Total_Mark(j)"
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}f{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td>
+
+                        <td> <input type="text" [(ngModel)]="Exam_ResultDetails_t.Project_Url" 
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}f{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td>
+
+
+                        <td> <input type="number" [(ngModel)]="Exam_ResultDetails_t.TotalMark"  
+                        name={{Exam_ResultDetails_t.Level_Score_Details_Id}}h{{Exam_ResultDetails_t.Level_Score_Details_Id}}  
+                        class="form-control" placeholder=""  ></td>
+                        <!-- name={{Exam_ResultDetails_t.Level_Score_Details_Id}}g{{Exam_ResultDetails_t.Level_Score_Details_Id}} -->
+                        <td class="col-md-4">  
+                        <select    name='qqq{{j}}'id='qqq{{j}}'   
+                        [(ngModel)]="Level_Score_Details_Data[j].MarkStatus_Type_" 
+                        required class="form-control p-0 pl-1">
+                        <option *ngFor="let MarkStatus_Type_ of MarkStatus_Type_Data" [ngValue]="MarkStatus_Type_">{{MarkStatus_Type_.Markstatus_Name}}</option>
+                        </select>
+                        </td>
+
+                </tr>
+                </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+                </div>
+               
+              
+                   
+        </div>
+        </div>
+
+ <div class="row" *ngIf="!Entry_View" >
+
+    <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body">
+    <div class="mb-0">          
+    <div class="form-row">
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right" style="margin-left:1%!important;">Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top:3px;"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>    
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px;padding-top: 7px!important;">
+            <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_">
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+
+    </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-2  mb-1">
+        <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+        style="height: 40px !important;padding-top: 7px!important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+    </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right" style="margin-left:1%!important">Level</label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="text"  class="form-control"  id="Course_Search" name="Course_Search"  [matAutocomplete]="auto_Course1"
+        [(ngModel)]="Course_Search" (click)="Search_Course_Typeahead($event)"  (keyup)="Search_Course_Typeahead($event)" (ngModelChange)="Search_Course_change()"/>  
+        <mat-autocomplete #auto_Course1="matAutocomplete" [displayWith]="display_Course">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+            <span>{{Course.Course_Name}}</span>
+            </mat-option>
+            </ng-container>
+        </mat-autocomplete>  
+    </div>
+    <div class=" ml-2">
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right" >Batch</label>
+    </div>
+       
+        <div class="col-md-2 col-sm-2 mb-1">
+            <input type="text"  class="form-control"  id="Batch_Search" name="Batch_Search"  [matAutocomplete]="auto_Batch1"
+            [(ngModel)]="Batch_Search" (click)="Search_Batch_Typeahead_Search($event)" (keyup)="Search_Batch_Typeahead_Search($event)" /></div>  
+            <mat-autocomplete #auto_Batch1="matAutocomplete" [displayWith]="display_Batch">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Batch_ of Batch_Data_Filter" [value]="Batch_">
+            <span>{{Batch_.Batch_Name}}</span>
+            </mat-option>
+            </ng-container>
+            </mat-autocomplete>  
+        <div class="col-md-12" >  
+            <button (click)="Create_New()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">New</button>
+         <button (click)="Search_Examdetails_Final()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">Search</button>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>        
+    </div>
+
+    <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1" style="background-color: white;" >  
+
+    <div class="card-body card-body-for-searchedit-lead-section">
+    <div class="table-responsive" [style.height.px]="myInnerHeight" style="overflow-y: scroll;"> 
+        <table class="table table-hover table-for-sale-search-section-diary">
+    <thead>
+    <th >Level</th> 
+    <th >Batch </th> 
+    <th >Date </th>    
+    <th >Faculty </th>   
+      <th >Edit </th> 
+    <th >Delete </th> 
+    </thead>
+    <tbody  *ngFor="let Exam_Result_T of Level_Score_Master_Data; let i = index" >
+    <tr>
+    <td  class="td-padding">{{Exam_Result_T["Course_Name"]}}</td>
+    <td  class="td-padding">{{Exam_Result_T["Batch_Name"]}}</td>
+    <td  class="td-padding">{{Exam_Result_T["Date"]}}</td>
+    <td  class="td-padding">{{Exam_Result_T["Faculty_Name"]}}</td>
+         <td  class="td-padding" >
+        <span class="icon-background2 mr-1"  (click)="Edit_ExamresultFinal(Exam_Result_T,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+        </td>
+
+        <td  class="td-padding" >
+        <span class="icon-background3 mr-1" (click)="Delete_ExamResultFinal(Exam_Result_T.Level_Score_Master_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+        </td>
+
+
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+   
+</div> 
+
+</div>
+

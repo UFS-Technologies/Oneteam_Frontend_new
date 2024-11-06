@@ -1,0 +1,134 @@
+<div *ngIf="issLoading" class="overlay">
+<mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+</mat-progress-spinner>
+</div>
+<div class="main-content screenfixed">
+<div class="container-fluid">
+<div class="row" *ngIf="!State_View">
+    <div class="col-md-12 mt-2 pl-0">
+    <div class="dt-card mb-0 pb-1">         
+    <div class="dt-card__body mt-1 mb-0 pb-0">
+    <form class="mb-0">           
+    <div class="form-row" style="padding-left: 10px;">
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">State<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-3 col-sm-3 mb-2">
+    <input type="text" class="form-control" [(ngModel)]="State_.State_Name" name="State_.State_Name"  placeholder="">
+    </div>
+    <div class="col-md-2 col-sm-2 mt-0">
+        <button (click)="Save_State()" [hidden]="State_Save==false"id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-left mr-1">Save</button>  
+    <button (click)="Close_Click()" mat-raised-button type="submit" class="close-button-style pull-left mr-1 ">Close</button>                   
+                         
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>        
+    </div> 
+</div>
+
+<div class="row" *ngIf="!District_View">
+    <div class="col-md-12 mt-2 pl-0">
+    <div class="dt-card mb-0 pb-1">         
+    <div class="dt-card__body mt-1 mb-0 pb-0">
+    <form class="mb-0">           
+    <div class="form-row" style="padding-left: 10px;">
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">State</label>
+        <div class="col-md-3 col-sm-3 mb-2">
+        <input readonly type="text" class="form-control" [(ngModel)]="State_.State_Name" name="State_.State_Name"  placeholder="">
+        </div>
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">District<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-3 col-sm-3 mb-2">
+    <input type="text" class="form-control" [(ngModel)]="State_District_.District_Name" name="State_District.District_Name"  placeholder="">
+    </div>
+    <div class="col-md-2 col-sm-2 mt-0"> 
+   <button *ngIf="State_Save" (click)="Save_State_District()" [hidden]="State_Save==false"id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-left mr-1">Save</button>                      
+   <button (click)="Close_Click()" mat-raised-button type="submit" class="close-button-style pull-left mr-1 ">Close</button>                   
+    </div>
+    </div>
+    </form>
+    </div>
+    <div class="dt-card__heading">
+        <!-- <h4><b style="color: #3f6ad8;">District </b></h4> -->
+          </div>
+<div class="col-md-12 pl-3 pr-8 mt-8" style="border: 1"  >
+    <div class="container-import" style="    margin-left: -3% !important;"> 
+    <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;    margin-right: 2%;" >  
+    <div class="table-responsive"  [style.height.px]="myInnerHeight" style="overflow: scroll;height: 300px;overflow-x: hidden!important;">
+    <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+    <thead>
+    <th>District</th>   
+    <th [hidden]="State_Edit==false">Edit</th>
+    <th [hidden]="State_Delete==false">Delete</th>
+    <th></th>
+    </thead>
+    <tbody  *ngFor="let State_District_ of State_District_Data; let i = index">          
+    <tr>
+    <td>{{State_District_["District_Name"]}}</td>            
+    <td >
+    <span class="icon-background2 mr-1" [hidden]="State_Edit==false" *ngIf="State_Edit"  (click)="Edit_District(State_District_,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+    </td>
+    <td class="td-padding"> 
+    <span class="icon-background3 mr-1" [hidden]="State_Delete==false" *ngIf="State_Delete"  (click)="Delete_State_District(State_District_.State_District_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+    </td>
+    </tr>
+    </tbody>
+     </table>
+    </div>
+    </div>
+    </div>
+</div>
+    </div>        
+    </div> 
+</div>
+
+<div class="row" *ngIf="!Entry_View" >
+    <div class="col-md-12 pl-0  mt-2 mb-2">
+    <div class="dt-card mb-2 pb-1">         
+    <div class="dt-card__body mt-1 mb-0 pb-0">
+    <form class="mb-0">           
+    <div class="form-row" style="padding-left: 10px;">
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">State</label>
+
+    <div class="col-md-3 col-sm-3 mb-2">  
+    <input type="text" class="form-control"  [(ngModel)]="State_Name_Search" name="State_Name_Search" placeholder="">
+    </div>
+    <div class="col-md-2 col-sm-2 mt-0" >                    
+    <button (click)="Search_State()"  mat-raised-button type="submit" class="other-button-style pull-left mr-1 blue-btn">Search</button>
+    <button (click)="Create_New()"   mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>        
+    </div> 
+    <div class="col-md-12 pl-0 mt-0" >
+    <div class="dt-module " >            
+    <div class="dt-module__container">
+    <div class="dt-module__content ps-custom-scrollbar">
+    <div class="dt-module__content-inner pl-0 pr-0" style="overflow-y: scroll;"[style.height.px]="myTotalHeight">   
+    <div class="dt-module__list pl-0 pr-0" >
+
+    <div class="dt-module__list-item pb-2 pt-2" *ngFor="let State1 of State_Data; let i = index"> 
+    <div class="dt-module__list-item-content">
+    <div class="user-detail">
+
+    <span class="icon-background2 mr-1"  [hidden]="State_Edit==false" (click)="Edit_State(State1,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+    <span class="icon-background3 mr-1"  [hidden]="State_Delete==false" (click)="Delete_State(State1.State_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+
+    <span class="dt-separator-v">&nbsp;</span>
+    <span class="user-name">{{State1["State_Name"]}}</span>                                        
+    <span class="dt-separator-v">&nbsp;</span>
+    <button (click)="Edit_State_District(State1,i)"   mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">District</button>
+    </div>
+    </div>                                
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div> 
+    <label class="entry-num">Entries : {{Total_Entries}}</label>
+</div>
+</div>

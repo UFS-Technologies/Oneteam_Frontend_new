@@ -1,0 +1,354 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content screenfixed"  >
+
+    <!-- <div class="container-fluid">
+        <div class="row" *ngIf="Entry_View">
+        
+        </div>
+        </div> -->
+
+<div class="row" *ngIf="!Entry_View">
+
+    <div class="col-md-12 pl-3 pr-3 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body">
+    <div class="mb-0">          
+    <div class="form-row">
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div> 
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px;padding-top: 7px!important;">
+            <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" >
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+    </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+        style="height: 40px !important;padding-top: 7px!important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>  
+    </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Trainer</label>
+        <div  class="col-md-3 col-sm-3 mb-1" *ngIf="faculty_edit==1">
+        <input  type="text"  class="form-control"  id="Faculty_" name="Faculty_"  [matAutocomplete]="auto_Faculty"
+        [(ngModel)]="Faculty_" (ngModelChange)="Trainer_Change()" (click)="Search_Faculty_Typeahead($event)" (keyup)="Search_Faculty_Typeahead($event)"/></div>  
+
+        <div  class="col-md-3 col-sm-3 mb-1"   *ngIf="faculty_edit==0">
+        <input disabled type="text"  class="form-control"  id="Faculty_" name="Faculty_"  [matAutocomplete]="auto_Faculty"
+        [(ngModel)]="Faculty_"    (click)="Search_Faculty_Typeahead($event)" (keyup)="Search_Faculty_Typeahead($event)"/></div> 
+
+
+        <mat-autocomplete #auto_Faculty="matAutocomplete" [displayWith]="display_Faculty">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option *ngFor="let Faculty_ of Faculty_Data_Filter" [value]="Faculty_">
+        <span>{{Faculty_.Users_Name}}</span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete> 
+
+
+
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course</label>
+        <div class="col-md-3 col-sm-4 mb-1">
+        <input type="text"  class="form-control"  id="Course_" name="Course_"  [matAutocomplete]="auto_Course"
+        [(ngModel)]="Course_" (click)="Search_Course_Typeahead($event)"(keyup)="Search_Course_Typeahead($event)" /></div>  
+        <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+            <span>{{Course.Course_Name}}</span>
+            </mat-option>
+            </ng-container>
+        </mat-autocomplete>   -->
+       
+    </div>
+
+    <div class="form-row">
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Batch</label>
+        <div class="col-md-2 col-sm-4 mb-1">
+            <input type="text"  class="form-control"  id="Batch_" name="Batch_"  [matAutocomplete]="auto_Batch"
+            [(ngModel)]="Batch_" (click)="Search_Batch_Typeahead($event)" (keyup)="Search_Batch_Typeahead($event)"/></div>  
+            <mat-autocomplete #auto_Batch="matAutocomplete" [displayWith]="display_Batch">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Batch_ of Batch_Data_Filter" [value]="Batch_">
+            <span>{{Batch_.Batch_Name}}</span>
+            </mat-option>
+            </ng-container>
+            </mat-autocomplete>  -->
+
+
+
+
+
+
+
+            <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Batch</label>
+            <div class="col-md-3 col-lg-3 mb-1 mt-0 mat-fix">
+                <mat-form-field name="Batch_Selection_" appearance="outline" [color]="" class="" style="width: 100%; height: 38px;">
+                
+              <mat-select [formControl]="Batch_Selection_" multiple style="width: 100% !important;margin: 2px 0px;" >
+               <mat-select-trigger >
+               <span *ngIf="Batch_Selection_.value!=undefined &&  Batch_Selection_.value!='' ">
+               
+                <span *ngIf="Batch_Selection_.value?.length > 0" class="example-additional-selection" >
+                 <span *ngFor=" let Batch_Selectionl of Batch_Selection_.value "> {{Batch_Selectionl.Batch_Name}}</span>
+                 
+                </span></span>
+                </mat-select-trigger>
+                <mat-option style="background-color: #ffff;" *ngFor="let Batch_Data_T of Batch_Data" [value]="Batch_Data_T">{{Batch_Data_T.Batch_Name}}</mat-option>
+               </mat-select>
+               </mat-form-field>
+               </div> 
+    
+
+               <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Branch</label>
+               <div class="col-md-2 col-sm-2 mb-1">
+                   <input type="text" class="form-control" [matAutocomplete]="auto8" name="FollowUp_Branch_" [(ngModel)]="FollowUp_Branch_" (click)="Search_Branch_Typeahead($event)" (keyup)="Search_Branch_Typeahead($event)" placeholder=" ">
+               </div>
+               <mat-autocomplete #auto8="matAutocomplete" [displayWith]="display_Branch">
+               <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+               <ng-container *ngIf="!issLoading">                          
+               <mat-option *ngFor="let Branch1 of Followup_Branch_Data" [value]="Branch1">
+                   <span>{{Branch1.Agent_Name}}</span></mat-option>
+                </ng-container>
+               </mat-autocomplete>  
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="col-md-1 col-sm-1"></div>   -->
+            <label class="col-md-2 col-sm-2 col-form-label text-sm-right">Attendence Status</label>                          
+            <div class="col-md-2 col-sm-2 mb-1">
+            <select [(ngModel)]="Attendance_Status" name="Attendance_Status" required class="form-control p-0 pl-1">
+            <option *ngFor="let Attendance_Status of Attendance_Status_Data" [ngValue]="Attendance_Status">{{Attendance_Status.Attendance_Status_Name}}</option>
+            </select>
+            </div> 
+
+        <div class="col-md-0 col-sm-0">  
+        <!-- <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-right mr-1 ">Create New</button> -->
+        <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button> 
+        <button (click)="Search_Attendance_Report()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+           
+    </div>
+    </div>
+
+
+
+    </div>
+    </div>
+    </div>        
+    </div>
+
+    <div class="col-md-12 pl-3 pr-3 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 pt-1 pl-1 pr-1" style="background-color: white;" >  
+
+    <div class="card-body card-body-for-searchedit-lead-section pb-1 pt-0 pl-1 pr-1" 
+    >
+        <div class="table-responsive"  [style.height.px]="myInnerHeight" style="overflow-y: scroll;">
+    <!-- <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 130% !important;"> -->
+        <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" >
+            <!-- style="width: 150%;" -->
+    <thead>
+        <th >No </th>
+        <th style="width:18%!important" >Student Name</th> 
+        <th style="width:25%!important" >Present Days</th>
+        <th >Absent Days</th>  
+        <th >Total Days</th> 
+        <th >Attendance (%)</th> 
+       
+
+    </thead>
+    <tbody  *ngFor="let Attendance_Master_ of Attendance_Master_Data; let i = index" >
+    <tr>
+     <td  class="">{{i+1}}</td>
+    <td   class="icon-pointer"><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Attendance(Attendance_Master_.Student_Id,i)" style="color: #357bfd; font-weight: 800;">{{Attendance_Master_["Student_Name"]}}</a></td>
+   <td  class="icon-pointer" style="color: #357bfd; font-weight: 800;" (click)="present_count_Details(Attendance_Master_,i)">{{Attendance_Master_["present_count"]}}</td>
+    <td  class="icon-pointer"  style="color: hsl(0, 98%, 60%); font-weight: 800;" (click)="absent_count_Details(Attendance_Master_,i)">{{Attendance_Master_["absent_count"]}}</td>
+    <td  >{{Attendance_Master_["total_count"]}}</td>
+    <td  >{{Attendance_Master_["attendance_percentage"]}}</td>
+   
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+    
+    
+    </div>
+    </div>
+    </div>
+    <label class="entry-num">Entries : {{Total_Entries}}</label>    
+    
+    <!-- <label class="entry-num">Total Attendance marked : {{Total_Entries}}</label>
+    <label class="entry-num">Present count : {{PresentCount}}</label>
+    <label class="entry-num">Absent count : {{AbsentCount}}</label>
+    <label class="entry-num">Duration : {{Total_Duration}}</label> -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row" *ngIf="Present_View">
+
+    <div class="col-md-12 pl-3 pr-3 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body">
+    <div class="mb-0">          
+        <div class="form-row">
+        <button mat-raised-button type="submit"  (click)="close_countdetails()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>Back</button> 
+        <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export1()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button> 
+        
+    </div>
+    </div>
+    </div>
+    </div>        
+    </div>
+
+    <div class="col-md-12 pl-3 pr-3 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 pt-1 pl-1 pr-1" style="background-color: white;" >  
+
+    <div class="card-body card-body-for-searchedit-lead-section pb-1 pt-0 pl-1 pr-1" 
+    >
+        <div class="table-responsive"  [style.height.px]="myInnerHeight" style="overflow-y: scroll;">
+     <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" >
+      
+    <thead>
+        <th >No </th>
+        <th style="width:18%!important" >Student Name</th> 
+        <th style="width:25%!important" >Present Dates</th>
+        <th >Batch</th>  
+        <th >Faculty</th> 
+        <th >Course</th> 
+       
+
+    </thead>
+    <tbody  *ngFor="let Present_Data_d of Present_Data; let i = index" >
+    <tr>
+     <td  class="">{{i+1}}</td>
+    <td   class="icon-pointer"><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Attendance(Present_Data_d.Student_Id,i)" style="color: #357bfd; font-weight: 800;">{{Present_Data_d["Student_Name"]}}</a></td>
+    <td   >{{Present_Data_d["Date"]}}</td>
+    <td  >{{Present_Data_d["Batch"]}}</td>
+    <td  >{{Present_Data_d["Users"]}}</td>
+    <td  >{{Present_Data_d["Course"]}}</td>
+   
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+    
+    
+    </div>
+    </div>
+    </div>
+    <label class="entry-num">Entries : {{Present_Data_count}}</label>    
+    
+</div>
+
+
+<div class="row" *ngIf="Absent_View">
+
+    <div class="col-md-12 pl-3 pr-3 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body">
+    <div class="mb-0">          
+        <div class="form-row">
+        <button mat-raised-button type="submit"  (click)="close_countdetails()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>Back</button> 
+        <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export2()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button> 
+        
+    </div>
+    </div>
+    </div>
+    </div>        
+    </div>
+
+    <div class="col-md-12 pl-3 pr-3 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 pt-1 pl-1 pr-1" style="background-color: white;" >  
+
+    <div class="card-body card-body-for-searchedit-lead-section pb-1 pt-0 pl-1 pr-1" 
+    >
+        <div class="table-responsive"  [style.height.px]="myInnerHeight" style="overflow-y: scroll;">
+     <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" >
+      
+    <thead>
+        <th >No </th>
+        <th style="width:18%!important" >Student Name</th> 
+        <th style="width:25%!important" >Absent Dates</th>
+        <th >Batch</th>  
+        <th >Faculty</th> 
+        <th >Course</th> 
+       
+
+    </thead>
+    <tbody  *ngFor="let Absant_Data_d of Absant_Data; let i = index" >
+        <tr>
+         <td  class="">{{i+1}}</td>
+        <td   class="icon-pointer"><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Attendance(Absant_Data_d.Student_Id,i)" style="color: #357bfd; font-weight: 800;">{{Absant_Data_d["Student_Name"]}}</a></td>
+        <td   >{{Absant_Data_d["Date"]}}</td>
+        <td  >{{Absant_Data_d["Batch"]}}</td>
+        <td  >{{Absant_Data_d["Users"]}}</td>
+        <td  >{{Absant_Data_d["Course"]}}</td>
+       
+        </tr>
+        </tbody>
+    </table>
+
+    </div>
+    
+    
+    </div>
+    </div>
+    </div>
+    <label class="entry-num">Entries : {{Absant_Data_count}}</label>    
+    
+</div>
+
+
+
+
+</div>
+

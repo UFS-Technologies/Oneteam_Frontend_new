@@ -1,0 +1,198 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+
+    <div class="container-fluid">
+        <div class="" *ngIf="Entry_View">
+            <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+                <div class="dt-card mb-0 pb-1 " >        
+                <div class="dt-card__body">               
+               
+                <div class="form-row">  
+                 
+                        <label
+                        class="col-md-2 col-sm-1 col-form-label text-sm-right"
+                        >Agreement Upload</label
+                        >
+                        <div class="col-md-7 col-sm-4 mb-1" >
+                            <input readonly type="text"   placeholder=""   name="Agreement_FileName"  class="form-control" [(ngModel)]="Agreement_FileName"/>
+                        </div>
+                      
+                        <div
+                        class="col-md-2 uploadbtn-style"
+                        style="margin: 0;align-items: center; justify-content: end; display: flex;"
+                        >
+                        <button class="Upload-other-button-style btnflot pull-right "  type="button" (click)="fileInput2.click()"><span>Choose File</span>
+                            <input #fileInput2 type="file"   id="btnUpload"  value="Upload" name="ImageFile_Photo1"   [(ngModel)]="ImageFile_Photo1" (change)="File_Change_Photo1($event)" style="display:none;"  class="upload"  /> 
+                            </button>
+                        </div>
+                        <!-- <div class="col-md-1">
+                            <span *ngIf="id_proof_downldview ==1"  class="col-md-1 col-sm-1  icon-background2 mr-1 flt-right"  (click)="Download_Id_Proof()"type="button" aria-describedby="cdk-describedby-message-1">
+                                <mat-icon class="text-green small" >get_app</mat-icon></span>
+                          
+                        </div> -->
+             
+               
+
+
+                    
+                <div class="col-md-12">  
+                    <button (click)="Close_Click()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">Close</button>
+                    <button mat-raised-button type="submit" [hidden]="Agreement_Details_Save==false" id="Save_Button" class="save-button-style pull-right mr-1" 
+                   (click)="Save_Agreement_Details()">Save</button>            
+                   
+                </div> 
+                    
+                </div>
+                </div>
+                </div>        
+                </div>        
+           
+</div>
+</div>
+<div class="" *ngIf="!Entry_View">
+<div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+<div class="dt-card mb-0 pb-1 " >        
+<div class="dt-card__body">
+<div class="mb-0">          
+<div class="form-row">
+
+
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right ">Search By</label>
+<div class="col-md-1 col-sm-2 mb-1 rw4">
+ <select
+     [(ngModel)]="Search_By_"
+     class="form-control p-0 pl-1"
+     name="custimertype"
+     id="custimertype"
+    
+ >
+     <option value=0>Select</option>
+     <option value=1>Student Name</option>
+     <option value=2>Email</option>
+     <option value=2>Phone</option>
+
+     
+ </select>
+</div>
+
+
+      <label class="col-md-0 col-sm-0 col-form-label text-sm-right"></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input  type="text" [(ngModel)]="Student_Name_Search" name="Student_Name_Search" class="form-control" placeholder=" ">
+         </div>
+
+
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Trainer</label>
+         <div  class="col-md-3 col-sm-3 mb-1" *ngIf="faculty_edit==1">
+         <input  type="text"  class="form-control"  id="Faculty_" name="Faculty_"  [matAutocomplete]="auto_Faculty"
+         [(ngModel)]="Faculty_" (ngModelChange)="Trainer_Change()" (click)="Search_Faculty_Typeahead($event)" (keyup)="Search_Faculty_Typeahead($event)"/></div>  
+ 
+         <div  class="col-md-3 col-sm-3 mb-1"   *ngIf="faculty_edit==0">
+         <input disabled type="text"  class="form-control"  id="Faculty_" name="Faculty_"  [matAutocomplete]="auto_Faculty"
+         [(ngModel)]="Faculty_"    (click)="Search_Faculty_Typeahead($event)" (keyup)="Search_Faculty_Typeahead($event)"/></div> 
+ 
+ 
+         <mat-autocomplete #auto_Faculty="matAutocomplete" [displayWith]="display_Faculty">
+         <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+         <ng-container *ngIf="!issLoading">
+         <mat-option *ngFor="let Faculty_ of Faculty_Data_Filter" [value]="Faculty_">
+         <span>{{Faculty_.Users_Name}}</span>
+         </mat-option>
+         </ng-container>
+         </mat-autocomplete> 
+ 
+
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right" style="margin-left:1%!important">Course</label>
+<div class="col-md-2 col-sm-2  mb-1">
+<input type="text"  class="form-control"  id="Course_Search" name="Course_Search"  [matAutocomplete]="auto_Course1"
+[(ngModel)]="Course_Search" (click)="Search_Course_Typeahead($event)" (keyup)="Search_Course_Typeahead($event)" (ngModelChange)="Search_Course_change()"/> 
+<mat-autocomplete #auto_Course1="matAutocomplete" [displayWith]="display_Course">
+    <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+    <ng-container *ngIf="!issLoading">
+    <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+    <span>{{Course.Course_Name}}</span>
+    </mat-option>
+    </ng-container>
+</mat-autocomplete> 
+</div>
+<div class=" ml-2">
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right" >Batch</label>
+</div>
+
+    <div class="col-md-2 col-sm-2 mb-1">
+        <input type="text"  class="form-control"  id="Batch_" name="Batch_"  [matAutocomplete]="auto_Batch"
+        [(ngModel)]="Batch_" (click)="Search_Batch_Typeahead($event)" /></div>  
+        <mat-autocomplete #auto_Batch="matAutocomplete" [displayWith]="display_Batch">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option *ngFor="let Batch_ of Batch_Data_Filter" [value]="Batch_">
+        <span>{{Batch_.Batch_Name}}</span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>
+
+    <div class="col-md-2" >  
+        <!-- <button (click)="Create_New()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">New</button> -->
+        <button (click)="Search_Agreement_Details()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+    </div>
+</div>
+</div>
+</div>
+</div>        
+</div>
+
+<div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    
+<div class="dt-card mb-0 pb-1" style="background-color: white;margin-top: 1%;">  
+<div class="card-body card-body-for-searchedit-lead-section">
+<div class="table-responsive"  style="overflow-y: scroll;"[style.height.px]="myInnerHeight"> <table class="table table-hover table-for-sale-search-section-diary">
+<thead>
+    <th >Student Name</th> 
+    <th >Course </th> 
+    <th >Batch </th>
+    <th >Tutor </th>
+    <th >Phone </th>
+    <th >Email </th>
+    <th >Whatsapp </th>   
+    <th >Agreement </th> 
+</thead>
+<tbody  *ngFor="let Student_t of Agreement_Details_Student_Data; let i = index" >
+<tr>
+    <td  class="td-padding"><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Lead(Student_t.Student_Id,i)" style="color: #357bfd; font-weight: 800;">{{Student_t["Student_Name"]}}</a></td>
+   
+    <td  class="td-padding">{{Student_t["Course_Name"]}}</td>
+    <td  class="td-padding">{{Student_t["Batch_Name"]}}</td>
+    <td  class="td-padding">{{Student_t["Faculty"]}}</td>
+    <td  class="td-padding">{{Student_t["Phone"]}}</td>
+    <td  class="td-padding">{{Student_t["Email"]}}</td>
+    <td  class="td-padding">{{Student_t["Whatsapp"]}}</td>
+    <td  class="td-padding">
+    <!-- <span class="icon-background2 mr-1" (click)="Edit_Agreement_Details(Student_t,i)"><mat-icon class="text-green small">edit</mat-icon></span> -->
+    
+    <button (click)="Edit_Agreement_Details(Student_t,i)" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Upload Agreement</button>
+    
+</td>
+
+<td  class="td-padding"><span *ngIf="Student_t.Agreement_Status ==1" class="col-md-1 col-sm-1  icon-background2 mr-1"  (click)="Download_Agreement(Student_t.Agreement_File,Student_t.Student_Id)"type="button" aria-describedby="cdk-describedby-message-1">
+    <mat-icon class="text-green small" >get_app</mat-icon></span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<label class="entry-num">Total Entries : {{Total_Entries}}</label> 
+
+</div>
+
+</div>
+</div>
+

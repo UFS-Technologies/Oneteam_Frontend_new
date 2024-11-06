@@ -1,0 +1,562 @@
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+<div class="container-fluid">
+<div class="row" *ngIf="Entry_View">
+<div class="col-xl-12 pl-0 mt-1" >
+   
+<div class="profilecard mb-2">
+    <!-- <div class="card-header card-nav border-bottom-0 mb-0 pt-3 pb-0"  style="padding-right: 0px; margin-right: -56px;"   *ngIf="tab_view">
+    <ul class="card-header-tabs nav "role="tablist">
+    <div class="col-md-11 col-sm-11">  
+        <li class="nav-item"   (click)="Tab_Click(1)">
+            <div *ngIf="profile_View" ></div>
+            <a class="nav-link active " data-toggle="tab" role="tab" aria-controls="profile"aria-selected="true">Profile </a>
+            <div  *ngIf="profile_View" style="height: 2px; background-color: #512DA8;"></div>
+        </li>
+    </div>
+    </ul>  
+    </div> -->
+
+<div class="dt-card__body mt-2 " id="profile"  *ngIf="profile_View" >
+
+
+<form class="mb-0">
+<div class="container-fluidprofile">
+<div class="dt-card mt-2">
+
+    <h5 style="color: #0740a5;
+    font-weight: bold;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #bfbfbf;
+    padding-bottom: 7px;font-size: 20px;"><b>JOB DETAILS</b></h5>
+
+<div class="dt-card__body mt-3"  >
+    <div class="form-row  mb-2">
+
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Company Name<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <!-- <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Job_Posting_.Company_Name" name="Job_Posting_.Company_Name" class="form-control" placeholder="">
+        </div>  -->
+
+        <div class="col-md-4 col-sm-4 mb-1">
+            <input Input type="text"  class="form-control" [matAutocomplete]="autoc5" placeholder="" [(ngModel)]="Employeedetails_"  name="Employeedetails_"  
+            (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+           </div> 
+           <mat-autocomplete #autoc5="matAutocomplete" [displayWith]="display_Company">
+               <mat-option *ngIf="issLoading">
+                   <mat-spinner diameter="500"></mat-spinner>
+               </mat-option>
+               <ng-container *ngIf="!issLoading">
+                   <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                       <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+                   </mat-option>
+               </ng-container>
+           </mat-autocomplete>
+
+
+
+
+        <div class="col-md-1 col-sm-1"></div>    
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Pincode</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+       <input type="text" [(ngModel)]="Job_Posting_.Pincode"  name="Job_Posting_.Pincode" class="form-control" placeholder="" >
+       </div>   -->
+       <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Course<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+       <div class="col-md-4 col-sm-4 mb-1">  
+        <select [(ngModel)]="Course_" name="Course_.Course_Id" required class="form-control p-0 pl-1">
+     <option *ngFor="let Course_Data_t of Course_Data" [ngValue]="Course_Data_t">{{Course_Data_t.Course_Name}}</option>
+     </select>
+     </div> 
+
+    </div> 
+    <div class="form-row  mb-2">
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Job Code <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Job_Posting_.Job_Code" name="Job_Posting_.Job_Code" class="form-control" placeholder="">
+        </div>  -->
+        <!-- <div class="col-md-1 col-sm-1"></div>     -->
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Title<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                      
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Job_Posting_.Job_Title" name="Job_Posting_.Job_Title" class="form-control" placeholder="">
+            </div>
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Experience<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select [(ngModel)]="Experience_" name="Experience_" required class="form-control p-0 pl-1">
+        <option *ngFor="let Experience_ of Experience_Data" [ngValue]="Experience_">{{Experience_.Experience_Name}}</option>
+        </select>
+        </div>      -->
+        
+    </div> 
+
+    <!-- <div class="form-row  mb-2">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Title<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                      
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Job_Posting_.Job_Title" name="Job_Posting_.Job_Title" class="form-control" placeholder="">
+            </div>                
+            <div class="col-md-1 col-sm-1"></div>  
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Functional  Area</label>                          
+            <div class="col-md-4 col-sm-4 mb-1">
+            <select [(ngModel)]="Functionl_Area_" name="Job_Posting_.Functionl_Area_" required class="form-control p-0 pl-1">
+            <option *ngFor="let Functionl_Area_ of Functionl_Area_Data" [ngValue]="Functionl_Area_">{{Functionl_Area_.Functionl_Area_Name}}</option>
+            </select>
+            </div>                        
+    </div> -->
+
+    <!-- <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Skills</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  [(ngModel)]="Job_Posting_.Skills" name="Job_Posting_.Skills" class="form-control" placeholder="" >
+        </div>
+        <div class="col-md-1 col-sm-1"></div>    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Specialization</label>                          
+          <div class="col-md-4 col-sm-4 mb-1">  
+           <select [(ngModel)]="Specialization_" name="Job_Posting_.Specialization_" required class="form-control p-0 pl-1">
+        <option *ngFor="let Specialization_ of Specialization_Data" [ngValue]="Specialization_">{{Specialization_.Specialization_Name}}</option>
+        </select>
+        </div>                      
+    </div> -->
+
+    <!-- <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right"></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  [(ngModel)]="Job_Posting_.Skills" name="Job_Posting_.Skills" class="form-control" placeholder="" >
+        </div>
+        <div class="col-md-1 col-sm-1"></div>    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Course<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+          <div class="col-md-4 col-sm-4 mb-1">  
+           <select [(ngModel)]="Course_" name="Course_.Course_Id" required class="form-control p-0 pl-1">
+        <option *ngFor="let Course_Data_t of Course_Data" [ngValue]="Course_Data_t">{{Course_Data_t.Course_Name}}</option>
+        </select>
+        </div>                      
+    </div> -->
+
+<div class="form-row  mb-2">
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">No Of Vacancy <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+    <div class="col-md-4 col-sm-4 mb-1">
+    <input type="number"  [(ngModel)]="Job_Posting_.No_Of_Vaccancy" name="Job_Posting_.No_Of_Vaccancy"class="form-control" placeholder=" " >
+    </div>    
+    <div class="col-md-1 col-sm-1"></div>
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Salary<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Salary" name="Job_Posting_.Salary" class="form-control" placeholder="">
+    </div>                      
+</div>
+
+<div class="form-row  mb-2">
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Location</label>
+    <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Job_Location"  name="Job_Posting_.Job_Location" class="form-control" placeholder="">
+    </div>  
+    <div class="col-md-1 col-sm-1"></div>  
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Last Date <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+     <!-- <div class="col-md-4 col-sm-4 mb-1">
+        <mat-form-field class="col-md-8 input-allighn-to-crect-wole-paddings alighn-date-search-section-new-tab-lead-per-details">
+        <input matInput [matDatepicker]="dpLast_Date" placeholder="" name ="Job_Posting_.Last_Date" [(ngModel)]="Job_Posting_.Last_Date">
+        <mat-datepicker-toggle matSuffix [for]="dpLast_Date"></mat-datepicker-toggle>
+        <mat-datepicker #dpLast_Date></mat-datepicker>
+        </mat-form-field>
+        </div> -->
+
+        <div class="col-md-4 col-sm-4 mb-1 ">
+            <!-- <input type="date"  name ="Job_Posting_.Last_Date" [(ngModel)]="Job_Posting_.Last_Date" class="form-control" placeholder=""> -->
+            <mat-form-field class="col-md-8 form-control date-position mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+            style="height: 40px !important;padding-top: 0px!important;">
+            <input matInput [matDatepicker]="dpdate" placeholder="" name ="Job_Posting_.Last_Date" [(ngModel)]="Job_Posting_.Last_Date" class="form-control" placeholder=""> 
+            <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+            <mat-datepicker #dpdate></mat-datepicker>
+            </mat-form-field>
+    
+     
+        </div> 
+
+        <div class="col-md-1 col-sm-1"></div>  
+
+
+
+
+
+
+        <label
+        class="col-md-1 col-sm-1 col-form-label text-sm-right"
+        >Gender<span
+        style="
+        color: #ef071e;
+        font-size: 22px;
+        vertical-align: -webkit-baseline-middle;
+        "
+        >*</span
+        ></label
+        >
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select
+        [(ngModel)]="Gender_"
+        name="Gender_"
+        required
+        class="form-control p-0 pl-1"
+        >
+        <option
+        *ngFor="let Gender_ of Gender_Data"
+        [ngValue]="Gender_"
+        >
+        {{ Gender_.Gender_Name }}
+        </option>
+        </select>
+        </div>
+
+        <div class="col-md-1 col-sm-1"></div>  
+
+        <label
+        class="col-md-1 col-sm-1 col-form-label text-sm-right"
+        >Qualification<span
+        style="
+        color: #ef071e;
+        font-size: 22px;
+        vertical-align: -webkit-baseline-middle;
+        "
+        >*</span
+        ></label
+        >
+        <div class="col-md-4 col-sm-4 mb-1">
+            <select [(ngModel)]="Qualification_" name="Job_Posting_.QualificatSion_" required class="form-control p-0 pl-1">
+                <option *ngFor="let Qualification_ of Qualification_Data" [ngValue]="Qualification_">{{Qualification_.Qualification_Name}}</option>
+                </select>
+        </div>
+
+
+     </div> 
+
+
+
+
+     <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Last Time <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="time"  [(ngModel)]="Job_Posting_.Last_Time" name="Job_Posting_.Last_Time"class="form-control" placeholder=" " >
+        </div>    
+                             
+    </div>
+
+    
+
+<!-- </div> -->
+
+
+
+<div class="form-row  mb-2">
+
+
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Description <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-4 col-sm-4 mb-1">
+    <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Job_Posting_.Descritpion"  name="Job_Posting_.Description"></textarea>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!-- <div class="form-row  mb-2">
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Qualification</label>
+    <div class="col-md-4 col-sm-4 mb-1">
+    <select [(ngModel)]="Qualification_" name="Job_Posting_.QualificatSion_" required class="form-control p-0 pl-1">
+    <option *ngFor="let Qualification_ of Qualification_Data" [ngValue]="Qualification_">{{Qualification_.Qualification_Name}}</option>
+    </select>
+    </div>  
+    <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Status<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select [(ngModel)]="Status_" name="Job_Posting_.Experience" required class="form-control p-0 pl-1">
+        <option *ngFor="let Status_ of Status_Data" [ngValue]="Status_">{{Status_.Status_Name}}</option>
+        </select>
+        </div>   
+</div> -->
+
+
+<!-- <div class="form-row  mb-2">
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Contact Person</label>                          
+    <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Contact_Name" name="Job_Posting_.Contact_Name" class="form-control" placeholder="">
+    </div>                
+    <div class="col-md-1 col-sm-1"></div>  
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Contact No</label>                          
+     <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Contact_No"  name="Job_Posting_.Contact_No" class="form-control" placeholder="" >
+    </div>                    
+</div> -->
+
+<!-- <div class="form-row  mb-2">
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Address 1</label>                          
+    <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Address1" name="Job_Posting_.Contact_Name" class="form-control" placeholder="">
+    </div>                
+    <div class="col-md-1 col-sm-1"></div>  
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Email</label>                          
+     <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Email"  name="Job_Posting_.Email" class="form-control" placeholder="" >
+    </div>                    
+</div> -->
+
+<!-- <div class="form-row  mb-2">
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Address 2</label>                          
+    <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Address2" name="Job_Posting_.Address2" class="form-control" placeholder="">
+    </div>                
+    <div class="col-md-1 col-sm-1"></div>  
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Logo</label>
+    <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text"  name="Logo"  [(ngModel)]="Logo" class="form-control" placeholder="">
+    </div> 
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right"></label>
+    <div class="col-md-12 uploadbtn-style">
+    <button class="choose-button-style btnflot pull-right mt-0"  type="button"
+    style="background-color: #0db195;"  (click)="fileInput4.click()"><span>Upload</span>
+    <input #fileInput4 type="file"   id="btnUpload"  value="Upload" name="Photo"  
+    [(ngModel)]="Logo" (change)="File_Change_Photo($event)" style="display:none;"  class="upload"  /> 
+    </button>
+    </div>
+</div> -->
+<!-- <div class="form-row  mb-2"> -->
+   <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Address 4 </label>                          
+     <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Address4"  name="Job_Posting_.Address4" class="form-control" placeholder="" maxlength="10">
+    </div>      -->
+    <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Address 3 </label>                          
+    <div class="col-md-4 col-sm-4 mb-1">
+    <input type="text" [(ngModel)]="Job_Posting_.Address3" name="Job_Posting_.Address3" class="form-control" placeholder="">
+    </div>    -->
+
+
+    <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Pincode</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+       <input type="text" [(ngModel)]="Job_Posting_.Pincode"  name="Job_Posting_.Pincode" class="form-control" placeholder="" >
+       </div>  -->
+
+    <!-- <div class="col-md-1 col-sm-1"></div>   -->
+    <!-- <div class="form-row  mb-2"> -->
+   
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Description</label> -->
+        <!-- <div class="col-md-4 col-sm-4 mb-1"> -->
+        <!-- <input type="textarea" [(ngModel)]="Job_Posting_.Descritpion"  name="Job_Posting_.Description" class="form-control" placeholder=""> -->
+        <!-- <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Job_Posting_.Descritpion"  name="Job_Posting_.Description"></textarea> -->
+    
+     <!-- </div>  -->
+    
+    <!-- </div> -->
+<!-- </div> -->
+
+ 
+    <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Logo</label>
+<div class="col-md-4 col-sm-4 mb-1">
+<input type="text"  name="Logo"  [(ngModel)]="Logo" class="form-control" placeholder="">
+</div> 
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right"></label>
+<div class="col-md-12 uploadbtn-style">
+<button class="choose-button-style btnflot pull-right mt-0"  type="button"
+style="background-color: #0db195;"  (click)="fileInput4.click()"><span>Upload</span>
+<input #fileInput4 type="file"   id="btnUpload"  value="Upload" name="Photo"  
+[(ngModel)]="Logo" (change)="File_Change_Photo($event)" style="display:none;"  class="upload"  /> 
+</button>
+</div> -->
+</div>
+
+<div class="form-row mt-0 mb-0">
+    <div class="col-md-6 col-sm-6"></div>
+    <div class="col-md-6 col-sm-6">        
+    <button class="close-button-style btnflot mr-0" type="submit" (click)="Close_Click()">Close</button>
+    <button class="save-button-style btnflot"   [hidden]="Job_Posting_Save==false" id="Save_Button" (click)="Save_Job_Posting()" type="submit">Save</button>
+    </div>
+    </div>
+
+</div>
+</div>
+</form>
+</div> 
+
+</div>
+</div>    
+</div>
+</div>
+
+<div class="" *ngIf="!Entry_View">
+
+    <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body">
+    <div class="mb-0">          
+    <div class="form-row">
+        <label  class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Code</label>
+        <div  class="col-md-2 col-sm-2 mb-1">
+        <input type="text" [(ngModel)]="Job_Code_Search" name="Job_Code_Search" class="form-control" placeholder=" ">
+        </div>
+        <label  class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Title</label>
+        <div  class="col-md-2 col-sm-2 mb-1">
+     
+
+        <input Input type="text"  class="form-control" [matAutocomplete]="autoc6" placeholder="" [(ngModel)]="Job_Title_"  name="Job_Title_"  
+        (click)="Search_Job_Typeahead($event)" (keyup)="Search_Job_Typeahead($event)">
+       </div> 
+       <mat-autocomplete #autoc6="matAutocomplete" [displayWith]="display_Job">
+           <mat-option *ngIf="issLoading">
+               <mat-spinner diameter="500"></mat-spinner>
+           </mat-option>
+           <ng-container *ngIf="!issLoading">
+               <mat-option *ngFor="let Job_Title_T of Job_Title_Data_Filter" [value]="Job_Title_T">
+                   <span name="Job_Title_T.Job_Title">{{Job_Title_T.Job_Title}}</span>
+               </mat-option>
+           </ng-container>
+       </mat-autocomplete>
+
+
+
+       <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Company</label>
+       <div class="col-md-2 col-sm-2 mb-1">
+       <!-- <input type="text" [(ngModel)]="Company_Name" name="Company_Name" class="form-control" placeholder=" "> -->
+       <input Input type="text"  class="form-control" [matAutocomplete]="autoc5" placeholder="" [(ngModel)]="Employeedetails_"  name="Employeedetails_"  
+       (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+      </div> 
+      <mat-autocomplete #autoc5="matAutocomplete" [displayWith]="display_Company">
+          <mat-option *ngIf="issLoading">
+              <mat-spinner diameter="500"></mat-spinner>
+          </mat-option>
+          <ng-container *ngIf="!issLoading">
+              <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                  <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+              </mat-option>
+          </ng-container>
+      </mat-autocomplete>
+
+
+        <!-- <label  class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Location</label>
+        <div  class="col-md-2 col-sm-2 mb-1">
+        <input type="text" [(ngModel)]="Job_Location_Search" name="Job_Location_Search" class="form-control" placeholder=" ">
+        </div> -->
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Experience</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <select [(ngModel)]="Experience_Search" class="form-control p-0 pl-1" id="simple-select">
+        <option *ngFor="let Experience_D of Experience_Data" [ngValue]="Experience_D" >{{Experience_D.Experience_Name}}
+        </option>
+    
+        </select>
+        </div> -->
+        <div class="col-md-2 ml-1 mb-1" >  
+        <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-right mr-1 ">Create New</button>
+        <button (click)="Search_Job_Posting()" mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-1 blue-btn">Search</button>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>        
+    </div>
+
+    <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 pt-1 pl-1 pr-1" style="background-color: white;" >  
+
+    <div class="card-body card-body-for-searchedit-lead-section pb-1 pt-0 pl-1 pr-1" >
+    <div class="table-responsive" style="overflow-y: scroll;"[style.height.px]="myInnerHeight">
+    <!-- <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 130% !important;"> -->
+    <table class="table table-hover table-for-sale-search-section-diary">
+    <thead>
+    <th >Job Code</th>          
+    <th >Job Title</th>
+    <th >Company Name</th>
+    <!-- <th >Job Location</th> -->
+    <!-- <th >Experience</th> -->
+    <!-- <th >No Of Vacancy</th> -->
+    <th >Job Posted Date</th>
+    <th > Salary </th>
+    <!-- <th >Status</th> -->
+    <th > Edit </th>
+    <th > Delete </th>
+    </thead>
+    <tbody  *ngFor="let Job_Posting_Data_d of Job_Posting_Data; let i = index" >
+    <tr>
+    <td  class="td-padding">{{Job_Posting_Data_d["Job_Code"]}}</td>
+    <td  class="td-padding">{{Job_Posting_Data_d["Job_Title"]}}</td>
+    <td  class="td-padding">{{Job_Posting_Data_d["Company_Name"]}}</td>
+    <!-- <td  class="td-padding">{{Job_Posting_Data_d["Job_Location"]}}</td> -->
+    <!-- <td  class="td-padding">{{Job_Posting_Data_d["Experience_Name"]}}</td> -->
+    <!-- <td  class="td-padding">{{Job_Posting_Data_d["No_Of_Vaccancy"]}}</td> -->
+    <td  class="td-padding">{{Job_Posting_Data_d["Entry_Date"]}}</td>
+    <td  class="td-padding">{{Job_Posting_Data_d["Salary"]}}</td>
+    <!-- <td  class="td-padding">{{Job_Posting_Data_d["Status_Name"]}}</td> -->
+    <!-- <td class="td-padding">
+        <button _ngcontent-jry-c5="" _ngcontent-gxp-c5="" aria-describedby="cdk-describedby-message-0" cdk-describedby-host="" class="aligyn-crect-deprtnment btn btn-primary btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" mattooltip="Edit Task" ng-reflect-message="Edit Task" ng-reflect-position="above" type="button">
+        <span class="mat-button-wrapper"><span _ngcontent-jry-c5="" class="mat-button-wrapper"><i _ngcontent-jry-c5=""  _ngcontent-gxp-c5="" class="material-icons" 
+            (click)="Edit_Job_Posting(Job_Posting_Data_d,i)" >edit</i></span><div _ngcontent-jry-c5="" class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false"   ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div _ngcontent-jry-c5=""  class="mat-button-focus-overlay"></div></span><div class="mat-button-ripple mat-ripple" matripple=""  ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div>
+            <div class="mat-button-focus-overlay" ></div></button>
+        </td>
+        <td class="td-padding"> 
+        <button _ngcontent-gdi-c11="" class="btn btn-danger btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" mattooltip="Remove" type="button" aria-describedby="cdk-describedby-message-1" cdk-describedby-host="" ng-reflect-position="above" ng-reflect-message="Remove"><span class="mat-button-wrapper">
+            <i _ngcontent-gdi-c11="" class="material-icons"  (click)="Delete_Job_Posting(Job_Posting_Data_d.Job_Posting_Id,i)" >close</i></span>
+            <div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false"  ng-reflect-trigger="[object HTMLButtonElement]"></div><div class="mat-button-focus-overlay"  ></div></button>
+        </td> -->
+        <td  class="td-padding" >
+            <span class="icon-background2 mr-1"     (click)="Edit_Job_Posting(Job_Posting_Data_d,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+            </td>
+            <td class="td-padding"> 
+            <span class="icon-background3 mr-1"    (click)="Delete_Job_Posting(Job_Posting_Data_d.Job_Posting_Id,i)"  > <mat-icon class="text-red small" >close</mat-icon></span>
+       </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+
+
+
+
+
+    <div class="row" style="text-align: center">
+        <div class="col-md-4">
+            <label class="entry-num">Entries : {{Total_Entries}}</label>
+        </div>
+        <div class="col-md-4 buttons-next-previous">
+            <button
+            mat-raised-button
+            type="submit"
+            (click)="previous_Click()"
+            class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-1"
+            style="background: none"
+        >
+            <i
+                class="fa fa-chevron-left"
+                aria-hidden="true"
+                style="color: #5f6368"
+            ></i>
+        </button>
+        <button
+            mat-raised-button
+            type="submit"
+            (click)="Next_Click()"
+            class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-1"
+            style="background: none"
+        >
+            <i
+                class="fa fa-chevron-right"
+                aria-hidden="true"
+                style="color: #5f6368"
+            ></i>
+        </button>
+        </div>
+        </div>
+
+       
+
+    </div>
+     
+    </div>
+    </div>
+   
+</div>
+
+</div>
+

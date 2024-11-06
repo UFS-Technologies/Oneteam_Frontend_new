@@ -1,0 +1,386 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+
+    <!-- <div class="container-fluid">
+        <div class="row" *ngIf="Entry_View" >
+        
+        </div>
+        </div> -->
+
+<div class="" *ngIf="Entry_View" >
+
+    <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body" >
+    <div class="mb-0">          
+    <div class="form-row">
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Apply Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>   
+
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 col-lg-1 col-xl-1 mb-1 tw3">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px;padding: 7px 4px !important;">
+            <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" >
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+
+    </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-2 col-lg-1 col-xl-1 tw3">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px !important;padding: 7px 4px !important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Job</label>
+        <div class="col-md-5 col-sm-5 mb-1">
+        <input type="text" [(ngModel)]="Search_Name" name="Search_Name" class="form-control" placeholder=" ">
+         </div> -->
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Notification Status</label>
+         <div class="col-md-2 col-sm-2 mb-1 tw1">
+          <select
+              [(ngModel)]="Student_Status_"
+              class="form-control p-0 pl-1"
+              name="custimertype"
+              id="custimertype"
+             
+          >
+              <option value=-1>Select</option>
+              <option value=0>Notification Disable</option>
+              <option value=1>Notification Enable</option>
+
+              
+          </select>
+      </div>
+
+
+      <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Blacklist Status</label>
+      <div class="col-md-2 col-sm-2 mb-1 tw2">
+       <select
+           [(ngModel)]="Blacklist_Status_"
+           class="form-control p-0 pl-1"
+           name="custimertype"
+           id="custimertype"
+          
+       >
+           <option value=-1>Select</option>
+           <option value=0>Whitelist</option>
+           <option value=1>Blacklist</option>
+
+           
+       </select>
+   </div>
+
+
+   <label class="col-md-0 col-sm-0 col-form-label text-sm-right">	Activate Status</label>
+   <div class="col-md-2 col-sm-2 mb-1 tw6">
+    <select
+        [(ngModel)]="Activate_Status_"
+        class="form-control p-0 pl-1"
+        name="custimertype"
+        id="custimertype"
+       
+    >
+        <option value=-1>Select</option>
+        <option value=0>Deactive</option>
+        <option value=1>Active</option>
+
+        
+    </select>
+</div>
+</div>
+
+<div class="form-row mt-2">
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right">Fees  Status</label>
+<div class="col-md-2 col-sm-2 mb-1 tw5">
+ <select
+     [(ngModel)]="Fees_Status_"
+     class="form-control p-0 pl-1"
+     name="custimertype"
+     id="custimertype"
+    
+ >
+     <option value=-1>Select</option>
+     <option value=0>Payment Pending</option>
+     <option value=1>Paid</option>
+
+     
+ </select>
+</div>
+
+      <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Company</label>
+        <div class="col-md-3 col-sm-3 mb-1 tw4">
+        <!-- <input  type="text" [(ngModel)]="Company_Name_Search" name="Company_Name_Search" class="form-control" placeholder=" ">
+         </div> -->
+
+         <input Input type="text"  class="form-control" [matAutocomplete]="autoc5" placeholder="" [(ngModel)]="Employeedetails_"  name="Employeedetails_"  
+         (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+        </div> 
+        <mat-autocomplete #autoc5="matAutocomplete" [displayWith]="display_Company">
+            <mat-option *ngIf="issLoading">
+                <mat-spinner diameter="500"></mat-spinner>
+            </mat-option>
+            <ng-container *ngIf="!issLoading">
+                <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                    <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+                </mat-option>
+            </ng-container>
+        </mat-autocomplete>
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Job</label>
+        <div class="col-md-3 col-sm-3 mb-1 ">
+        <!-- <input type="text" [(ngModel)]="Job_Name_Search" name="Job_Name_Search" class="form-control" placeholder=" ">
+         </div> -->
+
+         <input Input type="text"  class="form-control" [matAutocomplete]="autoc6" placeholder="" [(ngModel)]="Job_Title_"  name="Job_Title_"  
+        (click)="Search_Job_Typeahead($event)" (keyup)="Search_Job_Typeahead($event)">
+       </div> 
+       <mat-autocomplete #autoc6="matAutocomplete" [displayWith]="display_Job">
+           <mat-option *ngIf="issLoading">
+               <mat-spinner diameter="500"></mat-spinner>
+           </mat-option>
+           <ng-container *ngIf="!issLoading">
+               <mat-option *ngFor="let Job_Title_T of Job_Title_Data_Filter" [value]="Job_Title_T">
+                   <span name="Job_Title_T.Job_Title">{{Job_Title_T.Job_Title}}</span>
+               </mat-option>
+           </ng-container>
+       </mat-autocomplete>
+
+      
+         <div class="col-md-0 col-sm-0">  
+            <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button>
+        <button (click)="Search_Jobposting_Detailed_Report()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+    </div> 
+    
+    
+    </div>
+    </div>
+    </div>        
+    </div>
+
+   
+
+
+    <div class="col-md-12 pl-0 pr-0 mt-2" style="border: 1" >
+        <div class="dt-card mb-0 pb-1 pt-1" style="background-color: white;" >  
+    <div class="card-body card-body-for-searchedit-lead-section pt-0" >
+        <div class="table-responsive" 	style="overflow-y: scroll;"[style.height.px]="myInnerHeight">
+    <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+       
+     <thead>  
+     <th style="width:0%!important;">SlNo</th>
+     <th style="width:30%!important;">Job</th>  
+     <th  style="width:7%!important;" >Company</th>   
+     <th >Applied Date</th> 
+     <th >Student</th>
+     <th >Year Of Passing</th>
+     <th  style="width:15%!important;" >Interview Status</th> 
+     <th  style="width:15%!important;" >Interview Date</th>
+     <th  style="width:15%!important;" >Description</th>  
+     <th  style="width:15%!important;" >Placement Status</th> 
+     <th  style="width:15%!important;" >Placement Date</th>
+     <th  style="width:15%!important;" >Description</th>
+     <th  style="width:15%!important;">Resume Status</th> 
+     <th  style="width:15%!important;" >Notification Status</th> 
+     <th  style="width:15%!important;" >Blacklist Status</th>
+     <th  style="width:15%!important;" >Activate Status</th>
+     <th  style="width:15%!important;" >Fees Status</th>  
+
+     </thead>
+    <tbody  *ngFor="let Student_Job_Report_T of Search_Jobposting_Detailed_Data; let i = index" >
+    <tr>
+  
+
+    <td>{{i+1}}</td>
+    <td style="display: inline-flex;width: 210px;">{{Student_Job_Report_T["Job"]}}</td>
+    <td >{{Student_Job_Report_T["Company_Name"]}}</td>
+    <td >{{Student_Job_Report_T["Applied_date"]}}</td>
+    <td >{{Student_Job_Report_T["Student_Name"]}}</td>
+    <td >{{Student_Job_Report_T["Year_Of_Passing"]}}</td>
+    <td >{{Student_Job_Report_T["Interview_Status_Name"]}}</td>
+    <td >{{Student_Job_Report_T["Interview_Date"]}}</td>
+    <td >{{Student_Job_Report_T["Interview_Description"]}}</td>
+    <td >{{Student_Job_Report_T["Placement_Status_Name"]}}</td>
+    <td >{{Student_Job_Report_T["Placement_Date"]}}</td>
+    <td >{{Student_Job_Report_T["Placement_Description"]}}</td>
+    <td >{{Student_Job_Report_T["Resume_Status_Name"]}}</td>
+    <td >{{Student_Job_Report_T["Student_Status_Name"]}}</td>
+    <td >{{Student_Job_Report_T["Blacklist_Status_Name"]}}</td>
+    <td >{{Student_Job_Report_T["Activate_Status_Name"]}}</td>
+    <td >{{Student_Job_Report_T["Fees_Status_Name"]}}</td>
+
+  
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+        
+         </div>
+    </div>
+    </div>
+
+
+
+    <!-- <div class="col-md-12 pr-0 pl-0">
+        <div class="data col-lg-9 pl-3 mt-1">
+            <h4 style="color: #145388; font-weight: bold"></h4>
+        </div>
+        <div
+            class="dt-module__content ps-custom-scrollbar"
+            style="min-height:150px">
+            <div
+                class="card-body new-cb p-2"
+                style="overflow-y: scroll;"[style.height.px]="myInnerHeight">
+                <div class="card horizontal new-ch mb-2"
+                    *ngFor="let Student_Job_Report_T of Search_Jobposting_Detailed_Data;let i = index">
+                    <div class="card-stacked">
+                        <div class="grid-container">    
+                            
+                           
+    
+                            <div class="col-md-12 pr-0">
+                                
+                                <div class="d-flex flex-wrap mb-1 grid-item custon-line-height position-bg">
+                                    <div class="pr-3 lh">Job:
+                                        <span class="text-dark">{{Student_Job_Report_T["Job"]}}</span>
+                                    </div>
+                                    <div class="pr-3 lh">Company:
+                                        <span class="text-dark">
+                                            {{Student_Job_Report_T["Company_Name"]}}</span
+                                        >
+                                    </div>
+                                    <div class="pr-3 lh">Applied On:
+                                        <span class="text-dark tdb">{{Student_Job_Report_T["Applied_date"]}}</span>
+                                    </div>
+                                    <div class="pr-3 lh">Student:
+                                        
+                                        <span class="text-dark">
+                                            {{Student_Job_Report_T["Student_Name"]}}</span
+                                        >
+                                    </div>
+                                   
+                                    <div class="pr-3 lh">Year Of Passing:
+                                        
+                                        <span class="text-dark tdb">
+                                            {{Student_Job_Report_T["Year_Of_Passing"]}}</span
+                                        >
+                                    </div>
+
+                                    <div class="d-flex flex-wrap mb-1 grid-item">
+                                        <div class="pr-3 lh">Interview Status:
+                                            <span class="text-darkk tdb box_c_bg">{{Student_Job_Report_T["Interview_Status_Name"]}}</span>
+                                        </div>
+                                        <div class="pr-3 lh">
+                                            <span class="text-dark"> Interview Date:
+                                                {{Student_Job_Report_T["Interview_Date"]}}</span
+                                            >
+                                        </div>
+                                        <div class="pr-3 lh">Description:
+                                            <span class="text-dark">{{Student_Job_Report_T["Interview_Description"]}}</span>
+                                        </div>
+                                        <div class="pr-3 lh">Placement Status:
+                                            
+                                            <span class="text-darkk tdb box_c_bg">
+                                                {{Student_Job_Report_T["Placement_Status_Name"]}}</span
+                                            >
+                                        </div>
+    
+                                        <div class="pr-3 lh">Placement Date:
+                                            <span class="text-dark">{{Student_Job_Report_T["Placement_Date"]}}</span>
+                                        </div>
+                                        <div class="pr-3 lh">Description:
+                                            <span class="text-dark">
+                                                {{Student_Job_Report_T["Placement_Description"]}}</span
+                                            >
+                                        </div>
+                                        <div class="pr-3 lh">Resume Status:
+                                            <span class="text-darkk box_c_bg">{{Student_Job_Report_T["Resume_Status_Name"]}}</span>
+                                        </div>
+                                        <div class="pr-3 lh">Notification Status:
+                                            
+                                            <span class="text-darkk box_c_bg">
+                                                {{Student_Job_Report_T["Student_Status_Name"]}}</span
+                                            >
+                                        </div>
+                                       
+                                        <div class="d-flex flex-wrap mb-1 grid-item">
+                                            <div class="pr-3 lh">Blacklist Status:
+                                                <span class="text-darkk box_c_bg">{{Student_Job_Report_T["Blacklist_Status_Name"]}}</span>
+                                            </div>
+                                            <div class="pr-3 lh">Activate Status:
+                                                <span class="text-darkk box_c_bg"> 
+                                                    {{Student_Job_Report_T["Activate_Status_Name"]}}</span
+                                                >
+                                            </div>
+                                           
+                                            <div class="pr-3 lh">Fees Status:
+                                                
+                                                <span class="text-darkk box_c_bg">
+                                                    {{Student_Job_Report_T["Fees_Status_Name"]}}</span
+                                                >
+                                            </div>
+    
+    
+                        </div>
+                           </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    
+    </div>
+    </div>
+    <div class="row" style="text-align: center">
+    <label class="entry-num">Entries : {{Total_Entries}}</label> 
+</div>
+    </div> -->
+
+
+   
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

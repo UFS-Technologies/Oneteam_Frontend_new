@@ -1,0 +1,255 @@
+<div *ngIf="issLoading" class="overlay">
+	<mat-progress-spinner
+		class="spinner"
+		[color]="color"
+		[mode]="mode"
+		[value]="value"
+	>
+	</mat-progress-spinner>
+</div>
+<div id="Topdiv"></div>
+<div id="Bottomdiv"></div>
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row" *ngIf="Entry_View"></div>
+	</div>
+
+	<div class="" *ngIf="!Entry_View">
+		<div
+			class="col-md-12 pl-3 pr-8 mt-1"
+			style="border: 1"
+			*ngIf="isDesktopMenu()"
+		>
+			<div class="dt-card mb-0 pb-1">
+				<div class="dt-card__body">
+					<div class="mb-0">
+						<div class="form-row">
+							<label class="col-md-0 col-sm-0 col-form-label text-sm-right"
+								>Receipt Date</label
+							>
+							<div class="col-md-0 col-sm-0 mb-1">
+								<div
+									_ngcontent-xmy-c9=""
+									class="checkbox-to-crect-sales-search-section"
+								>
+									<div
+										_ngcontent-xmy-c9=""
+										class="form-check uper-dte-lbel-sales-sctn-new pl-0"
+									>
+										<label _ngcontent-xmy-c9="" class="form-check-label">
+											<input
+												type="checkbox"
+												class="form-check-input"
+												name="Is_Date"
+												[(ngModel)]="Is_Date"
+											/>
+											<span _ngcontent-xmy-c9="" class="form-check-sign"
+												><span _ngcontent-xmy-c9="" class="check"> </span>
+											</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<label class="col-md-0 col-sm-0 col-form-label text-sm-right"
+								>From</label
+							>
+							<div class="col-md-2 col-sm-2 mb-1 wd_d">
+								<!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+								<mat-form-field
+									class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn"
+									style="height: 40px; padding-top: 7px !important"
+								>
+									<input
+										matInput
+										[matDatepicker]="dp1"
+										placeholder=""
+										[(ngModel)]="FromDate_"
+										name="FromDate_"
+									/>
+									<mat-datepicker-toggle
+										matSuffix
+										[for]="dp1"
+									></mat-datepicker-toggle>
+									<mat-datepicker #dp1></mat-datepicker>
+								</mat-form-field>
+							</div>
+							<label class="col-md-0 col-sm-0 col-form-label text-sm-right"
+								>To</label
+							>
+							<div class="col-md-2 col-sm-2 mb-1 wd_d">
+								<!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+
+								<mat-form-field
+									class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn"
+									style="height: 40px"
+									style="height: 40px !important; padding-top: 7px !important"
+								>
+									<input
+										matInput
+										[matDatepicker]="dpdate"
+										placeholder=""
+										[(ngModel)]="ToDate_"
+										name="ToDate_"
+									/>
+									<mat-datepicker-toggle
+										matSuffix
+										[for]="dpdate"
+									></mat-datepicker-toggle>
+									<mat-datepicker #dpdate></mat-datepicker>
+								</mat-form-field>
+							</div>
+							<label class="col-md-0 col-sm-0 col-form-label text-sm-right"
+								>Collected by</label
+							>
+							<div class="col-md-2 col-sm-2 mb-1">
+								<input
+									type="text"
+									class="form-control"
+									id="User_"
+									name="User_"
+									[matAutocomplete]="auto_Faculty"
+									[(ngModel)]="User_"
+									(click)="Search_User_Typeahead($event)"
+									(keyup)="Search_User_Typeahead($event)"
+								/>
+							</div>
+							<mat-autocomplete
+								#auto_Faculty="matAutocomplete"
+								[displayWith]="display_Faculty"
+							>
+								<mat-option *ngIf="issLoading"
+									><mat-spinner diameter="500"></mat-spinner
+								></mat-option>
+								<ng-container *ngIf="!issLoading">
+									<mat-option
+										*ngFor="let User_ of User_Data_Filter"
+										[value]="User_"
+									>
+										<span>{{ User_.Users_Name }}</span>
+									</mat-option>
+								</ng-container>
+							</mat-autocomplete>
+
+							<label class="col-md-0 col-sm-0 col-form-label text-sm-right">
+								Mode</label
+							>
+							<div class="col-md-2 col-sm-2 mb-1">
+								<select
+									[(ngModel)]="Mode"
+									name="Fees_.Fees_Id"
+									required
+									class="form-control p-0 pl-1"
+								>
+									<option *ngFor="let Mode1 of Mode_Data" [ngValue]="Mode1">
+										{{ Mode1.Mode_Name }}
+									</option>
+								</select>
+							</div>
+
+							<div class="col-md-2 col-sm-2">
+								<!-- <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-right mr-1 ">Create New</button> -->
+								<button
+									mat-raised-button
+									type="submit"
+									[hidden]="Export_View == false"
+									(click)="Export()"
+									class="other-button-style btnflot pull mr-1 green-btn"
+								>
+									<i></i>EXPORT
+								</button>
+								<button
+									(click)="Search_Fees_Collection_Report()"
+									mat-raised-button
+									type="submit"
+									class="other-button-style btnflot pull-left mr-1 blue-btn"
+								>
+									Search
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="col-md-12 pl-3 pr-8 mt-1"
+			style="border: 1"
+			*ngIf="isDesktopMenu()"
+		>
+			<div class="dt-card mb-0 pb-1 pt-1 pl-1 pr-1" style="background-color: white">
+				<div class="card-body card-body-for-searchedit-lead-section pb-1 pt-0 pl-1 pr-1">
+					<div
+						class="table-responsive"
+						style="overflow: scroll;"[style.height.px]="myInnerHeight"
+					>
+						<!-- <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 130% !important;"> -->
+						<table
+							class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format"
+						>
+							<!--  style="width: 105%;" -->
+							<!-- style="width: 175%;" -->
+
+							<thead>
+								<th style="width: 1% !important">No</th>
+								<th style="width: 7% !important">Receipt Date</th>
+								<th style="width: 7% !important">Entry Date</th>
+								<th style="width: 14% !important">Student</th>
+								<th style="width: 5% !important">Year Of Passing</th>
+								<th>Course</th>
+								<th style="width: 7% !important">Amount</th>
+								<th style="width: 7% !important">To Account</th>
+								<th>Mode</th>
+								<th>District</th>
+								<th>Batch</th>
+								<th>Collected By</th>
+								<th>Remark</th>
+							</thead>
+							<tbody
+								*ngFor="
+									let Fees_Collection_Report_ of Fees_Collection_Report_Data;
+									let i = index
+								"
+							>
+								<tr>
+									<td>{{ i + 1 }}</td>
+									<td>{{ Fees_Collection_Report_["Date"] }}</td>
+									<td [ngClass]="{three : Fees_Collection_Report_.datediff !=0,six : Fees_Collection_Report_.datediff == 0}">{{ Fees_Collection_Report_["Entry_Date"] }}</td>
+
+
+
+									<td class="icon-pointer">
+										<a
+											target="_blank"
+											[routerLink]="['/Student']"
+											(click)="
+												Edit_Fees_Collection(
+													Fees_Collection_Report_.Student_Id,
+													i
+												)
+											"
+											style="color: #357bfd; font-weight: 800"
+											>{{ Fees_Collection_Report_["Student"] }}</a
+										>
+									</td>
+									<td  class="">{{Fees_Collection_Report_["Year_Of_Passing"]}}</td>
+									<td>{{ Fees_Collection_Report_["Course"] }}</td>
+									<td>{{ Fees_Collection_Report_["Amount"] }}</td>
+									<td>{{ Fees_Collection_Report_["To_Account_Name"] }}</td>
+									<td>{{ Fees_Collection_Report_["Mode_Name"] }}</td>
+									<td>{{ Fees_Collection_Report_["District_Name"] }}</td>
+									<td>{{ Fees_Collection_Report_["Batch_Name"] }}</td>
+									<td>{{ Fees_Collection_Report_["CollectedBy"] }}</td>
+									<td>{{ Fees_Collection_Report_["Remark"] }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<label class="entry-num">Entries : {{ Total_Entries }}</label>
+		<label class="entry-num">Amount : {{ Total_Amount }}</label>
+	</div>
+</div>

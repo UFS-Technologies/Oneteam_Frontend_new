@@ -1,0 +1,1556 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+
+    <!-- <div class="container-fluid">
+        <div class="row" *ngIf="Entry_View" >
+        
+        </div>
+        </div> -->
+
+<div class="" *ngIf="Entry_View" >
+
+    <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body" >
+    <div class="mb-0">          
+    <div class="form-row">
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Job Posted Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>   
+
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+        <mat-form-field class="form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px;padding-top: 7px!important;">
+            <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" >
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+
+    </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px !important;padding-top: 7px!important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Job</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <!-- <input type="text" [(ngModel)]="Search_Name" name="Search_Name" class="form-control" placeholder=" ">
+         </div> -->
+
+         <input Input type="text"  class="form-control" [matAutocomplete]="autoc6" placeholder="" [(ngModel)]="Job_Title_"  name="Job_Title_"  
+        (click)="Search_Job_Typeahead($event)" (keyup)="Search_Job_Typeahead($event)">
+       </div> 
+       <mat-autocomplete #autoc6="matAutocomplete" [displayWith]="display_Job">
+           <mat-option *ngIf="issLoading">
+               <mat-spinner diameter="500"></mat-spinner>
+           </mat-option>
+           <ng-container *ngIf="!issLoading">
+               <mat-option *ngFor="let Job_Title_T of Job_Title_Data_Filter" [value]="Job_Title_T">
+                   <span name="Job_Title_T.Job_Title">{{Job_Title_T.Job_Title}}</span>
+               </mat-option>
+           </ng-container>
+       </mat-autocomplete>
+
+
+
+       <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course</label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="text"  class="form-control"  id="Course_" name="Course_"  [matAutocomplete]="auto_Course"
+        [(ngModel)]="Course_" (click)="Search_Course_Typeahead($event)"(keyup)="Search_Course_Typeahead($event)" /></div>  
+        <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+            <span>{{Course.Course_Name}}</span>
+            </mat-option>
+            </ng-container>
+        </mat-autocomplete>  
+
+
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Company</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <!-- <input type="text" [(ngModel)]="Company_Name" name="Company_Name" class="form-control" placeholder=" "> -->
+        <input Input type="text"  class="form-control" [matAutocomplete]="autoc5" placeholder="" [(ngModel)]="Employeedetails_"  name="Employeedetails_"  
+        (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+       </div> 
+       <mat-autocomplete #autoc5="matAutocomplete" [displayWith]="display_Company">
+           <mat-option *ngIf="issLoading">
+               <mat-spinner diameter="500"></mat-spinner>
+           </mat-option>
+           <ng-container *ngIf="!issLoading">
+               <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                   <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+               </mat-option>
+           </ng-container>
+       </mat-autocomplete>
+
+
+         <!-- </div> -->
+      
+         <div class="col-md-0 col-sm-0">  
+            <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button>
+        <button (click)="Search_Jobposting_Summary()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+        <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-right mr-1 ">Post a New Job</button>
+    </div> 
+    
+    
+    </div>
+    </div>
+    </div>        
+    </div>
+
+   
+
+    
+
+
+    <div class="col-md-12 pl-0 pr-0 mt-1" style="border: 1" >
+        <!-- *ngIf="isDesktopMenu()" -->
+    <div class="dt-card mb-0  pb-1 pt-1 pl-1 pr-1" style="background-color: white;" >  
+                                                 <!--  style="overflow: scroll;" -->
+    <div class="card-body card-body-for-searchedit-lead-section  pb-1 pt-0 pl-1 pr-1" >
+        <div class="table-responsive" 	style="overflow-y: scroll;"[style.height.px]="myInnerHeight">
+    <!-- <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 130% !important;"> -->
+      <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+          <!--  style="width: 100%;" -->
+     <thead>  
+     <th style="width:0%!important;"> Sl No</th>
+     <th style="width:0%!important;"> Edit</th>
+     <th style="width:0%!important;"> Delete</th>
+     <th style="width:0%!important;">Vacancy Added Date</th>
+     <th style="width:0%!important;"> Number of Vacancy</th>
+     <th style="width:30%!important;">Company</th> 
+     <th style="width:30%!important;">Job Position</th> 
+     <th style="width:30%!important;">Salary</th> 
+     <th style="width:30%!important;">Last Date</th> 
+     <th style="width:30%!important;">Course</th> 
+     <th  style="width:7%!important;" >Applied Student</th>   
+     <th ></th>    
+     <th >Rejected Student</th>   
+     <th ></th> 
+     
+    
+        
+     </thead>
+    <tbody  *ngFor="let Jobposting_Report_T of Jobposting_Report_Data; let i = index" >
+    <tr>
+  
+
+     <td>{{i+1}}</td>
+     <td  class="td-padding" >
+      <span class="icon-background2 mr-1"     (click)="Edit_Job_Posting(Jobposting_Report_T,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+      </td>
+      <td class="td-padding"> 
+      <span class="icon-background3 mr-1"    (click)="Delete_Job_Posting(Jobposting_Report_T.Job_Posting_Id,i)"  > <mat-icon class="text-red small" >close</mat-icon></span>
+    </td>
+     <td>{{Jobposting_Report_T["Entry_Date"]}}</td>
+     <td>{{Jobposting_Report_T["No_Of_Vaccancy"]}}</td>
+    <td>{{Jobposting_Report_T["Company_Name"]}}</td>
+    <td>{{Jobposting_Report_T["Job_Title"]}}</td>
+    <td>{{Jobposting_Report_T["Salary"]}}</td>
+    <td>{{Jobposting_Report_T["Last_Date"]}}</td>
+    <td>{{Jobposting_Report_T["Course_Name"]}}</td>
+    <td >{{Jobposting_Report_T["Applied_Count"]}}</td>
+    <div style="padding: 6px 0px;"> <button *ngIf="Jobposting_Report_T.Applied_Count>0"  class="other-button-style"  mat-raised-button type="submit" id="Registration_Report" style="background-color: #d7d0d0;color: black;"  (click)="Search_Appliedcount_Details(Jobposting_Report_T.Job_Posting_Id,Jobposting_Report_T.Job_Title,Jobposting_Report_T.Company_Name)">
+        View Details</button></div>
+    <td  >{{Jobposting_Report_T["Reject_Count"]}}</td>
+    <div style="padding: 6px 0px;"> <button *ngIf="Jobposting_Report_T.Reject_Count>0" class="other-button-style" mat-raised-button type="submit" id="Registration_Report" style="background-color: #d7d0d0;color: black;"  (click)="Search_Rejectedcount_Details(Jobposting_Report_T.Job_Posting_Id,Jobposting_Report_T.Job_Title)">
+        View Details</button></div>
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+        
+         </div>
+
+         <!-- <div class="row" style="text-align: center">
+          <label class="entry-num">Entries : {{Total_Entries}}</label> 
+        </div> -->
+
+        <div class="row" style="text-align: center">
+          <div class="col-md-4">
+              <label class="entry-num">Entries : {{Total_Entries}}  , Total Jobs Added : {{Total_Entries}}  ,Vacancies : {{Vacancies}}</label>
+          </div>
+          <div class="col-md-4 buttons-next-previous">
+              <button
+              mat-raised-button
+              type="submit"
+              (click)="previous_Click()"
+              class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-1"
+              style="background: none"
+          >
+              <i
+                  class="fa fa-chevron-left"
+                  aria-hidden="true"
+                  style="color: #5f6368"
+              ></i>
+          </button>
+          <button
+              mat-raised-button
+              type="submit"
+              (click)="Next_Click()"
+              class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-1"
+              style="background: none"
+          >
+              <i
+                  class="fa fa-chevron-right"
+                  aria-hidden="true"
+                  style="color: #5f6368"
+              ></i>
+          </button>
+          </div>
+          </div>
+          
+         
+    </div>
+    </div>
+
+
+
+</div>
+
+</div>
+
+
+
+<div class="main-content" *ngIf="Appliedcount_Div">
+    <div class="container-fluid pl-0 pr-0" >
+   
+    <!-- <div class="seperation-for-down-butons" > -->
+       <!-- <div class="row "> -->
+        <div class="col-md-12 pl-0 mt-2" style="border: 1">
+          <div class="dt-card mb-0 pb-1 ">         
+              <div class="dt-card__body mt-2 mb-4">
+                  <div class="mb-0">   
+                    <h4  style="color: #0740a5;
+                    font-weight: bold;
+                    margin-bottom: 25px;
+                    border-bottom: 1px solid #bfbfbf;
+                    padding-bottom: 7px;font-size: 20px;">Applied List of {{Search_Job}} for {{Search_Company}}</h4>       
+                    <div class="form-row">
+  
+                     
+  
+                      <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right mt-2">Job:{{Search_Job}}</label> -->
+                      <!-- <div class="col-md-3 col-sm-3 mb-1  mt-2">
+                        <select [(ngModel)]="User_Search" id="User_" required class="form-control p-0 pl-1 ">
+                        <option *ngFor="let User_T of Users_Data" [ngValue]="User_T">{{User_T.Users_Name}}</option>
+                        </select>  
+                      </div> 
+   -->
+
+   <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Interview Status</label>
+   <div class="col-md-2 col-sm-2 mb-1">
+    <select
+        [(ngModel)]="Interview_Status_"
+        class="form-control p-0 pl-1"
+        name="Interview_Status_"
+        (ngModelChange)="Show_interview_Scheduled(Interview_Status_)"
+        id="Interview_Status_"
+       
+    >
+    <option value=-1>All</option>
+        <option value=0>Inteview Not Scheduled</option>
+        <option value=1>Inteview  Scheduled</option>
+
+        
+    </select>
+</div>
+
+
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right">Placement Status</label>
+<div class="col-md-2 col-sm-2 mb-1">
+ <select
+     [(ngModel)]="Placement_Status_"
+     class="form-control p-0 pl-1"
+     name="Placement_Status_"
+     (ngModelChange)="Show_Placement_Scheduled(Placement_Status_)"
+     id="Placement_Status_"
+    
+ >
+ <option value=-1>All</option>
+     <option value=0>Not	Placed</option>
+     <option value=1> Placed</option>
+
+     
+ </select>
+</div>
+
+
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right">Inteview Attending Status</label>
+<div class="col-md-2 col-sm-2 mb-1">
+ <select
+     [(ngModel)]="Inteview_Attending_Status_"
+     class="form-control p-0 pl-1"
+     name="Inteview_Attending_Status_"
+     (ngModelChange)="Show_Inteview_Attending_Status(Inteview_Attending_Status_)"
+     id="Inteview_Attending_Status_"
+    
+ >
+     <option value=0>All</option>
+     <option value=1> Inteview Apply</option>
+     <option value=2>Inteview Reject</option>
+     <option value=3>Not Responded</option>
+
+     
+ </select>
+</div>
+
+
+                      <div class="col-md-12 col-sm-1 mb-1">
+
+                       
+                       
+                     
+                   
+                        <button  mat-raised-button type="submit"  class="save-button-style btnflotL  mr-1  mt-2" data-toggle="modal"data-toggle="modal" data-target="#Scheduleinterview_View" (click)="Schedule_Interview()" >Schedule Interview</button>
+                        <button  mat-raised-button type="submit"  class="save-button-style btnflotL  mr-1  mt-2" data-toggle="modal" data-target="#Mark_Placement_View" (click)="Mark_Placement()" >Mark Placement</button>
+                        <button  mat-raised-button type="submit"  class="other-button-style btnflotL mr-1  mt-2 blue-btn" (click)="downloadZip(i)" >Download All Resume</button>
+                        <button (click)="Export_Appliedcount_Data()"   mat-raised-button type="submit"  class="other-button-style btnflotL  mr-1  mt-2 green-btn">Export</button>
+                        <button (click)="Close_Applied_count()" mat-raised-button  type="submit"   class="other-button-style btnflotL  mr-1  mt-2">  Back</button>
+                       
+                        <!-- <button (click)="Show_All()"   mat-raised-button type="submit"  class="other-button-style btnflotL  mr-1  mt-2">Show All</button> -->
+                        <!-- <button  mat-raised-button type="submit"  class="other-button-style btnflot  mr-1  mt-2" (click)="Show_Placement_Scheduled()" >Show Placed Candidate</button> -->
+                       
+                        <!-- <button  mat-raised-button type="submit"  class="other-button-style btnflot  mr-1  mt-2" (click)="Show_interview_Scheduled(0)" >Show interview scheduled Candidate</button> -->
+
+                        
+                     
+                        <!-- <button (click)="Graph_View()"  [hidden]="Summary_Sub==false"  mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-1  mt-2">Graph</button> -->
+                      
+                       <!-- <button class="col-sm-8 btn" (click)="downloadZip(i)"
+                        style="background-color:#2b5d64;border-radius: 2px solid; height: 36px;" 
+                        class="btn btn-danger pull-right"><i class="fa fa-download"></i>Download </button>  -->
+                        <!-- <button (click)="Search_Lead_button()" id="Registration_Report" mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-2  mt-2">Search</button> -->
+                        
+                      </div>
+                      
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+  
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+  
+        <div *ngIf="Appliedcount_Div" class="col-md-12 pl-0 mt-2" style="border: 1">
+          <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;">         
+            <div class="card-body card-body-for-searchedit-lead-section "	 >
+              <!-- style="overflow: scroll;height: 729px;width: 1906px;" -->
+                  <!-- <div class="mb-0">           
+                    <div class="form-row"> -->
+  
+  
+                      <!-- <div class="card card-plain"> -->
+                        <!-- <div class="card-body card-body-for-searchedit-lead-section"> -->
+                        <div class="table-responsive" style="overflow: scroll;"[style.height.px]="myTotalHeight">
+                        <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+                          <thead>
+
+
+                            <th class="crect-margin-width-table-header-title">
+                              <div _ngcontent-xmy-c9="" class="form-check">
+                              <label _ngcontent-xmy-c9="" class="form-check-label">
+                              <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                              [(ngModel)]="select_Resume" (click)="Resume_Click()" type="checkbox" name="select_Resume"
+                              [checked]="select_Resume_Check" value="">
+                              <span _ngcontent-xmy-c9="" class="form-check-sign"  style="margin-top: 18px;
+                              margin-left: 10px;" >
+                              <span _ngcontent-xmy-c9="" class="check"></span>
+                              </span>
+                              </label>
+                              </div>   
+                              </th>
+
+
+                            <th style="width:0%!important">
+                              No
+                            </th>                        
+                            <th style="width:15%!important">
+                             Applied date
+                            </th>   
+                            <th style="width:15%!important">
+                            Student Name
+                            </th> 
+                            <th style="width:15%!important">
+                             Phone Number
+                              </th> 
+                              <th style="width:15%!important">
+                                Course
+                                </th> 
+
+                                <th style="width:15%!important">
+                                  Apply Time
+                                  </th> 
+                            <th style="width:15%!important">
+                              Interview Status
+                              </th> 
+                              <th style="width:15%!important">
+                                Interview Date 
+                                </th> 
+
+                                <th style="width:15%!important">
+                                  Interview Time 
+                                  </th>
+
+                                  <th style="width:15%!important">
+                                    Interview Location 
+                                    </th>
+
+
+                                <th style="width:25%!important">
+                                  Interview Description
+                                  </th> 
+                                  <th style="width:15%!important">
+                                    Placement Status
+                                    </th>   
+                                    <th style="width:15%!important">
+                                      Placement Date
+                                      </th>  
+                                      <th style="width:25%!important">
+                                        Placement Description
+                                        </th>      
+                                        <th style="width:25%!important">
+                                          Interview Attending Status
+                                          </th>   
+                                          <th style="width:25%!important">
+                                            Interview Attending or Rejecting Date
+                                            </th>   
+                                            <th style="width:25%!important">
+                                              Interview Rejecting Description
+                                              </th>                    
+                            <th style="width:2%!important">
+                           Resume
+                            </th>
+                            <th>                        
+                            </th>
+                            <!-- <th>
+                              Edit
+                            </th> -->
+                          </thead>
+                          <tbody *ngFor="let AppliedcountdetailsData_R of Jobposting_Report_AppliedcountdetailsData; let i = index">
+                            <tr>
+
+                              <td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+                                <div _ngcontent-xmy-c9="" class="form-check">
+                                <label _ngcontent-xmy-c9="" class="form-check-label">
+                                <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                                [(ngModel)]="AppliedcountdetailsData_R.Check_Box" type="checkbox" name={{AppliedcountdetailsData_R.Student_Id}}{{AppliedcountdetailsData_R.Student_Id}} 
+                                [checked]="AppliedcountdetailsData_R.Check_Box" value="">
+                                <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top: 15px;margin-left: 11px;">
+                                <span _ngcontent-xmy-c9="" class="check"></span>
+                                </span>
+                                </label>
+                                </div>
+                                </td>
+
+                              <td>
+                            {{i+1}}
+                              </td>
+                              
+                              <td>
+                                {{AppliedcountdetailsData_R["Entry_Date"]}}
+                                </td>
+                                <!-- <td>
+                                  {{AppliedcountdetailsData_R["Student_Name"]}}
+                                  </td> -->
+
+                                  <td  class=" icon-pointer" ><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Lead(AppliedcountdetailsData_R.Student_Id,i)" style="color: #357bfd; font-weight: 800;">{{AppliedcountdetailsData_R["Student_Name"]}}</a></td>
+   
+                                  <td>
+                                    {{AppliedcountdetailsData_R["Phone"]}}
+                                    </td>
+                                    <td>
+                                      {{AppliedcountdetailsData_R["Course_Name"]}}
+                                      </td>
+
+                                      <td>
+                                        {{AppliedcountdetailsData_R["Apply_Time"]}}
+                                        </td>
+                                  <td>
+                                    {{AppliedcountdetailsData_R["Interview_Status_Name"]}}
+                                    </td>
+                                    <td><div *ngIf="AppliedcountdetailsData_R.Interview_Status==1"> {{AppliedcountdetailsData_R["Interview_Date"]}}</div></td>
+                                    <td><div *ngIf="AppliedcountdetailsData_R.Interview_Status==1"> {{AppliedcountdetailsData_R["Interview_Time"]}}</div></td>
+                                    <td><div *ngIf="AppliedcountdetailsData_R.Interview_Status==1"> {{AppliedcountdetailsData_R["Interview_Location"]}}</div></td>
+                                      <td><div  *ngIf="AppliedcountdetailsData_R.Interview_Status==1"> {{AppliedcountdetailsData_R["Interview_Description"]}}</div>
+                                       
+                                        </td>
+                                        <td>
+                                          {{AppliedcountdetailsData_R["Placement_Status_Name"]}}
+                                          </td>
+                                          <td><div *ngIf="AppliedcountdetailsData_R.Placement_Status==1"> {{AppliedcountdetailsData_R["Placement_Date"]}}</div></td>
+                                          <td><div  *ngIf="AppliedcountdetailsData_R.Placement_Status==1"> {{AppliedcountdetailsData_R["Placement_Description"]}}</div></td>
+                              
+                              <!-- <td>             
+                                  {{AppliedcountdetailsData_R["Resume"]}} 
+                                </td> -->
+
+                                <td>{{AppliedcountdetailsData_R["Interview_Attending_Rejecting_Name"]}}</td>
+                                <td>{{AppliedcountdetailsData_R["Interview_Attending_Rejecting_Date"]}}</td>
+                                <td>{{AppliedcountdetailsData_R["Interview_Rejection_Remark"]}}</td>
+                             
+                               
+                                <td ><div *ngIf="AppliedcountdetailsData_R.resume_button_view==1">
+                                  <span  class="col-md-1 col-sm-1  icon-background2 mr-1"  (click)="Download_Resume_File('Image_ResumeFilename',AppliedcountdetailsData_R.Student_Id)"type="button" aria-describedby="cdk-describedby-message-1">
+                                    <mat-icon class="text-green small" >get_app</mat-icon></span></div>
+
+                                    <!-- (click)="downloadZip(i)" -->
+                               </td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- </div> -->
+                      <!-- </div> -->
+  
+  
+                    <!-- </div> -->
+                  <!-- </div> -->
+              </div>
+          
+  
+          </div>
+        </div>
+  
+        <label style=" margin-left:9px;">Total Entries:<b>{{Total_Entries_Appliedcount}}</b></label>
+      <!-- </div> -->
+    <!-- </div> -->
+  
+    </div>  
+    </div>
+
+
+
+
+    
+    <div class="main-content" *ngIf="Rejectedcount_Div">
+      <div class="container-fluid" >
+     
+      <!-- <div class="seperation-for-down-butons" > -->
+         <!-- <div class="row "> -->
+          <div class="col-md-12 pl-0 mt-2" style="border: 1">
+            <div class="dt-card mb-0 pb-1 ">         
+                <div class="dt-card__body mt-2 mb-4">
+                    <div class="mb-0">    
+                      <h4  style="color: black;font-weight: bold;">Rejected List</h4>        
+                      <div class="form-row" style="padding-left: 25px;">
+    
+                       
+    
+                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right mt-2">Job:{{Search_Job}}</label>
+                        <!-- <div class="col-md-3 col-sm-3 mb-1  mt-2">
+                          <select [(ngModel)]="User_Search" id="User_" required class="form-control p-0 pl-1 ">
+                          <option *ngFor="let User_T of Users_Data" [ngValue]="User_T">{{User_T.Users_Name}}</option>
+                          </select>  
+                        </div> 
+     -->
+                        <div class="col-md-2 col-sm-1 mb-1">
+                          <!-- <button (click)="Graph_View()"  [hidden]="Summary_Sub==false"  mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-1  mt-2">Graph</button> -->
+    
+                          <button (click)="Export_Rejectedcount_Data()"   mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-1  mt-2">Export</button>
+                          <!-- <button (click)="Search_Lead_button()" id="Registration_Report" mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-2  mt-2">Search</button> -->
+                          
+                          <button (click)="Close_RejectedCount()" mat-raised-button  type="submit"   class="other-button-style btnflot pull-right mr-1  mt-2">  Back
+                             </button>
+    
+                      
+                        </div>
+                        
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    
+        
+    
+          <div *ngIf="Rejectedcount_Div" class="col-md-12 pl-0 mt-2" style="border: 1">
+            <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;">         
+              <div class="card-body card-body-for-searchedit-lead-section "	style="overflow-y: scroll;"[style.height.px]="myTotalHeight" >
+                <!-- style="overflow: scroll;height: 729px;width: 1906px;" -->
+                    <!-- <div class="mb-0">           
+                      <div class="form-row"> -->
+    
+    
+                        <!-- <div class="card card-plain"> -->
+                          <!-- <div class="card-body card-body-for-searchedit-lead-section"> -->
+                          <div class="table-responsive">
+                          <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+                            <thead>
+                              <th style="width:0%!important">
+                                No
+                              </th>                        
+                              <th style="width:7%!important">
+                               Rejected date
+                              </th>   
+                              <th style="width:7%!important">
+                              Student Name
+                              </th>    
+                              <th style="width:7%!important">
+                                Rejected Reason
+                                </th>                    
+                              <!-- <th style="width:2%!important">
+                             Resume
+                              </th> -->
+                              <th>                        
+                              </th>
+                              <!-- <th>
+                                Edit
+                              </th> -->
+                            </thead>
+                            <tbody *ngFor="let RejectedcountdetailsData_T of Jobposting_Report_RejectedcountdetailsData; let i = index">
+                              <tr>
+                                <td>
+                              {{i+1}}
+                                </td>
+                                
+                                <td>
+                                  {{RejectedcountdetailsData_T["Rejected_Date"]}}
+                                  </td>
+                                  <td>
+                                    {{RejectedcountdetailsData_T["Student_Name"]}}
+                                    </td>
+
+                                    <td>
+                                      {{RejectedcountdetailsData_T["Reason"]}}
+                                      </td>
+                                
+                                <!-- <td>             
+                                    {{RejectedcountdetailsData_T["Resume"]}} 
+                                  </td> -->
+                               
+                                 
+                                  <!-- <td>
+                                    <span class="col-md-1 col-sm-1  icon-background2 mr-1" (click)="Download_ResumeRejected_File('Image_ResumeFilename',RejectedcountdetailsData_T.Student_Id)"type="button" aria-describedby="cdk-describedby-message-1">
+                                      <mat-icon class="text-green small" >get_app</mat-icon></span>
+                                 </td> -->
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <!-- </div> -->
+                        <!-- </div> -->
+    
+    
+                      <!-- </div> -->
+                    <!-- </div> -->
+                </div>
+               
+    
+            </div>
+          </div>
+          <label style=" margin-left:9px;">Total Entries:<b>{{Total_Entries_Rejectedcount}}</b></label>
+    
+        <!-- </div> -->
+      <!-- </div> -->
+    
+      </div>  
+      </div>
+
+
+
+      <!-- <div
+      class="modal fade-scale"
+      id="Scheduleinterview_View"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div
+          class="modal-content newsletter"
+          style="
+                width: 100% !important;
+              
+          "
+        >
+          <div class="modal-body">
+            <div>
+              <div id="Scheduleinterview_View" 
+              >
+                
+              <div
+                  class="card-body card-body-for-searchedit-lead-section p-0"
+                  style="margin-top: -32px;"
+                >
+                  <div
+                    class="dt-card__header popupcolor"
+                   
+                  >
+                    <div class="dt-card__heading">
+                      <h3 style="padding-top: 6px!important;">
+                        <i
+                          class="icon icon-users icon-fw icon-lg material-icons popuptitlecolor mr-2"
+                         style="margin-top: -3px!important; color: #586ae9;   padding-left: 10px!important;"
+                          >request_quote </i
+                        ><b class="popuptitlecolor"
+                          style="
+                           color: #586ae9;
+                            font-weight: 600;
+                          "
+                          >Schedule Interview</b
+                        >
+                      </h3>
+                      <div class="mb-2"></div>
+                      <hr class="refundhr" />
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    
+                    
+                  
+                  </div>
+                  <div class="form-row">
+                    <label
+                      class="col-md-0 col-sm-0 col-form-label text-sm-right"
+                      >Schedule Date<span
+                        style="
+                          color: #ef071e;
+                          font-size: 22px;
+                          vertical-align: -webkit-baseline-middle;
+                        "
+                        >*</span
+                      ></label
+                    >
+                    <div class="col-md-8 col-sm-8 mb-2">
+                      <input type="date" class="form-control"  [(ngModel)]="Interview_Schedule_Date"  name="Interview_Schedule_Date" required >
+                     
+
+                    </div>
+
+                  
+                  </div>
+
+                  <div
+                    class="form-row"
+                    style="padding-left: 90px !important"
+                  ></div>
+
+                  
+
+                  <div class="form-row mt-2">
+                    <label
+                      class="col-md-0 col-sm-0 col-form-label text-sm-right"
+                      >Description<span
+                        style="
+                          color: #ef071e;
+                          font-size: 22px;
+                          vertical-align: -webkit-baseline-middle;
+                        "
+                        >*</span
+                      ></label
+                    >
+                    <div class="col-md-8 col-sm-8 mb-2">
+                      <textarea
+                        rows="1"
+                        cols="2"
+                        class="form-control"
+                        [(ngModel)]="Interview_Schedule_Description"
+                        name="Interview_Schedule_Description"
+                        placeholder=""
+                      >
+                    </textarea>
+                    <label><span
+                      style="
+                        color: #ef071e;
+                        font-size: 13px;
+                        
+                        vertical-align: -webkit-baseline-middle;
+                      "
+                      ></span
+                    ></label>
+                    </div>
+
+                    
+                  </div>
+
+                  
+
+                  
+                  <div
+                    class="col-md-1"
+                    class="addbutton-style"
+                    style="margin-top: 0% !important;float: right;"
+                  >
+                    <button
+                      type="submit"
+                      (click)="Save_Schedule_Interview()"
+                      class="other-button-style" data-dismiss="modal"
+                      
+                      aria-label="Close"
+                      style="background-color: #42c242 !important"
+                    >
+                      Save
+                    </button>
+                    <button
+                      class="close-button-style"
+                      type="submit"
+                      data-dismiss="modal"
+                      id="Agent_Close"
+                      aria-label="Close"
+                      (click)="Close_Schedule_Interview()"
+                    >
+                      Close
+                    </button>
+                  </div>
+
+
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+    <!-- <div class="modal fade-scale"
+    id="Mark_Placement_View"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div
+        class="modal-content newsletter"
+        style="
+              width: 100% !important;
+            
+        "
+      >
+        <div class="modal-body">
+          <div>
+            <div id="Mark_Placement_View" 
+            >
+              
+            <div
+                class="card-body card-body-for-searchedit-lead-section p-0"
+                style="margin-top: -32px;"
+              >
+                <div
+                  class="dt-card__header popupcolor"
+                 
+                >
+                  <div class="dt-card__heading">
+                    <h3 style="padding-top: 6px!important;">
+                      <i
+                        class="icon icon-users icon-fw icon-lg material-icons popuptitlecolor mr-2"
+                       style="margin-top: -3px!important; color: #586ae9;   padding-left: 10px!important;"
+                        >request_quote </i
+                      ><b class="popuptitlecolor"
+                        style="
+                         color: #586ae9;
+                          font-weight: 600;
+                        "
+                        >Mark Placement</b
+                      >
+                    </h3>
+                    <div class="mb-2"></div>
+                    <hr class="refundhr" />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  
+                  
+                
+                </div>
+                <div class="form-row">
+                  <label
+                    class="col-md-0 col-sm-0 col-form-label text-sm-right"
+                    >Placement Date<span
+                      style="
+                        color: #ef071e;
+                        font-size: 22px;
+                        vertical-align: -webkit-baseline-middle;
+                      "
+                      >*</span
+                    ></label
+                  >
+                  <div class="col-md-8 col-sm-8 mb-2">
+                    <input type="date" class="form-control"  [(ngModel)]="Mark_Placement_Date"  name="Mark_Placement_Date" required >
+                  
+
+                  </div>
+
+                
+                </div>
+
+                <div
+                  class="form-row"
+                  style="padding-left: 90px !important"
+                ></div>
+
+                
+
+                <div class="form-row mt-2">
+                  <label
+                    class="col-md-0 col-sm-0 col-form-label text-sm-right"
+                    >Description<span
+                      style="
+                        color: #ef071e;
+                        font-size: 22px;
+                        vertical-align: -webkit-baseline-middle;
+                      "
+                      >*</span
+                    ></label
+                  >
+                  <div class="col-md-10 col-sm-10 mb-2">
+                    <textarea
+                      rows="1"
+                      cols="2"
+                      class="form-control"
+                      [(ngModel)]="Mark_Placement_Description"
+                      name="Mark_Placement_Description"
+                      placeholder=""
+                    >
+                  </textarea>
+                  <label><span
+                    style="
+                      color: #ef071e;
+                      font-size: 13px;
+                      
+                      vertical-align: -webkit-baseline-middle;
+                    "
+                    ></span
+                  ></label>
+                  </div>
+
+                  
+                </div>
+
+                
+
+                
+                <div
+                  class="col-md-1"
+                  class="addbutton-style"
+                  style="margin-top: 0% !important;float: right;"
+                >
+                  <button
+                    type="submit"
+                    (click)="Save_Mark_Placement()"
+                    class="other-button-style" data-dismiss="modal"
+                    
+                    aria-label="Close"
+                    style="background-color: #42c242 !important"
+                  >
+                    Save
+                  </button>
+                  <button
+                    class="close-button-style"
+                    type="submit"
+                    data-dismiss="modal"
+                    id="Agent_Close"
+                    aria-label="Close"
+                    (click)="Close_Mark_Placement()"
+                  >
+                    Close
+                  </button>
+                </div>
+
+
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="dt-card__body mt-2 " id="profile"  *ngIf="profile_View" >
+
+
+    <form class="mb-0">
+    <div class="container-fluidprofile">
+    <div class="dt-card mt-2">
+    
+        <h5 style="color: #0740a5;
+        font-weight: bold;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #bfbfbf;
+        padding-bottom: 7px;font-size: 20px;"><b>JOB DETAILS</b></h5>
+    
+    <div class="dt-card__body mt-3"  >
+        <div class="form-row  mb-2">
+    
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Company Name<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+          
+    
+            <div class="col-md-4 col-sm-4 mb-1">
+                <input Input type="text"  class="form-control" [matAutocomplete]="autoc5" placeholder="" [(ngModel)]="JobEmployeedetails_"  name="JobEmployeedetails_"  
+                (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+               </div> 
+               <mat-autocomplete #autoc5="matAutocomplete" [displayWith]="display_Company">
+                   <mat-option *ngIf="issLoading">
+                       <mat-spinner diameter="500"></mat-spinner>
+                   </mat-option>
+                   <ng-container *ngIf="!issLoading">
+                       <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                           <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+                       </mat-option>
+                   </ng-container>
+               </mat-autocomplete>
+    
+    
+               <button class="save-button-style btnflot"  id="Save_Button" (click)="Create_New_Company()" type="submit">Create New Company</button>
+    
+            <div class="col-md-1 col-sm-1"></div>    
+            
+           <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Course<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+           <div class="col-md-3 col-sm-3 mb-1">  
+            <select [(ngModel)]="Job_Course_" name="Job_Course_.Course_Id" required class="form-control p-0 pl-1">
+         <option *ngFor="let Course_Data_t of Job_Course_Data" [ngValue]="Course_Data_t">{{Course_Data_t.Course_Name}}</option>
+         </select>
+         </div> 
+    
+        </div> 
+        <div class="form-row  mb-2">
+           
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Title<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                      
+                <div class="col-md-4 col-sm-4 mb-1">
+                <input type="text" [(ngModel)]="Job_Posting_.Job_Title" name="Job_Posting_.Job_Title" class="form-control" placeholder="">
+                </div>
+          
+            
+        </div> 
+    
+    
+    <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">No Of Vacancy <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="number"  [(ngModel)]="Job_Posting_.No_Of_Vaccancy" name="Job_Posting_.No_Of_Vaccancy"class="form-control" placeholder=" " >
+        </div>    
+        <div class="col-md-2 col-sm-1"></div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Salary<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-3 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Job_Posting_.Salary" name="Job_Posting_.Salary" class="form-control" placeholder="">
+        </div>                      
+    </div>
+    
+    <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Location</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Job_Posting_.Job_Location"  name="Job_Posting_.Job_Location" class="form-control" placeholder="">
+        </div>  
+        <div class="col-md-2 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Last Date <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        
+    
+            <div class="col-md-3 col-sm-4 mb-1 ">
+                <!-- <input type="date"  name ="Job_Posting_.Last_Date" [(ngModel)]="Job_Posting_.Last_Date" class="form-control" placeholder=""> -->
+                <mat-form-field class="col-md-12 form-control date-position mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+                style="height: 40px !important;padding-top: 0px!important;">
+                <input matInput [matDatepicker]="dpdate" placeholder="" name ="Job_Posting_.Last_Date" [(ngModel)]="Job_Posting_.Last_Date" class="form-control" placeholder=""> 
+                <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+                <mat-datepicker #dpdate></mat-datepicker>
+                </mat-form-field>
+        
+         
+            </div> 
+    
+            <div class="col-md-1 col-sm-1"></div>  
+    
+    
+    
+    
+    
+    
+            <label
+            class="col-md-1 col-sm-1 col-form-label text-sm-right"
+            >Gender<span
+            style="
+            color: #ef071e;
+            font-size: 22px;
+            vertical-align: -webkit-baseline-middle;
+            "
+            >*</span
+            ></label
+            >
+            <div class="col-md-4 col-sm-4 mb-1">
+            <select
+            [(ngModel)]="Gender_"
+            name="Gender_"
+            required
+            class="form-control p-0 pl-1"
+            >
+            <option
+            *ngFor="let Gender_ of Gender_Data"
+            [ngValue]="Gender_"
+            >
+            {{ Gender_.Gender_Name }}
+            </option>
+            </select>
+            </div>
+    
+    
+         </div> 
+    
+    
+    
+    
+         <div class="form-row  mb-2">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Last Time <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="time"  [(ngModel)]="Job_Posting_.Last_Time" name="Job_Posting_.Last_Time"class="form-control" placeholder=" " >
+            </div>    
+                                 
+        </div>
+    
+        
+    
+ 
+    
+    
+    
+    <div class="form-row  mb-2">
+    
+    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Description <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Job_Posting_.Descritpion"  name="Job_Posting_.Description"></textarea>
+    
+    
+    </div>
+    
+    </div>
+    
+    
+    </div>
+    
+    <div class="form-row mt-0 mb-0">
+        <div class="col-md-6 col-sm-6"></div>
+        <div class="col-md-6 col-sm-6">        
+        <button class="close-button-style btnflot mr-0" type="submit" (click)="Close_ClickJob_post()">Close</button>
+        <button class="save-button-style btnflot"   [hidden]="Job_Posting_Save==false" id="Save_Button" (click)="Save_Job_Posting()" type="submit">Save</button>
+        </div>
+        </div>
+    
+    </div>
+    </div>
+    </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container-fluidprofile" *ngIf="Scheduleinterview_View">
+      <div class=" " >
+      <div class="dt-card__body">
+      <form class="mb-0">
+      <div class="container-fluidprofile">
+      <div class="dt-card mt-2">
+      <div class="dt-card__body mt-3" style="margin-left: 2%;">
+
+        <h4  style="color: #0740a5;
+        font-weight: bold;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #bfbfbf;
+        padding-bottom: 7px;font-size: 20px;">Interview Schedule</h4>
+
+      <div *ngIf="Scheduleinterview_View">
+        <div class="form-row">
+
+         
+
+
+          <label
+            class="col-md-1 col-sm-1 col-form-label text-sm-right"
+            >Interview Date<span
+              style="
+                color: #ef071e;
+                font-size: 22px;
+                vertical-align: -webkit-baseline-middle;
+              "
+              >*</span
+            ></label
+          >
+          <div class="col-md-3 col-sm-4 mb-2">
+            <!-- <input type="date" class="form-control"  [(ngModel)]="Interview_Schedule_Date"  name="Interview_Schedule_Date" required > -->
+            <mat-form-field class="col-md-12 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+          style="height:45px;padding-top: 7px!important;">
+              <input matInput [matDatepicker]="dpsd" placeholder="" [(ngModel)]="Interview_Schedule_Date" name="Interview_Schedule_Date" >
+              <mat-datepicker-toggle matSuffix [for]="dpsd"></mat-datepicker-toggle>
+              <mat-datepicker #dpsd></mat-datepicker>
+              </mat-form-field> 
+
+          </div>
+
+        
+        </div>
+
+
+
+        <div class="form-row">
+
+         
+
+
+          <label
+            class="col-md-1 col-sm-1 col-form-label text-sm-right"
+            >Interview Time<span
+              style="
+                color: #ef071e;
+                font-size: 22px;
+                vertical-align: -webkit-baseline-middle;
+              "
+              >*</span
+            ></label
+          >
+          <div class="col-md-3 col-sm-4 mb-2">
+            <input type="time" class="form-control" [(ngModel)]="Interview_Time" name="Interview_Time"  placeholder="">
+          </div>
+        </div>
+
+
+
+
+        <div class="form-row">
+
+         
+
+
+          <label
+            class="col-md-1 col-sm-1 col-form-label text-sm-right"
+            >Interview Location<span
+              style="
+                color: #ef071e;
+                font-size: 22px;
+                vertical-align: -webkit-baseline-middle;
+              "
+              >*</span
+            ></label
+          >
+          <div class="col-md-3 col-sm-4 mb-2">
+            <input type="text" class="form-control" [(ngModel)]="Interview_Location" name="Interview_Location"  placeholder="">
+          </div>    
+        </div>
+
+
+        <div
+          class="form-row"
+          style="padding-left: 90px !important"
+        ></div>
+
+        
+
+        <div class="form-row mt-2">
+          <label
+            class="col-md-1 col-sm-1 col-form-label text-sm-right"
+            >Description<span
+              style="
+                color: #ef071e;
+                font-size: 22px;
+                vertical-align: -webkit-baseline-middle;
+              "
+              >*</span
+            ></label
+          >
+          <div class="col-md-3 col-sm-4 mb-2">
+            <textarea
+              rows="1"
+              cols="2"
+              class="form-control"
+              [(ngModel)]="Interview_Schedule_Description"
+              name="Interview_Schedule_Description"
+              placeholder="" style="height: 45px!important;"
+            >
+          </textarea>
+          <label><span
+            style="
+              color: #ef071e;
+              font-size: 13px;
+              
+              vertical-align: -webkit-baseline-middle;
+            "
+            ></span
+          ></label>
+          </div>
+
+          
+        </div>
+
+        
+
+        
+        <div
+          class="col-md-1"
+          class="addbutton-style"
+          style="margin-top: -2% !important;float: right;"
+        >
+          <button
+            type="submit"
+            (click)="Save_Schedule_Interview()"
+            class="other-button-style" data-dismiss="modal"
+            
+            aria-label="Close"
+            style="background-color: #42c242 !important"
+          >
+            Save
+          </button>
+          <button
+            class="close-button-style"
+            type="submit"
+            data-dismiss="modal"
+            id="Agent_Close"
+            aria-label="Close"
+            (click)="Close_Schedule_Interview()"
+          >
+            Close
+          </button>
+        </div>
+      
+      
+      
+      </div>
+     
+      </div>
+      </div>
+      </div>
+      </form>
+      </div>
+      </div>
+      </div>
+
+
+
+
+      <div class="container-fluidprofile" *ngIf="Mark_Placement_View">
+        <div class=" " >
+        <div class="dt-card__body" >
+        <form class="mb-0">
+        <div class="container-fluidprofile">
+        <div class="dt-card mt-2">
+        <div class="dt-card__body mt-3" style="margin-left: 2%">
+
+          <h4  style="color: #0740a5;
+          font-weight: bold;
+          margin-bottom: 25px;
+          border-bottom: 1px solid #bfbfbf;
+          padding-bottom: 7px;font-size: 20px;">Mark Placement</h4>
+
+        <div *ngIf="Mark_Placement_View">
+          <div class="form-row">
+            <label
+              class="col-md-1 col-sm-1 col-form-label text-sm-right"
+              >Joining Date<span
+                style="
+                  color: #ef071e;
+                  font-size: 22px;
+                  vertical-align: -webkit-baseline-middle;
+                "
+                >*</span
+              ></label
+            >
+            <div class="col-md-3 col-sm-4 mb-2">
+              <!-- <input type="date" class="form-control"  [(ngModel)]="Mark_Placement_Date"  name="Mark_Placement_Date" required > -->
+              <mat-form-field class="col-md-12 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+            style="height: 45px;padding-top: 7px!important;">
+                <input matInput [matDatepicker]="dpsd1" placeholder="" [(ngModel)]="Mark_Placement_Date" name="Mark_Placement_Date" >
+                <mat-datepicker-toggle matSuffix [for]="dpsd1"></mat-datepicker-toggle>
+                <mat-datepicker #dpsd1></mat-datepicker>
+                </mat-form-field> 
+  
+            </div>
+  
+          
+          </div>
+  
+          <div
+            class="form-row"
+            style="padding-left: 90px !important"
+          ></div>
+  
+          
+  
+          <div class="form-row mt-2">
+            <label
+              class="col-md-1 col-sm-1 col-form-label text-sm-right"
+              >Description<span
+                style="
+                  color: #ef071e;
+                  font-size: 22px;
+                  vertical-align: -webkit-baseline-middle;
+                "
+                >*</span
+              ></label
+            >
+            <div class="col-md-3 col-sm-4 mb-2">
+              <textarea
+                rows="1"
+                cols="2"
+                class="form-control"
+                [(ngModel)]="Mark_Placement_Description"
+                name="Mark_Placement_Description"
+                placeholder="" style="height: 45px!important;"
+              >
+            </textarea>
+            <label><span
+              style="
+                color: #ef071e;
+                font-size: 13px;
+                
+                vertical-align: -webkit-baseline-middle;
+              "
+              ></span
+            ></label>
+            </div>
+  
+            
+          </div>
+  
+          
+  
+          
+          <div
+            class="col-md-1"
+            class="addbutton-style"
+            style="margin-top: -2% !important;float: right;"
+          >
+            <button
+              type="submit"
+              (click)="Save_Mark_Placement()"
+              class="other-button-style" data-dismiss="modal"
+              
+              aria-label="Close"
+              style="background-color: #42c242 !important"
+            >
+              Save
+            </button>
+            <button
+              class="close-button-style"
+              type="submit"
+              data-dismiss="modal"
+              id="Agent_Close"
+              aria-label="Close"
+              (click)="Close_Mark_Placement()"
+            >
+              Close
+            </button>
+          </div>
+        
+        
+        
+        </div>
+       
+        </div>
+        </div>
+        </div>
+        </form>
+        </div>
+        </div>
+        </div>

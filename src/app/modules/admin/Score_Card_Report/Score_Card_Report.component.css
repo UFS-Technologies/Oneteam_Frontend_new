@@ -1,0 +1,66 @@
+
+
+/* General styles for the certificate container */
+.certificate-container {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Print specific styles */
+  @media print {
+    .certificate-container {
+      background-image: url('one_team_assets/img/CourseCertificate.jpeg');
+    }
+  
+    /* Ensure other styles look correct on print */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  
+/* certificate.component.css 
+.certificate-container {
+   
+    /
+  
+
+    background-image: url('src/one_team_assets/img/CourseCertificate.jpeg');
+    background-size: cover;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto; 
+    position: relative;
+}*/
+
+.Student_Name, .course_name, .date, .duration {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Student_Name {
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.course_name {
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.date {
+    top: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.duration {
+    top: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+}

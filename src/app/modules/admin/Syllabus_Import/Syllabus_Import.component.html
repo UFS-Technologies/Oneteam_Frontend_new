@@ -1,0 +1,418 @@
+<div *ngIf="issLoading" class="overlay">
+  <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+  </mat-progress-spinner>
+  </div>
+
+  <!-- <div class="card-body set-height-scroll-bar-wole-block"> -->
+
+
+  <div class="main-content">
+
+  <div class="container-fluid">
+    <div class="card-body " style="overflow-y: scroll;width: 100%;"[style.height.px]="myInnerHeight" >
+
+  <div class="row" *ngIf="Import_View">
+
+
+    <div class="col-md-12">
+      <label class="col-md-0 col-sm-0 col-form-label text-sm-right" >Course<span
+        style="
+        color: #ef071e;
+        font-size: 22px;
+        vertical-align: -webkit-baseline-middle;
+        "
+        >*</span
+        ></label>
+      <div class="col-md-4 col-sm-4 mb-0 ml-6 " style="margin-top: -48px;">
+      <input type="text"  class="form-control"  id="Course_" name="Course_"  [matAutocomplete]="auto_Course"
+      [(ngModel)]="Course_" (click)="Search_Course_Typeahead($event)"(keyup)="Search_Course_Typeahead($event)" /></div>  
+      <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+          <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+          <ng-container *ngIf="!issLoading">
+          <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+          <span>{{Course.Course_Name}}</span>
+          </mat-option>
+          </ng-container>
+      </mat-autocomplete>  
+    </div>
+
+        <div class="col-md-12 pl-0 pr-0 mt-0 mb-2">
+          <div class="dt-card mt-2" style="background-color: #ffff;">
+              <div class="card-body set-height-scroll-bar-wole-block" style="height: 100%">
+
+              <div class="form-row"> 
+              <!-- <div  class="col-md-12">
+                  <label class=" col-md-3"></label>
+                  <input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx">
+             </div> -->
+
+           
+          <div class="col-md-12"><h3><b>Excel format</b></h3>Column names are case sensitive  &nbsp;
+          
+          <img src="one_team_assets/img/Syllabus_Import_Image.png" class="img-fluid login-logo-to-corect mb-2" alt="Responsive image"/><br>
+         
+        
+             <!-- <label class="col-md-4 label-down-alighn-stk-ad-mstr-prhse-rte">Column names are case sesitive</label> -->
+             <button mat-raised-button type="submit" 
+             id="Download"class="other-button-style btnflot pull-right mt-2" name="Download_Button" 
+             ><a style="color: white;" href="one_team_assets/img/Syllabus_Import_Excel.xlsx" download>Download Excel Format</a></button> 
+          </div>   
+        <!-- <div>
+      </div> -->
+
+             </div>
+             
+          </div>
+          </div>
+          <div class="col-md-4 col-sm-0 pl-0 mb-1"> 
+            <div class="col-md-0"> 
+            <!-- <button class="other-button-style btnflot  mb-2  pl-2 pr-2"  type="button" style="background-color: #82838e;"  (click)="fileInput4.click()"><span>Choose File</span>
+              <input #fileInput4 type="file" name="Photo"  [(ngModel)]="File" (change)="incomingfile($event)" style="display:none;"  placeholder="Upload file" accept=".xlsx" /> </button> -->
+             
+              <button class="other-button-style pull-left  mb-2  pl-2 pr-2"  type="button" style="background-color: #5d6071;margin-top: -15px;"  (click)="fileInput4.click()"><span>Choose File</span>
+                <input #fileInput4 type="file" name="Photo"  [(ngModel)]="File" (change)="incomingfile($event)" style="display:none;"  placeholder="Upload file" accept=".xlsx" /> </button>
+                <!-- <input type="text"  name="Display_File_Name_" [(ngModel)]="Display_File_Name_" value="Display_File_Name_" readonly style="border: none;"    class="col-md-6"/>  -->
+                <!-- <span>
+                
+                </span> -->
+              </div>
+                <div class="col-md-6 pull-right" style="    margin-right: 200px;
+                margin-top: -7px;"> 
+                {{Display_File_Name_}}
+                </div>
+          </div>
+          </div>
+
+
+
+          <div class="col-md-12 pl-0 pr-0 mt-0 mb-2" *ngIf="Import_View">
+            <div class="dt-card mt-2" style="background-color: #ffff;">
+                <div class="form-row"> 
+
+                    <div  class="col-md-4">
+                        <label class=" col-md-5"  ><h3><b >Data in Excel</b></h3></label>
+                    </div>
+                    <div class="col-md-12" >
+                        <div class="card-body" >
+                        <div class="table-responsive" [style.height.px]="myInnerHeight" style="overflow-y: scroll;height: 300px;"> 
+                        <table class="table table-hover">
+                        <thead class="bg-col-stock-add-diary"> 
+                             <th></th> 
+                         <th>Sl No</th>
+
+                          <th >Day</th> 
+                          <th>Heading</th> 
+                          <th> Topic </th> 
+                          <th> Task </th>  
+                          
+                          <!-- <th [hidden]="Syllabus_Import_Delete==false">Delete</th> -->
+                        </thead>
+                        <tbody class="bk_tb_bg" *ngFor="let Syllabus_Import_Details of Syllabus_Import_Details_Data; let i = index">
+                          <!-- <span class="icon-background3 mr-1"  [hidden]="Syllabus_Import_Delete==false"   (click)="Delete_Syllabus_Import(Syllabus_Import_Details.Syllabus_Import_Id,i)" >
+                            <mat-icon class="text-red small" >close</mat-icon></span>   -->
+
+
+                            <div class="col-md-1 mt-2">
+                              <span class="icon-background3 mr-1"  [hidden]="Syllabus_Import_Delete==false" 
+                              (click)="Delete_Syllabus_Import(Syllabus_Import_Details.Syllabus_Import_Id,i)" > 
+                                  <mat-icon class="text-red small" >close</mat-icon></span>        
+                          </div>
+                          <td>{{i+1}}</td>
+
+
+                          <td class="col-md-1 "><div >
+                            <!-- <input
+                              type="text"
+                              [(ngModel)]="Syllabus_Import_Details.Day"
+                              name="{{Syllabus_Import_Details.Day}}a{{Syllabus_Import_Details.Day}}"
+                              class="form-control"
+                              placeholder=""
+                            /> -->
+
+                            <textarea Input rows="3" cols="40"  class="form-control " [(ngModel)]="Syllabus_Import_Details.Day"  name="{{Syllabus_Import_Details.Day}}a{{Syllabus_Import_Details.Day}}"></textarea>
+
+                            </div></td>
+
+
+                            <td class="col-md-2 "><div >
+                            
+                              <textarea Input rows="3" cols="40"  class="form-control " [(ngModel)]="Syllabus_Import_Details.Heading"  name="{{Syllabus_Import_Details.Heading}}a{{Syllabus_Import_Details.Heading}}"></textarea>
+
+                              </div></td> 
+
+
+                              <td class="col-md-5 ">
+                                <div >
+                               
+                                <textarea Input rows="3" cols="40"  class="form-control " [(ngModel)]="Syllabus_Import_Details.Topic"  name="{{Syllabus_Import_Details.Topic}}a{{Syllabus_Import_Details.Topic}}"></textarea>
+
+                                </div></td> 
+
+                                <td class="col-md-5 "><div >
+                                 
+                                  <textarea Input rows="3" cols="40"  class="form-control " [(ngModel)]="Syllabus_Import_Details.Task"  name="{{Syllabus_Import_Details.Task}}a{{Syllabus_Import_Details.Task}}"></textarea>
+
+                                  </div></td>  
+
+
+
+                          <!-- <td>{{Syllabus_Import_Details["Day"]}}</td>    -->
+                          <!-- <td>{{Syllabus_Import_Details["Heading"]}}</td>    
+                          <td>{{Syllabus_Import_Details["Topic"]}}</td>
+                          <td>{{Syllabus_Import_Details["Task"]}}</td> -->
+                          
+                          <!-- <div class="col-md-1 mt-2">
+                        
+                        
+                          </div> -->
+                          </tbody>
+                        </table>
+                        
+        
+                        </div>
+                        </div>
+                        <label style="margin-left: 26px;">Total Entries:<b>{{Import_Length}}</b></label>
+                        </div>
+
+
+                        <div class="col-md-11 butn-crct-alghn-dwnwrd-users-srch-new" style="margin-left: 130px;">
+                          <!-- [hidden]="Item_Save==false" -->
+                          <button mat-raised-button type="submit" id="Save_Button" class="other-button-style btnflot pull-right mr-1" (click)="Save_Syllabus_Import()">Import</button>
+                          <!-- <button mat-raised-button type="submit" class="other-button-style btnflot pull-right mr-1" (click)="Close_Click()">Import History</button> -->
+                          </div>
+
+
+      </div>
+      </div>
+       </div>
+
+
+ 
+
+
+</div>
+
+
+
+
+
+
+
+
+
+            <div class="row" *ngIf="List_View">
+                <div class="container-import1 "> 
+            <div class="col-md-12">
+            <div class="dt-card">              
+            <div class="dt-card-body mt-2">
+            <!-- <form> -->
+            <div class="row">
+            
+             
+                                   <label class="col-md-0 col-sm-0 col-form-label  text-sm-right ml-2 pl-2">Date</label>
+                                     <div _ngcontent-xmy-c9=""class="col-md-1 lead-search-section-date-alighn label-down-alighn-stk-ad-mstr-prhse-rte pt-1">
+                                     <div _ngcontent-xmy-c9="" class="form-check" style="margin-top: 1px">
+                                         <label _ngcontent-xmy-c9="" class="form-check-label">
+                                             <input type='checkbox' class="form-check-input" placeholder='Update Stock'  [(ngModel)]="Look_In_Date" name="Look_In_Date"/>
+                                             <span _ngcontent-xmy-c9="" class="form-check-sign"  style="margin-left: -3px;
+                                             margin-top: -4px;"><span _ngcontent-xmy-c9="" class="check"></span>
+                                             </span>
+                                         </label>
+                </div></div>
+                                  <label class="col-md-1 col-sm-1 col-form-label text-sm-right">From</label>
+                                  <div class="col-md-2 col-sm-2 mb-1">
+                                      <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From" [(ngModel)]="Search_FromDate" [(ngModel)]="Search_FromDate" > -->
+                                      <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+                                      style="height: 40px;padding-top: 7px!important;">
+                                          <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="Search_FromDate" > 
+                                          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                                          <mat-datepicker #dp1></mat-datepicker>
+                                          </mat-form-field>
+                                    </div>        
+                                  <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+                                  <div class="col-md-2 col-sm-2 mb-1">
+                                      <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="Search_ToDate" name="Search_ToDate"> -->
+                                      <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+                                      style="height: 40px !important;padding-top: 7px!important;">
+                                      <input matInput [matDatepicker]="dpdate" placeholder=""   [(ngModel)]="Search_ToDate" name="Search_ToDate"> 
+                                      <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+                                      <mat-datepicker #dpdate></mat-datepicker>
+                                      </mat-form-field>
+                                    </div> 
+            <div class="col-md-3">
+          
+                    <button (click)="Create_New()"   mat-raised-button type="submit"  class="save-button-style btnflot pull-right mr-1 ">New Import</button>    
+                    <button (click)="Search_Syllabus_Import()"  mat-raised-button type="submit"  class="other-button-style btnflot mr-1 ">Search</button>
+           
+            </div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- </form> -->
+            </div>
+            </div>
+            </div>   
+       
+          </div>
+        
+                <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1">
+                    <div class="container-import"> 
+                    <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;" >  
+        
+           <div class="table-responsive">
+           
+            <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+                <thead>
+                  <th>
+                   Sl No
+                  </th>
+                  <th>
+                    Date
+                      </th> 
+                  <!-- <th>
+               Edit
+                    </th> -->
+        
+                <th></th>
+                </thead>
+                <tbody *ngFor="let Syllabus_Import1 of Search_Syllabus_Import_Details_Data; let i = index">          
+                    <tr>
+                    <td>
+                    {{i+1}}
+                    </td>
+                    <td>
+                        {{Syllabus_Import1["Entry_Date"]}}
+                      </td>
+                    <!-- <td>
+                        <span class="icon-background2 mr-1" (click)="Edit_Syllabus_Import(Syllabus_Import1,i)"   [hidden]="Syllabus_Import_Edit==false">
+                         <mat-icon class="text-green small" >edit</mat-icon></span>
+
+                      </td> -->
+               
+              
+                  </tr>
+                  </tbody>
+                  <label class="entry-num">Entries : {{Total_Entries}}</label>
+                </table>
+          
+            </div>
+        
+            </div>
+            </div>
+            </div>
+         
+
+
+
+
+
+            
+</div>
+
+           
+            </div>
+            </div>
+           </div>
+
+
+<div>
+  <div class="col-md-12 pl-0 pr-0 mt-0 mb-2" *ngIf="Error_View">
+    <div class="dt-card mt-2" style="background-color: #ffff;">
+        <div class="form-row"> 
+
+            <div  class="col-md-4">
+                <label class=" col-md-5"  ><h3><b >Data With Error,&nbsp;<b>{{Error_Length}} </b>&nbsp;lines contain Errors. </b></h3></label>
+            </div>
+            <div class="col-md-12" >
+                <div class="card-body" >
+                <div class="table-responsive" [style.height.px]="myInnerHeight" style="overflow-y: scroll;height: 300px;"> 
+                <table class="table table-hover">
+                <thead class="bg-col-stock-add-diary" >  
+                   <th>Line No</th>
+                  <th>Course</th> 
+                  <th> University </th> 
+                  <th> Level </th>  
+                  <th>Subject</th>
+                  <th>Sub Section</th>
+                  <th>Duration</th>
+                  <th>Country</th>
+                  <th>Intake</th>
+                  <th>Details</th>
+                  <th>Tution Fees</th>
+                  <th>Work Experience</th>
+                  <th>Fees </th>
+                  <th>Entry Requirement</th>
+                  <th> Living Expense </th>
+                  <th>Ielts </th>
+                  <th>Internship</th>
+                  <th>Notes</th>
+                  <th> Registration Fees </th>  
+                  <th> Date Charges </th> 
+                  <th> Bank Statements</th> 
+                  <th> Insurance </th> 
+                  <th> VFS Charges </th> 
+                  <th> Other Charges </th> 
+                  <th> Apostille </th>  
+                  <th>Tag</th>    
+                  <!-- <th [hidden]="Syllabus_Import_Delete==false">Delete</th> -->
+                </thead>
+                <tbody class="bk_tb_bg" *ngFor="let Error_Details of Error_Data; let i = index" >
+                  <!-- <span class="icon-background3 mr-1"  [hidden]="Syllabus_Import_Delete==false"   (click)="Delete_Syllabus_Import(Syllabus_Import_Details.Syllabus_Import_Id,i)" >
+                    <mat-icon class="text-red small" >close</mat-icon></span>   -->
+
+                    <td >{{Error_Details["Row_No"]}}</td> 
+                  <td [ngClass]="{'Error_red' : Error_Details.Course=='Error' , 'No_error' : Error_Details.Course != 'Error' }">{{Error_Details["Course"]}}</td>     
+                  <td [ngClass]="{'Error_red' : Error_Details.University=='Error' , 'No_error' : Error_Details.University != 'Error' }">{{Error_Details["University"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Level=='Error' , 'No_error' : Error_Details.Level != 'Error' }">{{Error_Details["Level"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Subject=='Error' , 'No_error' : Error_Details.Subject != 'Error' }">{{Error_Details["Subject"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Sub_Section=='Error' , 'No_error' : Error_Details.Sub_Section != 'Error' }">{{Error_Details["Sub_Section"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Duration=='Error' , 'No_error' : Error_Details.Duration != 'Error' }">{{Error_Details["Duration"]}}</td>        
+                  <td [ngClass]="{'Error_red' : Error_Details.Country=='Error' , 'No_error' : Error_Details.Country != 'Error' }">{{Error_Details["Country"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Intake=='Error' , 'No_error' : Error_Details.Intake != 'Error' }">{{Error_Details["Intake"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Details=='Error' , 'No_error' : Error_Details.Details != 'Error' }">{{Error_Details["Details"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Tution_Fees=='Error' , 'No_error' : Error_Details.Tution_Fees != 'Error' }">{{Error_Details["Tution_Fees"]}}</td>  
+                  <td [ngClass]="{'Error_red' : Error_Details.Work_Experience=='Error' , 'No_error' : Error_Details.Work_Experience != 'Error' }">{{Error_Details["Work_Experience"]}}</td> 
+                  <td [ngClass]="{'Error_red' : Error_Details.Fees=='Error' , 'No_error' : Error_Details.Fees != 'Error' }">{{Error_Details["Fees"]}}</td>  
+                  <td [ngClass]="{'Error_red' : Error_Details.Entry_Requirement=='Error' , 'No_error' : Error_Details.Entry_Requirement != 'Error' }">{{Error_Details["Entry_Requirement"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Living_Expense=='Error' , 'No_error' : Error_Details.Living_Expense != 'Error' }">{{Error_Details["Living_Expense"]}}</td>  
+                  <td [ngClass]="{'Error_red' : Error_Details.Ielts=='Error' , 'No_error' : Error_Details.Ielts != 'Error' }">{{Error_Details["Ielts"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Internship=='Error' , 'No_error' : Error_Details.Internship != 'Error' }">{{Error_Details["Internship"]}}</td>     
+                  <td [ngClass]="{'Error_red' : Error_Details.Notes=='Error' , 'No_error' : Error_Details.Notes != 'Error' }">{{Error_Details["Notes"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Registration_Fees=='Error' , 'No_error' : Error_Details.Registration_Fees != 'Error' }">{{Error_Details["Registration_Fees"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Date_Charges=='Error' , 'No_error' : Error_Details.Date_Charges != 'Error' }">{{Error_Details["Date_Charges"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Bank_Statements=='Error' , 'No_error' : Error_Details.Bank_Statements != 'Error' }">{{Error_Details["Bank_Statements"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Insurance=='Error' , 'No_error' : Error_Details.Insurance != 'Error' }">{{Error_Details["Insurance"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.VFS_Charges=='Error' , 'No_error' : Error_Details.VFS_Charges != 'Error' }">{{Error_Details["VFS_Charges"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Other_Charges=='Error' , 'No_error' : Error_Details.Other_Charges != 'Error' }">{{Error_Details["Other_Charges"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Apostille=='Error' , 'No_error' : Error_Details.Apostille != 'Error' }">{{Error_Details["Apostille"]}}</td>
+                  <td [ngClass]="{'Error_red' : Error_Details.Tag=='Error' , 'No_error' : Error_Details.Tag != 'Error' }">{{Error_Details["Tag"]}}</td>
+                  <!-- <div class="col-md-1 mt-2">
+                
+                
+                  </div> -->
+                  </tbody>
+                </table>
+                
+
+                </div>
+                </div>
+                <!-- <label style="margin-left: 26px;">Total Entries:<b>{{Import_Length}}</b></label> -->
+                </div>
+
+
+                <div class="col-md-11 butn-crct-alghn-dwnwrd-users-srch-new" style="margin-left: 130px;">
+                  <!-- [hidden]="Item_Save==false" -->
+                  <!-- <button mat-raised-button type="submit" id="Save_Button" class="other-button-style btnflot pull-right mr-1" (click)="Save_Syllabus_Import()">Import</button>
+                  <button mat-raised-button type="submit" class="other-button-style btnflot pull-right mr-1" (click)="Close_Click()">Import History</button> -->
+                  </div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+

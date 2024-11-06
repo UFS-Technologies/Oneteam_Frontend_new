@@ -1,0 +1,890 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+    <!-- <div class="container-fluid">
+        <div class="row" *ngIf="Entry_View" >        
+        </div>
+        </div> -->
+<div class="" *ngIf="Entry_View" >
+
+    <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body" >
+    <div class="mb-0">          
+    <div class="form-row">
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Followup  Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>   
+
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+        <mat-form-field class="form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px;padding-top: 7px!important;">
+            <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" >
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+
+    </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px !important;padding-top: 7px!important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Job Title</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        
+
+         <input Input type="text"  class="form-control" [matAutocomplete]="autoc6" placeholder="" [(ngModel)]="Job_Title_"  name="Job_Title_"  
+        (click)="Search_Job_Typeahead($event)" (keyup)="Search_Job_Typeahead($event)">
+       </div> 
+       <mat-autocomplete #autoc6="matAutocomplete" [displayWith]="display_Job">
+           <mat-option *ngIf="issLoading">
+               <mat-spinner diameter="500"></mat-spinner>
+           </mat-option>
+           <ng-container *ngIf="!issLoading">
+               <mat-option *ngFor="let Job_Title_T of Job_Title_Data_Filter" [value]="Job_Title_T">
+                   <span name="Job_Title_T.Job_Title">{{Job_Title_T.Job_Title}}</span>
+               </mat-option>
+           </ng-container>
+       </mat-autocomplete> -->
+
+
+
+       <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Status</label>
+        <div class="col-md-3 col-sm-3 mb-1">
+            <input
+            type="text"
+            class="form-control"
+            [matAutocomplete]="auto_Employer_Status1"
+            name="Employer_Status_Search"
+            [(ngModel)]="Employer_Status_Search"
+            (click)="Search_Employer_Status_Typeahead($event)"
+            (keyup)="Search_Employer_Status_Typeahead($event)"
+
+           
+            />
+            </div>
+            <mat-autocomplete
+            #auto_Employer_Status1="matAutocomplete"
+            [displayWith]="display_Employer_Status"
+            >
+            <mat-option *ngIf="issLoading"
+            ><mat-spinner diameter="500"></mat-spinner
+            ></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option
+            *ngFor="let Employer_Status_y of Employer_Status_Data_Filter"
+            [value]="Employer_Status_y"
+            >
+            <span>{{ Employer_Status_y.Employer_Status_Name }}</span>
+            </mat-option>
+            </ng-container>
+            </mat-autocomplete> 
+
+
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Company</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <!-- <input type="text" [(ngModel)]="Company_Name" name="Company_Name" class="form-control" placeholder=" "> -->
+        <input Input type="text"  class="form-control" [matAutocomplete]="autoc5" placeholder="" [(ngModel)]="Employeedetails_"    name="Employeedetails_"  
+        (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+       </div> 
+       <mat-autocomplete #autoc5="matAutocomplete" [displayWith]="display_Company">
+           <mat-option *ngIf="issLoading">
+               <mat-spinner diameter="500"></mat-spinner>
+           </mat-option>
+           <ng-container *ngIf="!issLoading">
+               <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                   <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+               </mat-option>
+           </ng-container>
+       </mat-autocomplete>
+
+
+         <!-- </div> -->
+      
+         <div class="col-md-0 col-sm-0">  
+            <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button>
+        <button (click)="Search_Job_Opening()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+        <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-right mr-1 ">Create New</button>
+    </div> 
+    
+    
+    </div>
+    </div>
+    </div>        
+    </div>
+
+   
+
+    
+
+
+    <div class="col-md-12 pl-0 pr-0 mt-1" style="border: 1" >
+        <!-- *ngIf="isDesktopMenu()" -->
+    <div class="dt-card mb-0  pb-1 pt-1 pl-1 pr-1" style="background-color: white;" >  
+                                                 <!--  style="overflow: scroll;" -->
+    <div class="card-body card-body-for-searchedit-lead-section  pb-1 pt-0 pl-1 pr-1" >
+        <div class="table-responsive" 	style="overflow-y: scroll;"[style.height.px]="myInnerHeight">
+    <!-- <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 130% !important;"> -->
+      <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+          <!--  style="width: 100%;" -->
+     <thead>
+        
+        <th style="width:0%!important;"> Sl No</th>
+        <th style="width:20%!important;"> Company</th>
+        <th style="width:25%!important;">Job Title</th>
+        <th style="width:10%!important;"> Contact No</th>
+        <th style="width:20%!important;">Status</th> 
+        <th style="width:20%!important;">Remark</th> 
+        <th style="width:10%!important;">Next Followup Date</th>    
+        <th  style="width:7%!important;" >To Staff</th>  
+        <th  style="width:7%!important;" >Vacancy Source</th>  
+        <th style="width:0%!important;"> Followup</th>
+        <th style="width:0%!important;"> History</th>
+        <th style="width:0%!important;"> Job Post</th>
+        <th style="width:0%!important;"> Edit</th>
+        <th style="width:0%!important;"> Delete</th>
+        <th style="width:0%!important;"> Job Opening</th>
+
+        <!-- <th style="width:30%!important;">No Of Vacancy</th> 
+        <th style="width:30%!important;">Salary</th> 
+        <th style="width:30%!important;">Location</th>  -->
+  
+      
+    
+    
+     
+    
+        
+     </thead>
+    <tbody  *ngFor="let Job_Opening_Data_T of Job_Opening_Data; let i = index" >
+    <tr>
+  
+
+    <td>{{i+1}}</td>
+    <td>{{Job_Opening_Data_T["Company_Name"]}}</td>
+    <td>{{Job_Opening_Data_T["Job_Title"]}}</td>
+    <td>{{Job_Opening_Data_T["Contact_No"]}}</td>
+    <td >{{Job_Opening_Data_T["Employee_Status_Name"]}}</td>
+    <td >{{Job_Opening_Data_T["Remark"]}}</td>
+    <td  *ngIf="Job_Opening_Data_T.Followup==1">{{Job_Opening_Data_T["Next_Followup_Date"]}}</td>
+    <td  *ngIf="Job_Opening_Data_T.Followup!=1"></td>
+    <td>{{Job_Opening_Data_T["To_Staff_Name"]}}</td>
+    <td>{{Job_Opening_Data_T["Vacancy_Source_Name"]}}</td>
+    <td class="td-padding"><span *ngIf="Employer_Followup_View" class="icon-background3 mr-1"    (click)="Add_Followup(Job_Opening_Data_T,i)"  > <mat-icon class="text-blue small" >calendar_today</mat-icon></span></td>
+    <td class="td-padding"> <span *ngIf="Employer_Followup_View" class="icon-background3 mr-1"    (click)="Get_Job_Opening_Followup_History_View(Job_Opening_Data_T.Job_Opening_Id,i)"  > <mat-icon class="text-rose small" >history</mat-icon></span></td>
+    <td class="td-padding"> <span *ngIf="Employer_Followup_View" class="icon-background3 mr-1"    (click)="Go_To_JobPosting(Job_Opening_Data_T,i)"  > <mat-icon class="text-purple small" >done_outline</mat-icon></span></td>
+    <td  class="td-padding" ><span *ngIf="Employer_Followup_Edit" class="icon-background2 mr-1"     (click)="Edit_Job_Opening(Job_Opening_Data_T,i)" > <mat-icon class="text-green small" >edit</mat-icon></span></td>
+    <td class="td-padding"> <span *ngIf="Employer_Followup_Delete" class="icon-background3 mr-1"    (click)="Delete_Job_Opening(Job_Opening_Data_T.Job_Opening_Id,i)"  > <mat-icon class="text-red small" >delete</mat-icon></span></td>
+    <td class="td-padding"> <span *ngIf="Employer_Followup_View" class="icon-background3 mr-1"    (click)="Add_Job_Opening(Job_Opening_Data_T,i)"  > <mat-icon class="text-orange small" >speaker_notes</mat-icon></span></td>
+
+   
+
+    <!-- <td>{{Job_Opening_Data_T["No_of_Vacancy"]}}</td>
+    <td>{{Job_Opening_Data_T["Salary"]}}</td>
+    <td>{{Job_Opening_Data_T["Location"]}}</td>
+    -->
+   
+   
+
+
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+        
+         </div>
+
+         
+
+        <div class="row" style="text-align: center">
+          <div class="col-md-4">
+              <label class="entry-num">Entries : {{Total_Entries}}  </label>
+          </div>
+          <div class="col-md-4 buttons-next-previous">
+              <button
+              mat-raised-button
+              type="submit"
+              (click)="previous_Click()"
+              class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-1"
+              style="background: none"
+          >
+              <i
+                  class="fa fa-chevron-left"
+                  aria-hidden="true"
+                  style="color: #5f6368"
+              ></i>
+          </button>
+          <button
+              mat-raised-button
+              type="submit"
+              (click)="Next_Click()"
+              class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-1"
+              style="background: none"
+          >
+              <i
+                  class="fa fa-chevron-right"
+                  aria-hidden="true"
+                  style="color: #5f6368"
+              ></i>
+          </button>
+          </div>
+          </div>
+          
+         
+    </div>
+    </div>
+
+
+
+</div>
+
+</div>
+
+      
+   
+  <div class="dt-card__body mt-2 " id="profile"  *ngIf="profile_View" 	>
+
+
+    <form class="mb-0">
+    <div class="container-fluidprofile" style="overflow-y: scroll;"[style.height.px]="myTotalHeight">
+
+
+    <div class="dt-card mt-2" *ngIf="editpermission ==1" >
+    
+        <h5 style="color: #0740a5;
+        font-weight: bold;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #bfbfbf;
+        padding-bottom: 7px;font-size: 20px;"><b>EMPLOYER DETAILS</b></h5>
+    
+    <div class="dt-card__body mt-3"  >
+        <div class="form-row  mb-2">
+    
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Company Name<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+            <div class="col-md-4 col-sm-4 mb-1">
+              <input Input type="text"  class="form-control" [matAutocomplete]="autoc51" placeholder="" [(ngModel)]="Employeedetails_new_"  name="Employeedetails_new_"   (ngModelChange)="Company_Change()"
+              (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+             </div> 
+             <mat-autocomplete #autoc51="matAutocomplete" [displayWith]="display_Company">
+                 <mat-option *ngIf="issLoading">
+                     <mat-spinner diameter="500"></mat-spinner>
+                 </mat-option>
+                 <ng-container *ngIf="!issLoading">
+                     <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                         <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+                     </mat-option>
+                 </ng-container>
+             </mat-autocomplete>
+            
+                       <div class="col-md-1 col-sm-1"></div>    
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Contact Person<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                      
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Job_Opening_.Contact_Person" name="Job_Opening_.Contact_Person" class="form-control" placeholder="">
+            </div>
+    
+        </div> 
+
+
+        <div class="form-row  mb-2">
+    
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Contact Number<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        
+  
+          <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Job_Opening_.Contact_No" name="Job_Opening_.Contact_No" class="form-control" placeholder="">
+            </div>
+           
+             <div class="col-md-1 col-sm-1"></div>    
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Email<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                      
+          <div class="col-md-4 col-sm-4 mb-1">
+          <input type="text" [(ngModel)]="Job_Opening_.Email" name="Job_Opening_.Email" class="form-control" placeholder="">
+          </div>
+  
+      </div> 
+     
+      <div class="form-row  mb-2">
+    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Address<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+      
+
+        <div class="col-md-4 col-sm-4 mb-1">
+          <input type="text" [(ngModel)]="Job_Opening_.Address" name="Job_Opening_.Address" class="form-control" placeholder="">
+          </div>
+         
+            <div class="col-md-1 col-sm-1"></div>    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Website<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                      
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Job_Opening_.Website" name="Job_Opening_.Website" class="form-control" placeholder="">
+        </div>
+
+    </div> 
+    
+    
+    </div>
+    
+    </div>
+
+
+ <div class="dt-card mt-2">
+    
+        <h5 style="color: #0740a5;
+        font-weight: bold;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #bfbfbf;
+        padding-bottom: 7px;font-size: 20px;"><b>JOB OPENING DETAILS</b></h5>
+    
+    <div class="dt-card__body mt-3"  >    
+    
+    <div class="form-row  mb-2">
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Title<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                      
+      <div class="col-md-4 col-sm-4 mb-1">
+      <input type="text" [(ngModel)]="Job_Opening_.Job_Title" name="Job_Opening_.Job_Title" class="form-control" placeholder="">
+      </div>   
+        <div class="col-md-2 col-sm-1"></div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Job Location<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Job_Opening_.Location"  name="Job_Opening_.Location" class="form-control" placeholder="">
+        </div>         
+    </div>
+
+    <div class="form-row  mb-2">
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">No Of Vacancy <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+      <div class="col-md-4 col-sm-4 mb-1">
+      <input type="number"  [(ngModel)]="Job_Opening_.No_of_Vacancy" name="Job_Opening_.No_of_Vacancy"class="form-control" placeholder=" " >
+      </div>    
+      <div class="col-md-2 col-sm-1"></div>
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Salary<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+      <div class="col-md-4 col-sm-4 mb-1">
+      <input type="text" [(ngModel)]="Job_Opening_.Salary" name="Job_Opening_.Salary" class="form-control" placeholder="">
+      </div>                      
+  </div>
+
+  <div class="form-row  mb-2">
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Gender <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+    <div class="col-md-4 col-sm-4 mb-1">
+      <select
+      [(ngModel)]="Gender_"
+      name="Gender_"
+      required
+      class="form-control p-0 pl-1"
+      >
+      <option
+      *ngFor="let Gender_ of Gender_Data"
+      [ngValue]="Gender_"
+      >
+      {{ Gender_.Gender_Name }}
+      </option>
+      </select></div>    
+    <div class="col-md-2 col-sm-1"></div>
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Description <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-4 col-sm-4 mb-1">
+    <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Job_Opening_.Job_Opening_Description"  name="Job_Opening_.Job_Opening_Description"></textarea>
+    </div>                  
+</div>    
+
+
+
+<div class="form-row  mb-2">
+    <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Vacancy Source <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+    <div class="col-md-4 col-sm-4 mb-1">
+      <select
+      [(ngModel)]="Vacancy_Source_"
+      name="Vacancy_Source_"
+      required
+      class="form-control p-0 pl-1"
+      >
+      <option
+      *ngFor="let Vacancy_Source_ of Vacancy_Source_Data"
+      [ngValue]="Vacancy_Source_"
+      >
+      {{ Vacancy_Source_.Vacancy_Source_Name }}
+      </option>
+      </select></div>    
+                     
+</div>  
+   
+    
+</div>    
+</div>
+
+
+
+    <div class="dt-card mt-2">
+    
+      <h5 style="color: #0740a5;
+      font-weight: bold;
+      margin-bottom: 25px;
+      border-bottom: 1px solid #bfbfbf;
+      padding-bottom: 7px;font-size: 20px;"><b>FOLLOWUP DETAILS</b></h5>
+  
+  <div class="dt-card__body mt-3"  >
+      
+     
+  
+  
+  <div class="form-row  mb-2">
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Status <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+      <div class="col-md-4 col-sm-4 mb-1">
+          <input
+          type="text"
+          class="form-control"
+          [matAutocomplete]="auto_Employer_Status"
+          name="Employer_Status_"
+          [(ngModel)]="Employer_Status_"
+          (ngModelChange)="Employer_Status_Change()"
+          (click)="Search_Employer_Status_Typeahead($event)"
+          (keyup)="Search_Employer_Status_Typeahead($event)"
+          />
+          </div>
+          <mat-autocomplete
+          #auto_Employer_Status="matAutocomplete"
+          [displayWith]="display_Employer_Status"
+          >
+          <mat-option *ngIf="issLoading"
+          ><mat-spinner diameter="500"></mat-spinner
+          ></mat-option>
+          <ng-container *ngIf="!issLoading">
+          <mat-option
+          *ngFor="let Employer_Status_s of Employer_Status_Data_Filter"
+          [value]="Employer_Status_s"
+          >
+          <span>{{ Employer_Status_s.Employer_Status_Name }}</span>
+          </mat-option>
+          </ng-container>
+          </mat-autocomplete>
+          
+      <div class="col-md-2 col-sm-1"></div>
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">To Staff<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+      <div class="col-md-4 col-sm-4 mb-1">
+          <input
+          type="text"
+          class="form-control"
+          [matAutocomplete]="auto_Followup_Users"
+          name="Followup_Users_"
+          [(ngModel)]="Followup_Users_"
+          (click)="Search_User_Typeahead($event)"
+          (keyup)="Search_User_Typeahead($event)"
+          />
+          </div>
+          <mat-autocomplete
+          #auto_Followup_Users="matAutocomplete"
+          [displayWith]="display_Followup_Users"
+          >
+          <mat-option *ngIf="issLoading"
+          ><mat-spinner diameter="500"></mat-spinner
+          ></mat-option>
+          <ng-container *ngIf="!issLoading">
+          <mat-option
+          *ngFor="let Users of Followup_Users_Data_Filter"
+          [value]="Users"
+          >
+          <span>{{ Users.Users_Name }}</span>
+          </mat-option>
+          </ng-container>
+          </mat-autocomplete>
+                            
+  </div>
+  
+  
+  <div class="form-row  mb-2">
+  
+ 
+
+  <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Remark <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+      <div class="col-md-4 col-sm-4 mb-1">
+      <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Job_Opening_.Remark"  name="Job_Opening_.Remark"></textarea>
+      </div>
+
+
+    <div class="col-md-2 col-sm-1"></div>
+      
+    <label *ngIf="followup_calender_view==true" class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Next Followup Date <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+    <div class="col-md-4 col-sm-4 mb-1" *ngIf="followup_calender_view==true">
+     <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px; padding-top: 7px !important">
+        <input matInput [matDatepicker]="dp13" placeholder="" [min]="minDate" [(ngModel)]="Job_Opening_.Next_Followup_Date" name="Next_Followup_Date" />
+        <mat-datepicker-toggle matSuffix [for]="dp13"></mat-datepicker-toggle>
+        <mat-datepicker #dp13></mat-datepicker>
+      </mat-form-field>
+    </div>
+  
+  </div>
+  
+  
+  </div>
+  
+  </div>
+
+
+
+  <div class="dt-card mt-2">
+    
+    <div class="form-row mt-0 mb-0">
+    <div class="col-md-6 col-sm-6"></div>
+    <div class="col-md-6 col-sm-6">        
+    <button class="close-button-style btnflot mr-0" type="submit" (click)="Close_ClickJob_post()">Close</button>
+    <button class="save-button-style btnflot"   [hidden]="Employer_Followup_Save==false" id="Save_Button" (click)="Save_Job_Opening()" type="submit">Save</button>
+    </div>
+    </div>
+
+</div>
+
+    </div>
+    </form>
+    </div>
+
+
+
+
+
+    <div class="dt-card__body mt-2 " id="profile"  *ngIf="Followup_View" 	>
+
+
+        <form class="mb-0">
+        <div class="container-fluidprofile" style="overflow-y: scroll;"[style.height.px]="myTotalHeight">
+    
+    
+        
+        <div class="dt-card mt-2">
+        
+          <h5 style="color: #0740a5;
+          font-weight: bold;
+          margin-bottom: 25px;
+          border-bottom: 1px solid #bfbfbf;
+          padding-bottom: 7px;font-size: 20px;"><b>FOLLOWUP DETAILS</b></h5>
+      
+      <div class="dt-card__body mt-3"  >
+          
+         
+      
+      
+      <div class="form-row  mb-2">
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Status <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+          <div class="col-md-4 col-sm-4 mb-1">
+              <input
+              type="text"
+              class="form-control"
+              [matAutocomplete]="auto_Employer_Status"
+              name="Employer_Status_"
+              [(ngModel)]="Employer_Status_"
+              (ngModelChange)="Employer_Status_Change()"
+              (click)="Search_Employer_Status_Typeahead($event)"
+              (keyup)="Search_Employer_Status_Typeahead($event)"
+              />
+              </div>
+              <mat-autocomplete
+              #auto_Employer_Status="matAutocomplete"
+              [displayWith]="display_Employer_Status"
+              >
+              <mat-option *ngIf="issLoading"
+              ><mat-spinner diameter="500"></mat-spinner
+              ></mat-option>
+              <ng-container *ngIf="!issLoading">
+              <mat-option
+              *ngFor="let Employer_Status_s of Employer_Status_Data_Filter"
+              [value]="Employer_Status_s"
+              >
+              <span>{{ Employer_Status_s.Employer_Status_Name }}</span>
+              </mat-option>
+              </ng-container>
+              </mat-autocomplete>
+              
+          <div class="col-md-2 col-sm-1"></div>
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">To Staff<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+          <div class="col-md-4 col-sm-4 mb-1">
+              <input
+              type="text"
+              class="form-control"
+              [matAutocomplete]="auto_Followup_Users"
+              name="Followup_Users_"
+              [(ngModel)]="Followup_Users_"
+              (click)="Search_User_Typeahead($event)"
+              (keyup)="Search_User_Typeahead($event)"
+              />
+              </div>
+              <mat-autocomplete
+              #auto_Followup_Users="matAutocomplete"
+              [displayWith]="display_Followup_Users"
+              >
+              <mat-option *ngIf="issLoading"
+              ><mat-spinner diameter="500"></mat-spinner
+              ></mat-option>
+              <ng-container *ngIf="!issLoading">
+              <mat-option
+              *ngFor="let Users of Followup_Users_Data_Filter"
+              [value]="Users"
+              >
+              <span>{{ Users.Users_Name }}</span>
+              </mat-option>
+              </ng-container>
+              </mat-autocomplete>
+                                
+      </div>
+      
+      
+      <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Remark <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Job_Opening_.Remark"  name="Job_Opening_.Remark"></textarea>
+        </div>
+      
+    
+        <div class="col-md-2 col-sm-1"></div>
+          
+          <label *ngIf="followup_calender_view==true" class="col-md-1 col-sm-1 col-form-label text-sm-right xwd">Next Followup Date <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+      <div class="col-md-4 col-sm-4 mb-1" *ngIf="followup_calender_view==true">
+       <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px; padding-top: 7px !important">
+          <input matInput [matDatepicker]="dp13" placeholder="" [min]="minDate" [(ngModel)]="Job_Opening_.Next_Followup_Date" name="Next_Followup_Date" />
+          <mat-datepicker-toggle matSuffix [for]="dp13"></mat-datepicker-toggle>
+          <mat-datepicker #dp13></mat-datepicker>
+        </mat-form-field>
+      </div>
+      
+      </div>
+      
+      
+      </div>
+      
+      </div>
+
+
+
+
+      <div class="dt-card__body mt-3" *ngIf="Followup_History_View"  style="overflow-y: scroll ;height: 300px" > 
+      
+     
+      
+		<div class="container-fluidprofile pl-0"   >
+			<div class="dt-card mt-2 dtcard-box w-100" >
+  
+  
+		<h4  style="color: #0740a5;
+		font-weight: bold;
+		margin-bottom: 25px;
+		border-bottom: 1px solid #bfbfbf;
+		padding-bottom: 7px;font-size: 20px;">Followup History  </h4>
+        <!-- <span>{{ Users.Users_Name }}</span> -->
+			
+				<div class="card horizontal new-ch mb-2"
+					*ngFor="let Job_Opening_Followup_Data_T of Job_Opening_Followup_Data;let i = index">
+					<div class="card-stacked">
+						<div class="grid-container">    
+							
+						   
+	
+							<div class="col-md-12 pr-0"> 
+								
+								<div class="d-flex flex-wrap mb-1 grid-item custon-line-height position-bg">
+									<div class="pr-3 lh">Entry Date:
+										<span class="text-dark">{{Job_Opening_Followup_Data_T["Entry_Date"]}}</span>
+									</div>
+                                    <div class="pr-3 lh"  *ngIf="Job_Opening_Followup_Data_T.Followup==1">Actual Followup Date:
+										<span class="text-dark">{{Job_Opening_Followup_Data_T["Actual_Followup_Date"]}}</span>
+									</div>
+									<div class="pr-3 lh"  *ngIf="Job_Opening_Followup_Data_T.Followup==1">Next Followup Date:
+										<span class="text-dark">
+											{{Job_Opening_Followup_Data_T["Followup_Date"]}}</span
+										>
+									</div>
+									<div class="pr-3 lh">To User:
+										<span class="text-dark tdb">{{Job_Opening_Followup_Data_T["To_Staff_Name"]}}</span>
+									</div>
+									
+									<div class="pr-3 lh"> By User:
+										
+										<span class="text-dark tdb">
+											{{Job_Opening_Followup_Data_T["By_User_Name"]}}</span
+										>
+									</div>
+  
+									<div class="pr-3 lh">Status:
+										
+									  <span class="text-dark tdb">
+										  {{Job_Opening_Followup_Data_T["Employee_Status_Name"]}}</span
+									  >
+								  </div>
+
+
+								  <div class="pr-3 lh">Remark :
+										
+									<span class="text-dark">
+										{{Job_Opening_Followup_Data_T["Remark"]}}</span
+									>
+								</div>
+
+								
+  
+								
+						</div>
+	
+					</div>
+				</div>
+			</div>
+		</div>
+	   
+	
+			  
+			   </div>
+		</div>
+	</div>
+    
+    
+    
+      <div class="dt-card mt-2">
+        
+        <div class="form-row mt-0 mb-0">
+        <div class="col-md-6 col-sm-6"></div>
+        <div class="col-md-6 col-sm-6">        
+        <button class="close-button-style btnflot mr-0" type="submit" (click)="Close_ClickJob_post()">Close</button>
+        <button class="save-button-style btnflot"   [hidden]="Employer_Followup_Save==false" id="Save_Button" (click)="Save_Job_Opening_Followup()" type="submit">Save</button>
+        <button class="save-button-style btnflot"   [hidden]="Employer_Followup_Save==false" id="Save_Button" (click)="Get_Job_Opening_Followup_History_View1()" type="submit">History</button>
+        </div>
+        </div>
+    
+    </div>
+    
+        </div>
+        </form>
+        </div>
+
+
+
+        <div class="dt-card__body mt-2 " id="profile"  *ngIf="History_View" 	>
+
+
+            <form class="mb-0">
+            <div class="container-fluidprofile" style="overflow-y: scroll;"[style.height.px]="myTotalHeight">
+        
+        
+    
+          <div class="dt-card__body mt-3"   style="overflow-y: scroll ;height: 300px" > 
+          
+         
+          
+            <div class="container-fluidprofile pl-0"   >
+                <div class="dt-card mt-2 dtcard-box w-100" >
+      
+      
+            <h4  style="color: #0740a5;
+            font-weight: bold;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #bfbfbf;
+            padding-bottom: 7px;font-size: 20px;">Followup History  </h4>
+            <!-- <span>{{ Users.Users_Name }}</span> -->
+                
+                    <div class="card horizontal new-ch mb-2"
+                        *ngFor="let Job_Opening_Followup_Data_T of Job_Opening_Followup_Data;let i = index">
+                        <div class="card-stacked">
+                            <div class="grid-container">    
+                                
+                               
+        
+                                <div class="col-md-12 pr-0">
+                                    
+                                    <div class="d-flex flex-wrap mb-1 grid-item custon-line-height position-bg">
+                                        <div class="pr-3 lh">Entry Date:
+                                            <span class="text-dark">{{Job_Opening_Followup_Data_T["Entry_Date"]}}</span>
+                                        </div>
+
+                                        <div class="pr-3 lh" *ngIf="Job_Opening_Followup_Data_T.Followup==1">Actual Followup Date:
+                                            <span class="text-dark">{{Job_Opening_Followup_Data_T["Actual_Followup_Date"]}}</span>
+                                        </div>
+                                        
+                                        <div class="pr-3 lh" *ngIf="Job_Opening_Followup_Data_T.Followup==1">Next Followup Date:
+                                            <span class="text-dark">
+                                                {{Job_Opening_Followup_Data_T["Followup_Date"]}}</span
+                                            >
+                                        </div>
+                                        <div class="pr-3 lh">To User:
+                                            <span class="text-dark tdb">{{Job_Opening_Followup_Data_T["To_Staff_Name"]}}</span>
+                                        </div>
+                                        
+                                        <div class="pr-3 lh"> By User:
+                                            
+                                            <span class="text-dark tdb">
+                                                {{Job_Opening_Followup_Data_T["By_User_Name"]}}</span
+                                            >
+                                        </div>
+      
+                                        <div class="pr-3 lh">Status:
+                                            
+                                          <span class="text-dark tdb">
+                                              {{Job_Opening_Followup_Data_T["Employee_Status_Name"]}}</span
+                                          >
+                                      </div>
+    
+    
+                                      <div class="pr-3 lh">Remark :
+                                            
+                                        <span class="text-dark">
+                                            {{Job_Opening_Followup_Data_T["Remark"]}}</span
+                                        >
+                                    </div>
+    
+                                    
+      
+                                    
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        
+                  
+                   </div>
+            </div>
+        </div>
+        
+        
+        
+          <div class="dt-card mt-2">
+            
+            <div class="form-row mt-0 mb-0">
+            <div class="col-md-6 col-sm-6"></div>
+            <div class="col-md-6 col-sm-6">        
+            <button class="close-button-style btnflot mr-0" type="submit" (click)="Close_ClickJob_post()">Close</button>
+            <!-- <button class="save-button-style btnflot"   [hidden]="Employer_Followup_Save==false" id="Save_Button" (click)="Save_Job_Opening_Followup()" type="submit">Save</button>
+            <button class="save-button-style btnflot"   [hidden]="Employer_Followup_Save==false" id="Save_Button" (click)="Get_Job_Opening_Followup_History()" type="submit">History</button> -->
+            </div>
+            </div>
+        
+        </div>
+        
+            </div>
+            </form>
+            </div>
+
+
+
+   </div>    
+   
+      

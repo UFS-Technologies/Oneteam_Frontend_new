@@ -1,0 +1,170 @@
+ 
+ <div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+ <div style="height: 100px;"></div>
+
+ <div class="container-fluid">
+
+<div class="row">
+  <div class="col-lg-3 col-md-5 col-sm-5">
+      <div class="card card-stats" style="margin-left:0px;">
+          <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon" style="background: linear-gradient(60deg,#ffa726,#fb8c00);">
+                  <i class="material-icons"   (click)="Click_No1()" >contact_phone</i>
+              </div>
+              <p class="card-category"> Today's Enquiries</p>
+              <h3 class="card-title" >{{Dashboard_Count}}</h3>
+          </div>
+          <!-- <div class="card-footer">
+              <div class="stats">
+                  <button style=" background-color: #ffa726;" mat-raised-button type="submit" class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr"
+                  (click)="Click_No1()"> View</button>
+              </div>
+          </div> -->
+      </div>
+  </div>
+  <div *ngIf="1>2" class="col-lg-3 col-md-5 col-sm-5">
+      <div class="card card-stats" style="margin-left: 0px;">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon" style="background: linear-gradient(60deg,#66bb6a,#43a047);">
+            <i class="material-icons"  (click)="Click_No2()">task</i>
+              </div>
+              <p class="card-category"> Registration</p>
+              <h3 class="card-title">{{Dashboard_Count1}}</h3>
+          </div>
+          <!-- <div class="card-footer">
+              <div class="stats">
+                  <button style=" background-color: #66bb6a;" mat-raised-button type="submit" class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr"
+                  (click)="Click_No2()" > View</button>
+              </div>
+          </div> -->
+      </div>
+  </div>
+  <div class="col-lg-3 col-md-5 col-sm-5">
+    <div class="card card-stats" style="margin-left: 0px;">
+        <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon" style="background: linear-gradient(60deg,#66bb6a,#43a047);">
+          <i class="material-icons"  (click)="Click_No3()"> confirmation_number</i>
+            </div>
+            <p class="card-category">Today's Admission</p>
+            <h3 class="card-title">{{Dashboard_Count1}}</h3>
+        </div>
+        <!-- <div class="card-footer">
+            <div class="stats">
+                <button style=" background-color: #66bb6a;" mat-raised-button type="submit" class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr"
+                (click)="Click_No2()" > View</button>
+            </div>
+        </div> -->
+    </div>
+</div>
+  <div class="col-lg-3 col-md-5 col-sm-5">
+    <div class="card card-stats" style="margin-left: 0px;">
+        <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon" style="background: linear-gradient(60deg,#ef5350,#f38e8c);">
+          <i class="material-icons"  (click)="Click_No4()">pending_actions</i>
+            </div>
+            <p class="card-category"> Pending Follow Ups</p>
+            <h3 class="card-title">{{Dashboard_Count2}}</h3>
+        </div>
+        <!-- <div class="card-footer">
+            <div class="stats">
+                <button style=" background-color: #ef5350;" mat-raised-button type="submit" class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr"
+                (click)="Click_No3()" > View</button>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+</div> 
+<div class="row"> 
+    <div class="col-lg-3 col-md-4 col-sm-4">
+        <div class="card card-stats" style="margin-left: 0px;">
+            <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon" style="background: linear-gradient(60deg,#ef5350,#f38e8c);">
+              <i class="material-icons"  (click)="Click_No5()">pending_actions</i>
+                </div>
+                <p class="card-category"> Today's Follow Ups</p>
+                <h3 class="card-title">{{Dashboard_Count3}}</h3>
+            </div>
+            <!-- <div class="card-footer">
+                <div class="stats">
+                    <button style=" background-color: #ef5350;" mat-raised-button type="submit" class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr"
+                    (click)="Click_No3()" > View</button>
+                </div>
+            </div> -->
+        </div>
+      </div>
+  <div class="col-lg-3 col-md-4 col-sm-4">
+    <div class="card card-stats" style="margin-left: 0px;">
+        <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon" style="background: linear-gradient(60deg,#26c6da,#00acc1);">
+                <!-- <i class="fa fa-twitter"></i> -->
+                <i class="material-icons"  (click)="Click_No6()">
+                  receipt_long
+                </i>
+            </div>
+            <p class="card-category">Today's Due </p>
+            <h3 class="card-title">{{Dashboard_Count4}}</h3>
+        </div>
+        <!-- <div class="card-footer">
+            <div class="stats">
+              <button style=" background-color: #26c6da;" mat-raised-button type="submit" class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr"
+              (click)="Click_No4()" > View</button>
+            </div>
+        </div> -->
+    </div>
+</div>
+   
+ 
+  <div class="col-lg-3 col-md-4 col-sm-4">
+    <div class="card card-stats" style="margin-left: 0px;">
+        <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon" style="background: linear-gradient(60deg,#26c6da,#00acc1);">
+                <!-- <i class="fa fa-twitter"></i> -->
+                <i class="material-icons"  (click)="Click_No7()">
+                  receipt_long
+                </i>
+            </div>
+            <p class="card-category">Tomorrow's Due </p>
+            <h3 class="card-title">{{Dashboard_Count5}}</h3>
+        </div>
+        <!-- <div class="card-footer">
+            <div class="stats">
+              <button style=" background-color: #26c6da;" mat-raised-button type="submit" class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr"
+              (click)="Click_No4()" > View</button>
+            </div>
+        </div> -->
+    </div>
+</div>
+    <div class="col-lg-3 col-md-5 col-sm-5">
+        <div class="card card-stats" style="margin-left: 0px;">
+            <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon" style="background: linear-gradient(60deg,#26c6da,#00acc1);">
+                    <!-- <i class="fa fa-twitter"></i> -->
+                    <i class="material-icons" (click)="Click_No8()"> receipt_long</i>
+                </div>
+                <p class="card-category">Monthly Fees Collection</p>
+                <h3 class="card-title">{{Dashboard_Count6}}</h3>
+            </div>
+        </div>
+      <!-- <div class="card card-stats" style="margin-left: -10px;">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon" style="background: linear-gradient(60deg,#ef5350,#f38e8c);">
+            <i class="material-icons">pending_actions</i>
+              </div>
+              <p class="card-category"> Pending Followups</p>
+              <h3 class="card-title">{{Dashboard_Count2}}</h3>
+          </div>
+      </div> -->
+  </div>
+   
+  </div> 
+<div  class="row">
+ <div class="col-md-2">
+
+ </div>
+
+</div>
+</div>

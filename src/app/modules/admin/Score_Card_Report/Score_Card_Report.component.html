@@ -1,0 +1,529 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+
+   
+<div class="" *ngIf="Entry_View">
+<div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+<div class="dt-card mb-0 pb-1 " >        
+<div class="dt-card__body">
+<div class="mb-0">          
+<div class="form-row">
+
+
+    <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right ">Search By</label>
+<div class="col-md-1 col-sm-2 mb-1 rw4">
+ <select
+     [(ngModel)]="Search_By_"
+     class="form-control p-0 pl-1"
+     name="custimertype"
+     id="custimertype"
+    
+ >
+     <option value=0>Select</option>
+     <option value=1>Student Name</option>
+     <option value=2>Email</option>
+     <option value=2>Phone</option>
+
+     
+ </select>
+</div> -->
+
+
+      <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right"></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input  type="text" [(ngModel)]="Student_Name_Search" name="Student_Name_Search" class="form-control" placeholder=" ">
+         </div>
+
+
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Trainer</label>
+         <div  class="col-md-3 col-sm-3 mb-1" *ngIf="faculty_edit==1">
+         <input  type="text"  class="form-control"  id="Faculty_" name="Faculty_"  [matAutocomplete]="auto_Faculty"
+         [(ngModel)]="Faculty_" (ngModelChange)="Trainer_Change()" (click)="Search_Faculty_Typeahead($event)" (keyup)="Search_Faculty_Typeahead($event)"/></div>  
+ 
+         <div  class="col-md-3 col-sm-3 mb-1"   *ngIf="faculty_edit==0">
+         <input disabled type="text"  class="form-control"  id="Faculty_" name="Faculty_"  [matAutocomplete]="auto_Faculty"
+         [(ngModel)]="Faculty_"    (click)="Search_Faculty_Typeahead($event)" (keyup)="Search_Faculty_Typeahead($event)"/></div> 
+ 
+ 
+         <mat-autocomplete #auto_Faculty="matAutocomplete" [displayWith]="display_Faculty">
+         <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+         <ng-container *ngIf="!issLoading">
+         <mat-option *ngFor="let Faculty_ of Faculty_Data_Filter" [value]="Faculty_">
+         <span>{{Faculty_.Users_Name}}</span>
+         </mat-option>
+         </ng-container>
+         </mat-autocomplete>  -->
+
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Date</label>  
+         <div class="col-md-0 col-sm-0 mb-1">
+         <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+         <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+         <label _ngcontent-xmy-c9="" class="form-check-label">
+         <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+         <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+         </span>
+         </span>
+         </label>
+         </div>
+         </div>  
+         </div>   
+ 
+ 
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+         <div class="col-md-2 col-sm-2 mb-1"><mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+         style="height: 40px;padding-top: 7px!important;">
+             <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" >
+             <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+             <mat-datepicker #dp1></mat-datepicker>
+             </mat-form-field>
+ 
+     </div>  
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+         <div class="col-md-2 col-sm-2 mb-1"><mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+         style="height: 40px !important;padding-top: 7px!important;">
+         <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+         <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+         <mat-datepicker #dpdate></mat-datepicker>
+         </mat-form-field>
+ 
+     </div>
+ 
+     <label class="col-md-0 col-sm-0 col-form-label text-sm-right" style="margin-left:1%!important">Course</label>
+     <div class="col-md-3 col-sm-3 mb-1">
+     <input type="text"  class="form-control"  id="Course_Search" name="Course_Search"  [matAutocomplete]="auto_Course1"
+     [(ngModel)]="Course_Search" (click)="Search_Course_Typeahead($event)"  (keyup)="Search_Course_Typeahead($event)" (ngModelChange)="Search_Course_change()"/>  
+     <mat-autocomplete #auto_Course1="matAutocomplete" [displayWith]="display_Course">
+         <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+         <ng-container *ngIf="!issLoading">
+         <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+         <span>{{Course.Course_Name}}</span>
+         </mat-option>
+         </ng-container>
+     </mat-autocomplete>  
+ </div>
+ <div class=" ml-2">
+     <label class="col-md-0 col-sm-0 col-form-label text-sm-right" >Batch</label>
+ </div>
+    
+     <div class="col-md-2 col-sm-2 mb-1">
+         <input type="text"  class="form-control"  id="Batch_" name="Batch_"  [matAutocomplete]="auto_Batch1"
+         [(ngModel)]="Batch_" (click)="Search_Batch_Typeahead_Search($event)" (keyup)="Search_Batch_Typeahead_Search($event)" /></div>  
+         <mat-autocomplete #auto_Batch1="matAutocomplete" [displayWith]="display_Batch">
+         <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+         <ng-container *ngIf="!issLoading">
+         <mat-option *ngFor="let Batch_ of Batch_Data_Filter" [value]="Batch_">
+         <span>{{Batch_.Batch_Name}}</span>
+         </mat-option>
+         </ng-container>
+         </mat-autocomplete>
+
+<!-- 
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right ">Search By</label>
+<div class="col-md-1 col-sm-2 mb-1 rw4">
+ <select
+     [(ngModel)]="Search_By_"
+     class="form-control p-0 pl-1"
+     name="custimertype"
+     id="custimertype"
+    
+ >
+     <option value=0>Select</option>
+     <option value=1>Student Name</option>
+     <option value=2>Email</option>
+     <option value=2>Phone</option>
+
+     
+ </select>
+</div> -->
+
+
+      <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Student Name/Phone</label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input  type="text" [(ngModel)]="Student_Name_Search" name="Student_Name_Search" class="form-control" placeholder=" ">
+         </div>
+
+
+    <div class="col-md-2" >  
+        <button mat-raised-button type="submit"   (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button>   
+     
+        <!-- <button (click)="Create_New()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">New</button> -->
+        <button (click)="Search_Score_Card_Report()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+    </div>
+</div>
+</div>
+</div>
+</div>        
+</div>
+
+<div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    
+<div class="dt-card mb-0 pb-1" style="background-color: white;margin-top: 1%;">  
+<div class="card-body card-body-for-searchedit-lead-section">
+<div class="table-responsive"  style="overflow-y: scroll;"[style.height.px]="myInnerHeight"> <table class="table table-hover table-for-sale-search-section-diary">
+<thead>
+    <th >Student Name</th> 
+    <th > Attendance % </th>    
+    <th >Entry Level Score </th> 
+    <th >Personality & Professionalism </th> 
+    <th > Mid Level Score</th> 
+    <th >Personality & Professionalism </th> 
+    <th > Exit Level Score</th>
+    <th >Personality & Professionalism </th>  
+    <th >Project Score</th>  
+    <th >Project Url</th>  
+    <th > Final Score</th> 
+    <th > Grade</th> 
+    <th > Score Card</th> 
+    <th  *ngIf="DownloadPermissionsView==true;"> Certificate</th> 
+</thead>
+<tbody  *ngFor="let Student_t of Agreement_Details_Student_Data; let i = index" >
+<tr>
+    <td  class="td-padding"><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Lead(Student_t.Student_Id,i)" style="color: #357bfd; font-weight: 800;">{{Student_t["Student_Name"]}}</a></td>
+   
+    <td  class="td-padding">{{Student_t["attendance_percentage"]}}</td>
+    <td  class="td-padding">{{Student_t["Entry_Level"]}}</td>
+    <td  class="td-padding">{{Student_t["Personality_and_Professionalism_Entrylevel"]}}</td>
+    <td  class="td-padding">{{Student_t["Mid_Level"]}}</td>
+    <td  class="td-padding">{{Student_t["Personality_and_Professionalism_Midlevel"]}}</td>
+    <td  class="td-padding">{{Student_t["Exit_Level"]}}</td>
+    <td  class="td-padding">{{Student_t["Personality_and_Professionalism_Exitlevel"]}}</td>
+    <td  class="td-padding">{{Student_t["Project_Score"]}}</td>
+    <td  class="td-padding">{{Student_t["Project_Url"]}}</td>
+    <td  class="td-padding">{{Student_t["Final_Score"]}}</td>
+    <td  class="td-padding">{{Student_t["Grade"]}}</td>
+
+    <td>
+      <span *ngIf="Student_t.Final_Score >0"  class=" icon-background2 mr-1"  (click)="
+              print_Certificate(Student_t, i)
+              " type="button" aria-describedby="cdk-describedby-message-1">
+        <mat-icon class="text-green small" >get_app</mat-icon></span>	
+      </td>
+    <!-- <td>
+		<span *ngIf="Student_t.Final_Score >0"  class=" icon-background2 mr-1"  (click)="
+      print_CourseCompletion_Certificate(Student_t, i)
+            " type="button" aria-describedby="cdk-describedby-message-1">
+			<mat-icon class="text-green small" >get_app</mat-icon></span>	
+		</td> -->
+
+    <td *ngIf="DownloadPermissionsView==true;">
+      <span *ngIf="Student_t.Final_Score > 0" class="icon-background2 mr-1" (click)="print_CourseCompletion_Certificate(Student_t, i)" 
+            type="button" aria-describedby="cdk-describedby-message-1">
+        <mat-icon class="text-green small">get_app</mat-icon>
+      </span>	
+    </td>
+    
+    
+  
+  
+  
+    
+
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<label class="entry-num">Total Entries : {{Total_Entries}}</label> 
+
+</div>
+
+</div>
+</div>
+
+
+
+<div id="Bottomdiv"></div>
+<div id="Print_Div" style="display: none">
+  <table style="width: 98%; margin: 10px;">
+    <tr style="border: 0;">
+      <td colspan="2" style="text-align: center; border: 0;">
+        <img src="one_team_assets/img/Oneteamlogonew.jpg" alt="University Logo" style="width: 170px;" />
+        <h1>ONETEAM SOLUTIONS</h1>
+        <h6 style="margin-top: -19px;">{{print_Company_Address1}}</h6>
+        <h6 style="margin-top: -21px;"> {{print_Company_Address2}}</h6>
+        <h6 style="margin-top: -25px;">{{print_Company_Address3}} {{print_Company_Address4}}</h6>
+        <h2>Statement of Marks</h2>
+        <!-- <p>( {{ BatchName }} )</p> -->
+      </td>
+    </tr>
+   
+    <tr style="border: 0;">
+      <td style="border: 0; font-size: 16px;">
+        <strong>Student Name:</strong> {{ Student_Name }}<br>
+        <strong>Course:</strong> {{ course_name }}<br>
+        <strong>Batch:</strong> {{ BatchName }}<br>
+        <strong>Faculty:</strong> {{ Faculty }}<br>
+        <strong>Start Date:</strong> {{ startdate }}<br>
+        <strong>End Date:</strong> {{ enddate }}<br>
+      </td>
+      
+    </tr>
+  </table>
+
+
+  <div style="margin: 10px;">
+    <table style="border-collapse: collapse; width: 100%;" border="1">
+      <thead>
+        <tr>
+          <th style="text-align: center;">No</th>
+          <th style="text-align: center;">Level</th>
+          <th style="text-align: center;">Max Marks</th>
+          <th style="text-align: center;">Marks Obtained</th>
+          <th style="text-align: center;">Grade</th>
+          <th style="text-align: center;">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: center;">Entry Level</td>
+          <td style="padding-left: 5px;">100</td>
+          <td style="text-align: center;">{{ Entry_Level }}</td>
+          <td style="text-align: center;">{{Entry_Level_grade}}</td>
+          <td style="text-align: center;">{{Entry_Level_statusname}}</td>
+        </tr>
+
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td style="text-align: center;">Entry Level Personality & Professionalism</td>
+            <td style="padding-left: 5px;">10</td>
+            <td style="text-align: center;">{{ Personality_and_Professionalism_Entrylevel }}</td>
+            <td style="text-align: center;">{{Entry_Level_pp_grade}}</td>
+            <td style="text-align: center;">{{Entry_Level_pp_statusname}}</td>
+        </tr>
+
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td style="text-align: center;">Mid Level</td>
+            <td style="padding-left: 5px;">100</td>
+            <td style="text-align: center;">{{ Mid_Level }}</td>
+            <td style="text-align: center;">{{Mid_Level_grade}}</td>
+            <td style="text-align: center;">{{Mid_Level_statusname}}</td>
+          </tr>
+  
+          <tr>
+              <td style="text-align: center;">4</td>
+              <td style="text-align: center;">Mid Level Personality & Professionalism</td>
+              <td style="padding-left: 5px;">10</td>
+              <td style="text-align: center;">{{ Personality_and_Professionalism_Midlevel }}</td>
+              <td style="text-align: center;">{{Mid_Level_pp_grade}}</td>
+              <td style="text-align: center;">{{Mid_Level_pp_statusname}}</td>
+          </tr>
+
+          <tr>
+            <td style="text-align: center;">5</td>
+            <td style="text-align: center;">Exit Level</td>
+            <td style="padding-left: 5px;">100</td>
+            <td style="text-align: center;">{{ Exit_Level }}</td>
+            <td style="text-align: center;">{{Exit_Level_grade}}</td>
+            <td style="text-align: center;">{{Exit_Level_statusname}}</td>
+          </tr>
+  
+          <tr>
+              <td style="text-align: center;">6</td>
+              <td style="text-align: center;">Exit Level Personality & Professionalism</td>
+              <td style="padding-left: 5px;">10</td>
+              <td style="text-align: center;">{{ Personality_and_Professionalism_Exitlevel }}</td>
+              <td style="text-align: center;">{{Exit_Level_pp_grade}}</td>
+              <td style="text-align: center;">{{Exit_Level_pp_statusname}}</td>
+          </tr>
+
+          <tr>
+            <td style="text-align: center;">7</td>
+            <td style="text-align: center;">Project</td>
+            <td style="padding-left: 5px;">100</td>
+            <td style="text-align: center;">{{ Project_Score }}</td>
+            <td style="text-align: center;">{{Project_Score_grade}}</td>
+            <td style="text-align: center;">{{Project_Score_statusname}}</td>
+        </tr>
+
+
+        <!-- Repeat similar rows for other subjects -->
+        <tr>
+          <td colspan="3" style="text-align: right;"><strong>Total</strong></td>
+          <td style="text-align: center;">{{ Sum_Final_Score }}</td>
+          <!-- <td style="text-align: center;">{{ Grade }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div style="margin: 10px;">
+    <table style="border-collapse: collapse; width: 100%;" border="1">
+     
+      <tbody>
+       
+        <tr>
+            <td  style="text-align: right;"><strong>Attendance Percentage</strong></td>
+            <td style="text-align: center;">{{ attendance_percentage }}</td>
+        </tr>
+
+        <tr>
+          <td  style="text-align: right;"><strong>Final Score</strong></td>
+          <td style="text-align: center;">{{ Final_Score }}</td>
+        </tr>
+
+        <tr>
+            <td  style="text-align: right;"><strong>Grade</strong></td>
+            <td style="text-align: center;">{{ Grade }}</td>
+          </tr>
+
+          <tr>
+            <td  style="text-align: right;"><strong>Result</strong></td>
+            <td style="text-align: center;">{{ finalscore_statusname }}</td>
+          </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  
+  <table style="width: 100%; margin-top:30%;">
+    <tr>
+      <td style="text-align: right;">Authorized By:<br>{{ Faculty }}<br>Trainer</td>
+    </tr>
+  </table>
+
+  <table style="width: 100%; margin-top: -62px;">
+    <tr>
+      <td style="text-align: left;">Place: Kochi</td>
+    </tr>
+  </table>
+
+  <table style="width: 100%;">
+    <tr>
+      <td style="text-align: left;">Certificate Issued Date: {{ currentdate | date: "dd-MM-yyyy"}}</td>
+    </tr>
+  </table>
+  
+
+  
+
+  <table style="width: 100%; margin-top: 7%;">
+    <tr>
+      <td style="text-align: -webkit-center;color: blue;">Printed by: oneteamsolutions.in</td>
+    </tr>
+  </table>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div id="Bottomdiv"></div>
+<div id="Print_Div_new" style="display: none">
+  
+  <div id="certificate" 
+       style="background-image: url('one_team_assets/img/CourseCertificate.jpeg'); 
+              background-size: cover; 
+              width: 100%; 
+              height: 100%;">
+             
+
+    <div  id="name-field" style=" padding-top: 27%;margin-left: 44%;    font-weight: bold;
+    font-size: larger;">{{ Student_Name }}</div>
+    <div  id="course-field" style="margin-left: 42%;padding-top: 6%;    font-weight: bold;
+    font-size: x-large;">{{ course_name }}</div>
+    <div  id="duration-field" style="margin-left: 54%;padding-top: 2%;    font-weight: bold;
+    font-size: medium;">{{ startdate }} To {{enddate}}</div>
+    <div  id="date-field" style="margin-left: 51%;padding-top: 2%;    font-weight: bold;
+    font-size: medium;">{{ currentdate }}</div>
+  </div>
+
+</div> -->
+
+
+<!-- <div id="Bottomdiv"></div>
+<div id="Print_Div_new" style="display: none">
+
+ <img src="one_team_assets/img/CourseCertificate.jpeg" alt="CourseCertificate Logo" style="width: 100%;" />
+  
+  <div class="certificate-container" id="certificate"
+       style="background-image: url('one_team_assets/img/CourseCertificate.jpeg');
+              background-size: cover;
+              width: 100%; 
+              height: 100%;">
+             
+    <div id="name-field" style="padding-top: 27%; margin-left: 44%; font-weight: bold; font-size: larger;">
+      {{ Student_Name }}
+    </div>
+    <div id="course-field" style="margin-left: 42%; padding-top: 6%; font-weight: bold; font-size: x-large;">
+      {{ course_name }}
+    </div>
+    <div id="duration-field" style="margin-left: 54%; padding-top: 2%; font-weight: bold; font-size: medium;">
+      {{ startdate }} To {{ enddate }}
+    </div>
+    <div id="date-field" style="margin-left: 51%; padding-top: 2%; font-weight: bold; font-size: medium;">
+      {{ currentdate }}
+    </div>
+  </div>
+
+</div> -->
+
+
+
+<div id="Bottomdiv"></div>
+
+<div id="Print_Div_new" style="position: relative; display: none;">
+  <!-- Image as the background -->
+  <img src="one_team_assets/img/CourseCertificate.jpeg" alt="CourseCertificate Logo" style="width: 100%; display: block;" />
+
+  <!-- Overlaid text fields -->
+  <div id="name-field" style="position: absolute; top: 19%;
+    left: 42%; font-weight: bold; font-size: medium;">
+    {{ Student_Name }}
+  </div>
+  <div id="course-field" style="position: absolute; top: 24%; left: 40%; font-weight: bold; font-size: large;">
+    {{ course_name }}
+  </div>
+  <div id="duration-field" style="position: absolute;     top: 310px;
+    left: 53%; font-weight: bold; font-size:small;">
+    {{ startdate }} To {{ enddate }}
+  </div>
+  <div id="date-field" style="position: absolute; top: 335px;
+    left: 52%; font-weight: bold; font-size:small;">
+    {{ currentdate | date: "dd-MM-yyyy"}}
+  </div>
+
+  <!-- <div id="date-field" style="position: absolute; top: 35%; left: 43%; font-weight: bold; font-size:small;">
+   Grade : {{ Grade }}
+  </div> -->
+
+</div>
+
+
+
+<!-- <div id="Bottomdiv"></div>
+
+<div id="Print_Div_new" style="position: relative; display: none;">
+  <img src="one_team_assets/img/CourseCertificate.jpeg" alt="CourseCertificate Logo" style="width: 100%;height: 100%; display: block;" />
+
+  <div id="name-field" style="position: absolute; top: 40%; left: 40%; font-weight: bold; font-size: large;">
+    {{ Student_Name }}
+  </div>
+  <div id="course-field" style="position: absolute; top: 52%; left: 38%; font-weight: bold; font-size: x-large;">
+    {{ course_name }}
+  </div>
+  <div id="duration-field" style="position: absolute; top: 59%; left: 54%; font-weight: bold; font-size: medium;">
+    {{ startdate }} To {{ enddate }}
+  </div>
+  <div id="date-field" style="position: absolute; top: 64%; left: 51%; font-weight: bold; font-size: medium;">
+    {{ currentdate | date: "dd-MM-yyyy"}}
+  </div>
+</div> -->
+

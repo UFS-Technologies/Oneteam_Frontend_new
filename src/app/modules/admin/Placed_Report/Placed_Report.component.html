@@ -1,0 +1,159 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content screenfixed"  >
+
+    <div class="container-fluid">
+        <div class="row" *ngIf="Entry_View">
+        </div>
+        </div>
+
+<div class="row" *ngIf="!Entry_View">
+
+    <div class="col-md-12 pl-3 pr-3 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body">
+    <div class="mb-0">          
+    <div class="form-row">
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Placement Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>    
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+       
+<mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+style="height: 40px;padding-top: 7px!important;">
+    <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" > 
+    <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+    <mat-datepicker #dp1></mat-datepicker>
+    </mat-form-field>
+
+    </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-3 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+        style="height: 40px !important;padding-top: 7px!important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_"> 
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+
+
+    </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <input type="text"  class="form-control"  id="Course_" name="Course_"  [matAutocomplete]="auto_Course"
+        [(ngModel)]="Course_" (click)="Search_Course_Typeahead($event)" (keyup)="Search_Course_Typeahead($event)"/></div>  
+        <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+            <span>{{Course.Course_Name}}</span>
+            </mat-option>
+            </ng-container>
+        </mat-autocomplete>  
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Batch</label>
+        <div class="col-md-2 col-sm-4 mb-1">
+            <input type="text"  class="form-control"  id="Batch_" name="Batch_"  [matAutocomplete]="auto_Batch"
+            [(ngModel)]="Batch_" (click)="Search_Batch_Typeahead($event)" (keyup)="Search_Batch_Typeahead($event)"/></div>  
+            <mat-autocomplete #auto_Batch="matAutocomplete" [displayWith]="display_Batch">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Batch_ of Batch_Data_Filter" [value]="Batch_">
+            <span>{{Batch_.Batch_Name}}</span>
+            </mat-option>
+            </ng-container>
+            </mat-autocomplete>    -->
+            <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Company</label>
+            <!-- <div class="col-md-2 col-sm-2 mb-1">
+                <select [(ngModel)]="Search_Employer_Details_" name="Search_Employer_Details_" required class="form-control p-0 pl-1">
+                    <option *ngFor="let Employer_Details_T of Employer_Details_Data" [ngValue]="Employer_Details_T">{{Employer_Details_T.Company_Name}}</option>
+                </select>
+            </div>   -->
+
+            <div class="col-md-2 col-sm-2 mb-1">
+                <input Input type="text"  class="form-control" [matAutocomplete]="autoc4" placeholder="" [(ngModel)]="Search_Employer_Details_"  name="Search_Employer_Details_"  
+                (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+               </div> 
+               <mat-autocomplete #autoc4="matAutocomplete" [displayWith]="display_Company">
+                   <mat-option *ngIf="issLoading">
+                       <mat-spinner diameter="500"></mat-spinner>
+                   </mat-option>
+                   <ng-container *ngIf="!issLoading">
+                       <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                           <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+                       </mat-option>
+                   </ng-container>
+               </mat-autocomplete>
+
+            <div class="col-md-0">   
+                <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button> 
+       <button (click)="Search_Placed_Report()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+       
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>        
+    </div>
+
+    <div class="col-md-12 pl-3 pr-3 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pt-1 pl-1 pr-1" style="background-color: white;" >  
+
+    <div class="card-body card-body-for-searchedit-lead-section pb-1 pt-0 pl-1 pr-1" >
+        <div class="table-responsive"  [style.height.px]="myInnerHeight" style="overflow: scroll;">
+        
+        <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" >
+            <!-- style="width: 105%;"-->
+    <thead>
+        <th style="width:1%!important">No </th>             
+    <th style="width:0%!important">Placement Date</th> 
+    <th style="width:0%!important">Student </th>   
+    <th style="width:0%!important">Year Of Passing </th> 
+    <th style="width:7%!important">Course</th> 
+    <th style="width:2%!important">Company </th>   
+    <th style="width:2%!important">User </th> 
+    <th style="width:2%!important;">District </th> 
+    <th style="width:7%!important">Description </th>   
+    </thead>
+    <tbody  *ngFor="let Student_t of Placed_Report_Master_Data; let i = index" >
+    <tr>
+        <td  >{{i+1}}</td>
+    <td >{{Student_t["PlacementDate"]}}</td>
+    <td  class="icon-pointer"><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Placed(Student_t.Student_Id,i)" style="color: #357bfd; font-weight: 800;">{{Student_t["Student"]}}</a></td>
+    <td >{{Student_t["Year_Of_Passing"]}}</td>
+    <td >{{Student_t["Course"]}}</td>
+    <td>{{Student_t["Company"]}}</td>
+    <td >{{Student_t["User"]}}</td>
+    <td >{{Student_t["District_Name"]}}</td>
+    <td >{{Student_t["Description"]}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+   
+    
+</div>
+
+</div>
+

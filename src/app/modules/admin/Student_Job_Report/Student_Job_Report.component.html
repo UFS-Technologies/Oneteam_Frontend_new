@@ -1,0 +1,976 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+
+    <!-- <div class="container-fluid">
+        <div class="row" *ngIf="Entry_View" >
+        
+        </div>
+        </div> -->
+
+<div  *ngIf="Entry_View" >
+
+    <div class="col-md-12 pl-3 pr-5 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body" >
+    <div class="mb-0">          
+    <div class="form-row">
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Entry Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>   
+
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right ">From</label>
+        <div class="col-md-2 col-sm-2 mb-1 rw5">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px;padding: 7px 4px !important;">
+            <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" >
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+
+    </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-2 mb-1 rw5">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+        <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px !important;padding: 7px 4px !important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Job</label>
+        <div class="col-md-5 col-sm-5 mb-1">
+        <input type="text" [(ngModel)]="Search_Name" name="Search_Name" class="form-control" placeholder=" ">
+         </div> -->
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right ">Notification Status</label>
+         <div class="col-md-2 col-sm-2 mb-1 rw1">
+          <select
+              [(ngModel)]="Student_Status_"
+              class="form-control p-0 pl-1"
+              name="custimertype"
+              id="custimertype"
+             
+          >
+              <option value=-1>Select</option>
+              <option value=0>Notification Disable</option>
+              <option value=1>Notification Enable</option>
+
+              
+          </select>
+      </div>
+
+
+      <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Blacklist Status</label>
+      <div class="col-md-2 col-sm-2 mb-1 rw2">
+       <select
+           [(ngModel)]="Blacklist_Status_"
+           class="form-control p-0 pl-1"
+           name="custimertype"
+           id="custimertype"
+          
+       >
+           <option value=-1>Select</option>
+           <option value=0>Whitelist</option>
+           <option value=1>Blacklist</option>
+
+           
+       </select>
+   </div>
+
+
+   <label class="col-md-0 col-sm-0 col-form-label text-sm-right ">	Activate Status</label>
+   <div class="col-md-1 col-sm-1 mb-1 rw3">
+    <select
+        [(ngModel)]="Activate_Status_"
+        class="form-control p-0 pl-1"
+        name="custimertype"
+        id="custimertype"
+       
+    >
+        <option value=-1>Select</option>
+        <option value=0>Deactive</option>
+        <option value=1>Active</option>
+
+        
+    </select>
+</div>
+
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right ">Fees  Status</label>
+<div class="col-md-1 col-sm-2 mb-1 rw4">
+ <select
+     [(ngModel)]="Fees_Status_"
+     class="form-control p-0 pl-1"
+     name="custimertype"
+     id="custimertype"
+    
+ >
+     <option value=-1>Select</option>
+     <option value=0>Payment Pending</option>
+     <option value=1>Paid</option>
+
+     
+ </select>
+</div>
+
+
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right ">Search By</label>
+<div class="col-md-1 col-sm-2 mb-1 rw4">
+ <select
+     [(ngModel)]="Search_By_"
+     class="form-control p-0 pl-1"
+     name="custimertype"
+     id="custimertype"
+    
+ >
+     <option value=0>Select</option>
+     <option value=1>Student Name</option>
+     <option value=2>Email</option>
+     <option value=2>Phone</option>
+
+     
+ </select>
+</div>
+
+
+      <label class="col-md-0 col-sm-0 col-form-label text-sm-right"></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input  type="text" [(ngModel)]="Student_Name_Search" name="Student_Name_Search" class="form-control" placeholder=" ">
+         </div>
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Vacancies Posted Count</label>
+        <div class="col-md-1 col-sm-1 mb-1">
+        <input type="number" [(ngModel)]="Offered_Count" name="Offered_Count" class="form-control" placeholder=" ">
+         </div>
+
+         <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Resume Status</label>
+         <div class="col-md-1 col-sm-1 mb-1">
+          <select
+          [(ngModel)]="Search_Resume_Status_"
+          name="Search_Resume_Status_"
+          required
+          class="form-control p-0 pl-1"
+          >
+          <option
+          *ngFor="let Search_Resume_Status_Data_d of Resume_Status_Data"
+          [ngValue]="Search_Resume_Status_Data_d"
+          >
+          {{ Search_Resume_Status_Data_d.Resume_Status_Name }}
+          </option>
+          </select>
+        </div> -->
+
+
+
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Resume Status</label>
+        <div class="col-md-1 col-sm-1 mb-1">
+            <mat-form-field name="Search_Resume_" appearance="outline" [color]="" class="" style="width: 100%; height: 38px;">
+            
+                <mat-select [formControl]="Search_Resume_" multiple style="width: 100% !important;margin: 2px 0px;" >
+                 <mat-select-trigger >
+                 <span *ngIf="Search_Resume_.value!=undefined &&  Search_Resume_.value!='' ">
+                 
+                  <span *ngIf="Search_Resume_.value?.length > 0" class="example-additional-selection" >
+                   <span *ngFor=" let Resumel of Search_Resume_.value "> {{Resumel.Resume_Status_Name}}</span>
+                   
+                  </span></span>
+                  </mat-select-trigger>
+                  <mat-option style="background-color: #ffff;" *ngFor="let Resume_Status_T of Resume_Status_Data" [value]="Resume_Status_T">{{Resume_Status_T.Resume_Status_Name}}</mat-option>
+                 </mat-select>
+                 </mat-form-field>
+            </div>
+
+
+
+
+
+
+
+
+        
+      
+         <div class="col-md-0 col-sm-0">  
+            <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button>
+        <button (click)="Search_Student_Job_Report()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+        <button  mat-raised-button type="submit"  class="other-button-style btnflotL mr-1 green-btn" (click)="downloadZip(i)" >Download All Resume</button>
+    </div> 
+    
+    
+    </div>
+    </div>
+    </div>        
+    </div>
+
+   
+
+
+    <div class="col-md-12 pl-0 pr-0 mt-2" style="border: 1" >
+        <!-- *ngIf="isDesktopMenu()" -->
+    <div class="dt-card mb-0 pb-1 pt-1 pl-1 pr-1" style="background-color: white;"  >  
+
+
+      <thead  >  
+        <th class="crect-margin-width-table-header-title">
+          <div _ngcontent-xmy-c9="" class="form-check">
+          <label _ngcontent-xmy-c9="" class="form-check-label">
+          <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+          [(ngModel)]="select_Resume" (click)="Resume_Click()" type="checkbox" name="select_Resume"
+          [checked]="select_Resume_Check" value="">
+          <span _ngcontent-xmy-c9="" class="form-check-sign"  style="margin-top: 1px;
+          margin-left: 25px;" >
+          <span _ngcontent-xmy-c9="" class="check"></span>
+          </span>
+          </label>
+          </div>   
+          </th>
+       <th style="width:2%!important;">No</th>
+       <th style="width:10%!important;">Student Name</th>  
+       <th  style="width:6%!important;" >Phone</th>   
+       <th  style="width:9%!important;" >Year Of Passing</th> 
+       <th style="width:14%!important;">Email</th> 
+       <th  style="width:9%!important;" >Notification Status</th> 
+       <th  style="width:6%!important;" >Blacklist Status</th>
+       <th  style="width:6%!important;" >Activate Status</th>
+       <th  style="width:6%!important;" >Fees Status</th>  
+       <th style="width:6%!important;">Vacancies Posted Count</th>
+       <th style="width:6%!important;">Applied Count</th>   
+       <th style="width:6%!important;">Rejected Count</th>     
+       <th  style="width:6%!important;">Resume Status</th> 
+       <th style="width:6%!important;">Resume</th> 
+       </thead>
+
+
+
+                                                 <!--  style="overflow: scroll;" -->
+    <div class="card-body card-body-for-searchedit-lead-section pt-0 pr-1 pl-1" 	style="overflow-y: scroll;"[style.height.px]="myInnerHeight" >
+        <div class="table-responsive" >
+    <!-- <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 130% !important;"> -->
+      <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+          <!--  style="width: 100%;" -->
+   
+    <tbody  *ngFor="let Student_Job_Report_T of Student_Job_Report_Data; let i = index" >
+    <tr>
+  
+      <td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+        <div _ngcontent-xmy-c9="" class="form-check">
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+        [(ngModel)]="Student_Job_Report_T.Check_Box" type="checkbox" name={{Student_Job_Report_T.Student_Id}}{{Student_Job_Report_T.Student_Id}} 
+        [checked]="Student_Job_Report_T.Check_Box" value="">
+        <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top: 15px;margin-left: 11px;">
+        <span _ngcontent-xmy-c9="" class="check"></span>
+        </span>
+        </label>
+        </div>
+        </td>
+     <td style="width:2%!important;">{{i+1}}</td>
+    <!-- <td>{{Student_Job_Report_T["Student_Name"]}}</td> -->
+    <td  class=" icon-pointer" style="width:10%!important;" ><a (click)="Edit_Student(Student_Job_Report_T.Student_Id,1,1,i,Student_Job_Report_T.Student_Status_Name,Student_Job_Report_T.Blacklist_Status_Name,Student_Job_Report_T.Activate_Status_Name,Student_Job_Report_T.Fees_Status_Name)" style="color: #357bfd; font-weight: 800;">{{Student_Job_Report_T["Student_Name"]}}</a></td>
+    <td style="width:6%!important;">{{Student_Job_Report_T["Phone"]}}</td>
+    <td style="width:9%!important;" >{{Student_Job_Report_T["Year_Of_Passing"]}}</td>
+    <td style="width:14%!important;">{{Student_Job_Report_T["Email"]}}</td>
+    <td style="width:9%!important;">{{Student_Job_Report_T["Student_Status_Name"]}}</td>
+
+    <td style="width:6%!important;" >{{Student_Job_Report_T["Blacklist_Status_Name"]}}</td>
+    <td style="width:6%!important;">{{Student_Job_Report_T["Activate_Status_Name"]}}</td>
+    <td style="width:6%!important;">{{Student_Job_Report_T["Fees_Status_Name"]}}</td>
+
+    <td style="width:6%!important;">{{Student_Job_Report_T["Offer"]}}</td>
+    <td style="width:6%!important;">{{Student_Job_Report_T["Applied"]}}</td>
+    <td style="width:6%!important;">{{Student_Job_Report_T["Rejected"]}}</td>
+    <td style="width:6%!important;">{{Student_Job_Report_T["Resume_Status_Name"]}}</td>
+
+    <td ><div *ngIf="Student_Job_Report_T.resume_button_view==1" >
+      <span  class="col-md-1 col-sm-1  icon-background2 mr-1"  (click)="Download_Resume_File('Image_ResumeFilename',Student_Job_Report_T.Student_Id)"type="button" aria-describedby="cdk-describedby-message-1">
+        <mat-icon class="text-green small" >get_app</mat-icon></span></div>
+   </td>
+    
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+        
+         </div>
+
+         <div class="row" style="text-align: center">
+         <label class="entry-num">Entries : {{Total_Entries}}</label> 
+        </div>
+    </div>
+  
+    </div>
+
+
+    
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="dt-card__body mt-3" *ngIf="Student_Details_View" >   
+        
+       
+
+        <div class="container-fluidprofile">
+            <div class="dt-card mt-2 dtcard-box">
+                
+              <h4  style="color: #0740a5;
+              font-weight: bold;
+              margin-bottom: 25px;
+              border-bottom: 1px solid #bfbfbf;
+              padding-bottom: 7px;font-size: 20px;">Profile Of {{Student_.Student_Name}}</h4>
+              
+
+              <div class="form-row mb-2">
+                <label
+                class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                >Student</label
+                >
+                <div class="col-md-4 col-sm-4 mb-1">
+                <input readonly
+                type="text"
+                [(ngModel)]="Student_.Student_Name"
+                name="Student_.Student_Name"
+                class="form-control"
+                placeholder=""
+                />
+                </div>
+                <div class="col-md-1 col-sm-1"></div>
+                <label
+                class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                >Course</label
+                >
+                <div class="col-md-4 col-sm-4 mb-1">
+                <input readonly
+                type="text"
+                class="form-control"
+                id="Course_Student"
+                name="Course_Student"
+                [matAutocomplete]="auto_Course1"
+                [(ngModel)]="Course_Student"
+                (click)="Search_Course_Typeahead($event)"
+                (keyup)="Search_Course_Typeahead($event)"
+                />
+                </div>
+                <mat-autocomplete
+                #auto_Course1="matAutocomplete"
+                [displayWith]="display_Course"
+                >
+                <mat-option *ngIf="issLoading"
+                ><mat-spinner diameter="500"></mat-spinner
+                ></mat-option>
+                <ng-container *ngIf="!issLoading">
+                <mat-option
+                *ngFor="let Course_t of Course_Data_Filter"
+                [value]="Course_t"
+                >
+                
+                <span
+                ><div
+                
+                >
+                {{ Course_t.Course_Name }}
+                </div>
+                </span
+                >
+                </mat-option>
+                </ng-container>
+                </mat-autocomplete>
+                </div>
+
+                <div class="form-row mb-2">
+                  <label
+                  class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                  >Phone</label
+                  >
+                  <div class="col-md-4 col-sm-4 mb-1">
+                  <input readonly
+                  type="number"
+                  [(ngModel)]="Student_.Phone"
+                  name="Student_.Phone"
+                  class="form-control"
+                  placeholder=""
+                  />
+                  </div>
+                  <div class="col-md-1 col-sm-1"></div>
+                  <label
+                  class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                  >E-mail</label
+                  >
+                  <div class="col-md-4 col-sm-4 mb-1">
+                  <input readonly
+                  type="text"
+                  [(ngModel)]="Student_.Email"
+                  name="Student_.Email"
+                  class="form-control"
+                  placeholder=""
+                  />
+                  </div>
+                  </div>
+
+
+
+
+                  <div class="form-row mb-2">
+                    <label
+                    class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                    >Notification Status</label
+                    >
+                    <div class="col-md-4 col-sm-4 mb-1">
+                      <input readonly
+                      type="text"
+                      [(ngModel)]="notification_status"
+                      name="notification_status"
+                      class="form-control"
+                      placeholder=""
+                      />
+                      </div>
+                    <div class="col-md-1 col-sm-1"></div>
+                    <div class="col-md-1 col-sm-1"></div>
+                    <div class="col-md-4 col-sm-4 mb-1">
+                    <button
+                    class="other-button-style btnflot pull-right mw"
+                    *ngIf="Enable_Visiblility && Student_.Registered"
+                    (click)="
+                      Enable_Student_Status(
+                        Student_.Student_Id,
+                        i
+                      )
+                    "
+                    type="submit"
+                  >
+                  Enable Notification
+                  </button>
+                  <button
+                    class="other-button-style btnflot pull-right mw"
+                    *ngIf="Disable_Visiblility && Student_.Registered"
+                    (click)="
+                    Disable_Student_Status(
+                        Student_.Student_Id,
+                        i
+                      )
+                    "
+                    type="submit"
+                  >
+                  Disable Notification
+                  </button>
+                  </div>
+
+                    </div>
+
+                    <div class="form-row mb-2">
+                      <label
+                      class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                      >Blacklist Status</label
+                      >
+                      <div class="col-md-4 col-sm-4 mb-1">
+                        <input readonly
+                        type="text"
+                        [(ngModel)]="Blacklist_status"
+                        name="Blacklist_status"
+                        class="form-control"
+                        placeholder=""
+                        />
+                        </div>
+                      <div class="col-md-1 col-sm-1"></div>
+                      <div class="col-md-1 col-sm-1"></div>
+                      <div class="col-md-4 col-sm-4 mb-1">
+                      <button
+                            class="other-button-style btnflot pull-right mw"
+                            *ngIf="Movedtoblacklist_Visiblility && Student_.Registered"
+                            (click)="
+                            Moveto_Blacklist_Status(Student_.Student_Id,i)"type="submit"
+                          >
+                          Move to Blacklist 
+                          </button>
+                          
+                          <button
+                            class="other-button-style btnflot pull-right mw"
+                            *ngIf="Removedfromblacklist_Visiblility && Student_.Registered"
+                            (click)="Remove_Blacklist_Status(Student_.Student_Id,i)"type="submit"
+                          >
+                          Remove from Blacklist 
+                          </button>
+                         </div>
+                      </div>
+
+                      <div class="form-row mb-2">
+                        <label
+                        class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                        >Activation Status</label
+                        >
+                        <div class="col-md-4 col-sm-4 mb-1">
+                          <input readonly
+                          type="text"
+                          [(ngModel)]="activate_status"
+                          name="activate_status"
+                          class="form-control"
+                          placeholder=""
+                          />
+                          </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                        <div class="col-md-1 col-sm-1"></div>
+                        <div class="col-md-4 col-sm-4 mb-1">
+                        <button
+                        class="other-button-style btnflot pull-right mw"
+                        *ngIf="Activate_Visiblility && Student_.Registered"
+                        (click)="
+                        Activate_Status(Student_.Student_Id,i)"type="submit"
+                      >
+                      Activate 
+                      </button>
+                      <button
+                        class="other-button-style btnflot pull-right mw"
+                        *ngIf="Deactivate_Visiblility && Student_.Registered"
+                        (click)="Deactivate_Status(Student_.Student_Id,i)"type="submit"
+                      >
+                      De-Activate
+                      </button>
+                    </div>
+                        </div>
+
+                        <div class="form-row mb-2">
+                          <label
+                          class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                          >Fees Status</label
+                          >
+                          <div class="col-md-4 col-sm-4 mb-1">
+                            <input readonly
+                            type="text"
+                            [(ngModel)]="Fees_status"
+                            name="Fees_status"
+                            class="form-control"
+                            placeholder=""
+                            />
+                            </div>
+                          <div class="col-md-1 col-sm-1"></div>
+                      
+                          
+      
+                          </div>
+
+
+                  <div class="form-row mb-2" *ngIf="resume_button_view1==1" >
+                    <label
+                    class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                    >Resume Status<span
+                    style="
+                    color: #ef071e;
+                    font-size: 22px;
+                    vertical-align: -webkit-baseline-middle;
+                    "
+                    >*</span
+                    ></label
+                    >
+                    <div class="col-md-4 col-sm-4 mb-1">
+                    <select
+                    [(ngModel)]="Resume_Status_"
+                    name="Resume_Status_"
+                    required
+                    class="form-control p-0 pl-1"
+                    >
+                    <option
+                    *ngFor="let Resume_Status_Data_d of Resume_Status_Data"
+                    [ngValue]="Resume_Status_Data_d"
+                    >
+                    {{ Resume_Status_Data_d.Resume_Status_Name }}
+                    </option>
+                    </select>
+                    </div>
+                    <div class="col-md-1 col-sm-1"></div>
+                    <div class="col-md-1 col-sm-1"></div>
+                
+                    <div class="col-md-4 col-sm-4 mb-1">
+                    <span class="icon-background2 download-g mr-1"  (click)="Download_Resume_File('Image_ResumeFilename',Student_Id)"type="button" aria-describedby="cdk-describedby-message-1">
+                      <mat-icon class="text-green small" >get_app</mat-icon>
+                    </span>
+                   </div>
+                
+                    </div>
+
+
+                    <div class="form-row mb-2">
+                      <label
+                      class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                      >Batch Name</label
+                      >
+                      <div class="col-md-4 col-sm-4 mb-1">
+                      <input readonly
+                      type="text"
+                      [(ngModel)]="Batch_Name"
+                      name="Batch_Name"
+                      class="form-control"
+                      placeholder=""
+                      />
+                      </div>
+                      <div class="col-md-1 col-sm-1"></div>
+                      <label
+                      class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                      >Trainer Name</label
+                      >
+                      <div class="col-md-4 col-sm-4 mb-1">
+                      <input readonly
+                      type="text"
+                      [(ngModel)]="Trainer_Name"
+                      name="Trainer_Name"
+                      class="form-control"
+                      placeholder=""
+                      />
+                      </div>
+                      </div>
+
+                      <div class="form-row mb-2">
+                        <label
+                        class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                        >Total Fees Paid</label
+                        >
+                        <div class="col-md-4 col-sm-4 mb-1">
+                        <input readonly
+                        type="text"
+                        [(ngModel)]="Total_Fees_Paid"
+                        name="Total_Fees_Paid"
+                        class="form-control"
+                        placeholder=""
+                        />
+                        </div>
+                        <!-- <div class="col-md-1 col-sm-1"></div>
+                        <label
+                        class="col-md-1 col-sm-1 col-form-label text-sm-right"
+                        >Trainer Name</label
+                        >
+                        <div class="col-md-4 col-sm-4 mb-1">
+                        <input readonly
+                        type="text"
+                        [(ngModel)]="Student_.Email"
+                        name="Student_.Email"
+                        class="form-control"
+                        placeholder=""
+                        />
+                        </div> -->
+                        </div>
+
+                     <div class="row">
+                      <div class="col-xl-11">
+                        <button
+                        class="close-button-style btnflot mr-0"
+                        type="submit"
+                        (click)="Close_Click()"
+                        >
+                        Back
+                        </button>
+                        <button
+                        class="save-button-style btnflot"
+                        [hidden]="Student_Save == false"
+                        id="Save_Button"
+                        (click)="Update_Resume_Status()"
+                        type="submit"
+                        >
+                        Save
+                        </button>
+                        
+                        </div>
+                      </div>
+
+              
+               </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="dt-card__body mt-3" *ngIf="Student_Details_View"  style="overflow-y: scroll ;height: 300px" > 
+      
+     
+      
+      <div class="container-fluidprofile"   >
+          <div class="dt-card mt-2 dtcard-box" >
+
+
+            <h4  style="color: #0740a5;
+      font-weight: bold;
+      margin-bottom: 25px;
+      border-bottom: 1px solid #bfbfbf;
+      padding-bottom: 7px;font-size: 20px;">Job Details</h4>
+         
+              <div class="card horizontal new-ch mb-2"
+                  *ngFor="let Student_Job_Report_T of Search_Applied_Reject_Detaild_Data;let i = index">
+                  <div class="card-stacked">
+                      <div class="grid-container">    
+                          
+                         
+  
+                          <div class="col-md-12 pr-0">
+                              
+                              <div class="d-flex flex-wrap mb-1 grid-item custon-line-height position-bg">
+                                  <div class="pr-3 lh">Job:
+                                      <span class="text-dark">{{Student_Job_Report_T["Job"]}}</span>
+                                  </div>
+                                  <div class="pr-3 lh">Company:
+                                      <span class="text-dark">
+                                          {{Student_Job_Report_T["Company_Name"]}}</span
+                                      >
+                                  </div>
+                                  <div class="pr-3 lh">Date:
+                                      <span class="text-dark tdb">{{Student_Job_Report_T["Reject_date"]}}</span>
+                                  </div>
+                                  <div class="pr-3 lh">Student:
+                                      
+                                      <span class="text-dark">
+                                          {{Student_Job_Report_T["Student_Name"]}}</span
+                                      >
+                                  </div>
+
+                                  <div class="pr-3 lh">Status:
+                                      
+                                    <span class="text-dark tdb">
+                                        {{Student_Job_Report_T["Apply_Type_Name"]}}</span
+                                    >
+                                </div>
+                                 
+                                  <div class="pr-3 lh">Reason:
+                                      
+                                      <span class="text-dark tdb">
+                                          {{Student_Job_Report_T["Remark"]}}</span
+                                      >
+                                  </div>
+
+                              
+                      </div>
+  
+                  </div>
+              </div>
+          </div>
+      </div>
+     
+  
+
+
+  <div class="row" style="text-align: center">
+  <label class="entry-num">Entries : {{Total_Entries}}</label> 
+</div>
+            
+             </div>
+      </div>
+  </div> -->
+
+
+
+    <!-- <div class="col-md-12 pr-0 pl-0">
+      <div class="data col-lg-9 pl-3 mt-1">
+          <h4 style="color: #145388; font-weight: bold"></h4>
+      </div>
+      <div
+          class="dt-module__content ps-custom-scrollbar"
+          style="min-height:150px">
+          <div
+              class="card-body new-cb p-2"
+              style="overflow-y: scroll;"[style.height.px]="myInnerHeight">
+              <div class="card horizontal new-ch mb-2"
+                  *ngFor="let Student_Job_Report_T of Search_Applied_Reject_Detaild_Data;let i = index">
+                  <div class="card-stacked">
+                      <div class="grid-container">    
+                          
+                         
+  
+                          <div class="col-md-12 pr-0">
+                              
+                              <div class="d-flex flex-wrap mb-1 grid-item custon-line-height position-bg">
+                                  <div class="pr-3 lh">Job:
+                                      <span class="text-dark">{{Student_Job_Report_T["Job"]}}</span>
+                                  </div>
+                                  <div class="pr-3 lh">Company:
+                                      <span class="text-dark">
+                                          {{Student_Job_Report_T["Company_Name"]}}</span
+                                      >
+                                  </div>
+                                  <div class="pr-3 lh">Rejected On:
+                                      <span class="text-dark tdb">{{Student_Job_Report_T["Reject_date"]}}</span>
+                                  </div>
+                                  <div class="pr-3 lh">Student:
+                                      
+                                      <span class="text-dark">
+                                          {{Student_Job_Report_T["Student_Name"]}}</span
+                                      >
+                                  </div>
+                                 
+                                  <div class="pr-3 lh">Reason:
+                                      
+                                      <span class="text-dark tdb">
+                                          {{Student_Job_Report_T["Remark"]}}</span
+                                      >
+                                  </div>
+
+                              
+                      </div>
+  
+                  </div>
+              </div>
+          </div>
+      </div>
+     
+  
+  </div>
+  </div>
+  <div class="row" style="text-align: center">
+  <label class="entry-num">Entries : {{Total_Entries}}</label> 
+</div>
+  </div> -->
+
+
+
+
+
+
+
+
+  <div class="dt-card__body mt-3" *ngIf="Student_Details_View"  style="overflow-y: scroll ;height: 300px" > 
+      
+     
+      
+    <div class="container-fluidprofile"   >
+        <div class="dt-card mt-2 dtcard-box" >
+
+
+          <h4  style="color: #0740a5;
+    font-weight: bold;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #bfbfbf;
+    padding-bottom: 7px;font-size: 20px;">History of Vacancy Shared</h4>
+        <!-- <div
+            class="card-body new-cb p-2"
+          > -->
+            <div class="card horizontal new-ch mb-2"
+                *ngFor="let History_Of_Interview_Schedule_Data_T of History_Of_Interview_Schedule_Data;let i = index">
+                <div class="card-stacked">
+                    <div class="grid-container">    
+                        
+                       
+
+                        <div class="col-md-12 pr-0">
+                            
+                            <div class="d-flex flex-wrap mb-1 grid-item custon-line-height position-bg">
+                                <div class="pr-3 lh">Job:
+                                    <span class="text-dark">{{History_Of_Interview_Schedule_Data_T["Job"]}}</span>
+                                </div>
+                                <div class="pr-3 lh">Company:
+                                    <span class="text-dark">
+                                        {{History_Of_Interview_Schedule_Data_T["Company_Name"]}}</span
+                                    >
+                                </div>
+                                <div class="pr-3 lh"> Apply/Reject Date:
+                                    <span class="text-dark tdb">{{History_Of_Interview_Schedule_Data_T["Reject_date"]}}</span>
+                                </div>
+                                <div class="pr-3 lh">Student:
+                                    
+                                    <span class="text-dark">
+                                        {{History_Of_Interview_Schedule_Data_T["Student_Name"]}}</span
+                                    >
+                                </div>
+
+                                <div class="pr-3 lh">Status:
+                                    
+                                  <span class="text-dark tdb">
+                                      {{History_Of_Interview_Schedule_Data_T["Apply_Status_Name"]}}</span
+                                  >
+                              </div>
+                               
+                                <div class="pr-3 lh">Job post date:
+                                    
+                                    <span class="text-dark tdb">
+                                        {{History_Of_Interview_Schedule_Data_T["Job_post_date"]}}</span
+                                    >
+                                </div>
+
+                                <div class="pr-3 lh">Reason:
+                                      
+                                  <span class="text-dark tdb">
+                                      {{History_Of_Interview_Schedule_Data_T["Remark"]}}</span
+                                  >
+                              </div>
+
+
+                              <div class="pr-3 lh">Interview Status:
+                                      
+                                <span class="text-dark tdb">
+                                    {{History_Of_Interview_Schedule_Data_T["Interview_Status_Name"]}}</span
+                                >
+                            </div>
+
+
+                            <div class="pr-3 lh">Interview Date:
+                                      
+                              <span class="text-dark tdb">
+                                  {{History_Of_Interview_Schedule_Data_T["Interview_Date"]}}</span
+                              >
+                          </div>
+
+
+                          <div class="pr-3 lh">Placement Status:
+                                      
+                            <span class="text-dark tdb">
+                                {{History_Of_Interview_Schedule_Data_T["Placement_Status_Name"]}}</span
+                            >
+                        </div>
+
+                        <div class="pr-3 lh">Placement Date:
+                                      
+                          <span class="text-dark tdb">
+                              {{History_Of_Interview_Schedule_Data_T["Placement_Date"]}}</span
+                          >
+                      </div>
+
+                            
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+<!-- </div> -->
+
+<div class="row" style="text-align: center">
+<label class="entry-num">Entries : {{Total_Entries1}}</label> 
+</div>
+          
+           </div>
+    </div>
+</div>

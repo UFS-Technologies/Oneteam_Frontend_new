@@ -1,0 +1,301 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+
+    <div class="container-fluid">
+        <div class="row" *ngIf="Entry_View">
+        </div>
+        </div>
+
+<div class="" *ngIf="!Entry_View">
+
+    <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 pt-1" >        
+    <div class="dt-card__body">
+    <div class="mb-0">          
+    <div class="form-row">
+        
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" > -->
+        <!-- <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label> -->
+        <!-- </div>
+        </div>  
+        </div>     -->
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" >
+        </div>   -->
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Installment Date</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+       
+<mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+style="height: 40px !important;padding-top: 7px!important;">
+<input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+<mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+<mat-datepicker #dpdate></mat-datepicker>
+</mat-form-field>
+
+    </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course</label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="text"  class="form-control"  id="Course_" name="Course_"  [matAutocomplete]="auto_Course"
+        [(ngModel)]="Course_" (click)="Search_Course_Typeahead($event)"(keyup)="Search_Course_Typeahead($event)" /></div>  
+        <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Course of Course_Data_Filter" [value]="Course">
+            <span>{{Course.Course_Name}}</span>
+            </mat-option>
+            </ng-container>
+        </mat-autocomplete>  
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Batch</label>
+        <div class="col-md-3 col-sm-3 mb-1">
+            <input type="text"  class="form-control"  id="Batch_" name="Batch_"  [matAutocomplete]="auto_Batch"
+            [(ngModel)]="Batch_" (click)="Search_Batch_Typeahead($event)" /></div>  
+            <mat-autocomplete #auto_Batch="matAutocomplete" [displayWith]="display_Batch">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Batch_ of Batch_Data" [value]="Batch_">
+            <span>{{Batch_.Batch_Name}}</span>
+            </mat-option>
+            </ng-container>
+            </mat-autocomplete>           -->
+
+
+            <label class="col-md-0 col-sm-0 col-form-label text-sm-right pt-1">Name</label>
+        <div class="col-md-2 col-sm-2 mb-1 ml-0">
+        <input type="text" [(ngModel)]="Search_Name" name="Search_Name" class="form-control" placeholder=" ">
+        </div>
+
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Team Member</label>
+        <div class="col-md-2 col-sm-2 mb-1  ">
+        <select [(ngModel)]="User_Search" id="User_" required class="form-control p-0 pl-1 ">
+        <option *ngFor="let User_T of Users_Data" [ngValue]="User_T">{{User_T.Users_Name}}</option>
+        </select>  
+        </div>  -->
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Team Member</label>
+        <div class="col-md-3 col-lg-3 mb-1 mt-0 mat-fix">
+            <mat-form-field name="Search_Team_Member_" appearance="outline" [color]="" class="" style="width: 100%; height: 38px;">
+            
+          <mat-select [formControl]="Search_Team_Member_" multiple style="width: 100% !important;margin: 2px 0px;" >
+           <mat-select-trigger >
+           <span *ngIf="Search_Team_Member_.value!=undefined &&  Search_Team_Member_.value!='' ">
+           
+            <span *ngIf="Search_Team_Member_.value?.length > 0" class="example-additional-selection" >
+             <span *ngFor=" let Team_Memberl of Search_Team_Member_.value "> {{Team_Memberl.Users_Name}}</span>
+             
+            </span></span>
+            </mat-select-trigger>
+            <mat-option style="background-color: #ffff;" *ngFor="let Users_T of Users_Data" [value]="Users_T">{{Users_T.Users_Name}}</mat-option>
+           </mat-select>
+           </mat-form-field>
+           </div> 
+           
+        
+            <div class="col-md-0 col-sm-0"> 
+                <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button>   
+       <button (click)="Search_Fees_Outstanding_Report()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+       
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>        
+    </div>
+
+    <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pt-1 pl-1 pr-1" style="background-color: white;" >  
+
+    <div class="card-body card-body-for-searchedit-lead-section pb-1 pt-0 pl-1 pr-1" style="overflow: scroll;" [style.height.px]="myInnerHeight">
+    <div class="table-responsive"> <table class="table table-hover table-for-sale-search-section-diary">
+    <thead>
+    <!-- <th >Date</th>  -->
+    
+    <th style="width: 0%!important;">No </th> 
+    <th style="width: 1%!important;">Student </th> 
+    <th style="width:7%!important">Phone </th>
+    <th  style="width: 2%!important;">Year Of Passing</th>
+    <th  style="width: 1%!important;">FollowUp </th>
+    <!-- <th >Batch </th>  -->
+    <th style="width: 0%!important;">Batch Starting Date </th>
+    <th style="width: 5%!important;">Due Date </th>
+
+    <th style="width: 10%!important;">Course </th>   
+      
+    <th style="width: 0%!important;">Amount </th>  
+
+    <th style="width: 0%!important;">Team member </th>
+    <!-- <th style="width: 0%!important;">District </th> -->
+    <th style="width: 20%!important;">Remark </th>
+    <th style="width: 0%!important;">Batch </th>
+
+    </thead>
+    <tbody  *ngFor="let Student_t of Fees_Report_Data; let i = index" >
+    <tr>
+        <!-- <td  class="">{{Student_t["Date"]}}</td> -->
+        <td  >{{i+1}}</td>
+        <td  class="icon-pointer"><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Fees_Outstanding(Student_t.Student_Id,i)" 
+            style="color: #357bfd; font-weight: 800;">
+            {{Student_t["Student"]}}</a></td>
+            
+            <td  class="">{{Student_t["Phone"]}}</td>
+            <td  class="">{{Student_t["Year_Of_Passing"]}}</td>
+        <td><button style="border-width: 0ch;" name={{Student_t.Student_Id}}{{Student_t.Student_Name}} _ngcontent-gdi-c11="" 
+            class="btn btn-danger btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" 
+            mattooltip="Remove" type="button" aria-describedby="cdk-describedby-message-1" cdk-describedby-host="" ng-reflect-position="above" 
+            ng-reflect-message="Remove"><span class="mat-button-wrapper">
+            <i 
+            class="fa fa-calendar-minus-o two" style = "font-weight: 800;font-size: 18px;color: green ;" 
+            aria-hidden="true" (click)="New_Followup(Student_t['Student_Id'],Student_t['Student_Name'],i)" ></i></span>
+            <div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" 
+            ng-reflect-trigger="[object HTMLButtonElement]"></div>
+            <div class="mat-button-focus-overlay"  ></div></button></td>  
+
+        <!-- <td  class="">{{Student_t["Batch"]}}</td> -->
+        <td  >{{Student_t["StartDate"]}}</td>
+        <td >{{Student_t["DueDate"]}}</td>
+    
+        <!-- <td  class="">{{Student_t["Student"]}}</td> -->
+    <td  >{{Student_t["Course"]}}</td>
+    
+    <td  >{{Student_t["Amount"]}}</td>
+
+    <td  >{{Student_t["teammember"]}}</td>
+    <!-- <td  >{{Student_t["District_Name"]}}</td> -->
+    <td  >{{Student_t["Remark"]}}</td>
+    <td  >{{Student_t["Batch_Name"]}}</td>
+
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    <label class="entry-num">Entries : {{Total_Entries}}</label>    
+    <label class="entry-num">Total Amount : {{Total_Amount}}</label>
+</div>
+
+
+
+<div class="col-md-12 pl-0 pr-0 mt-0 mb-2"  [hidden]="Show_FollowUp">
+    <div class="container-fluidprofile">
+    <div class="dt-card mt-2">
+    <div class="dt-card__header">
+    <div class="dt-card__heading">
+    <h3><i class="icon icon-users icon-fw icon-lg"></i><b style="margin-bottom:20px;">Followup Call Status</b></h3>
+    <div classs="mb-2"></div>
+    <hr class="lineheader">
+    </div>
+    </div>
+    <div class="dt-card__body" style="margin-left: 9px;">
+    <div class="mb-0">
+    <!--  <div class="form-row">
+   <label class="col-md-2 col-sm-2 col-form-label text-sm-right">Status<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-3 col-sm-3 mb-1">
+    <input type="text"  class="form-control"  id="Followup_Status" name="Followup_Status"  
+    [matAutocomplete]="auto_FollowUp_Status" [(ngModel)]="Followup_Status_" (click)="Search_Status_Typeahead($event)" />
+    </div>  
+    <mat-autocomplete #auto_FollowUp_Status="matAutocomplete" [displayWith]="display_Followup_Status">
+    <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+    <ng-container *ngIf="!issLoading">
+    <mat-option *ngFor="let Status of Followup_Status_Data" [value]="Status">
+    <span><div (click)="Status_Change(Status)">{{Status.Status_Name}}</div></span>
+    </mat-option>
+    </ng-container>
+    </mat-autocomplete>  
+    <div class="col-md-1 col-sm-1"></div>
+    <label class="col-md-2 col-sm-2 col-form-label text-sm-right">To staff<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-3 col-sm-3 mb-1">
+    <input type="text" class="form-control" [matAutocomplete]="auto_Followup_Users" name="Followup_Users_"  [(ngModel)]="Followup_Users_" (click)="Search_User_Typeahead($event)"(keyup)="Search_User_Typeahead($event)"/>
+    </div>
+    <mat-autocomplete #auto_Followup_Users="matAutocomplete" [displayWith]="display_Followup_Users">
+    <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+    <ng-container *ngIf="!issLoading">
+    <mat-option *ngFor="let Users_F of Followup_Users_Data_Filter" [value]="Users_F">
+    <span>{{Users_F.Users_Name}}</span>
+    </mat-option>
+    </ng-container>
+    </mat-autocomplete>
+    </div> -->
+    
+    <div class="form-row" >
+    <label class="col-md-2 col-sm-2 col-form-label text-sm-right">Followup Call Comments<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+    <div class="col-md-9 col-sm-3 mb-1">
+    <input type="text" class="form-control" placeholder="" name="Student_Followup_.Remark" [(ngModel)]="Student_Followup_.Remark" >
+    
+    </div>                
+    </div>
+    
+    <!--  <div class="form-row" [hidden]="Next_FollowUp_Date_Visible" >
+        <label class="col-md-2 col-sm-2 col-form-label text-sm-right">Next Follow Up Date<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-3 col-sm-3 mb-1">
+        <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+                style="height: 40px;padding-top: 7px!important;">
+                    <input matInput [matDatepicker]="dp13" placeholder="" [min]="minDate" [(ngModel)]="Student_Followup_.Next_FollowUp_Date" > 
+                    <mat-datepicker-toggle matSuffix [for]="dp13"></mat-datepicker-toggle>
+                    <mat-datepicker #dp13></mat-datepicker>
+                    </mat-form-field>
+        </div>                
+     
+       </div> -->
+       
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <!-- <div class="row col-md-12 butn-crct-alghn-dwnwrd-users-srch-new spcing-crect-input-bxes-wole-divs ml-0"> -->
+        <div class="container-fluidprofile mb-2">
+        <div class="dt-card b-1 mt-0 mb-0" style="height: 58px!important;">
+            <div class="dt-card__body mt-0 mb-0">
+        <div class="col-md-11 spcing-crect-input-bxes-wole-divs">
+            <button mat-raised-button type="submit"   class="save-button-style btnflot" (click)="Save_Student_Report_FollowUp()">Save</button>
+            <button mat-raised-button type="submit" class="close-button-style btnflot mr-1" (click)="Close_Click_Followup()">Close</button>
+        </div>
+        </div></div></div>
+    <!-- </div>  -->
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+

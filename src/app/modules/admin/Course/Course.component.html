@@ -1,0 +1,419 @@
+<div *ngIf="issLoading" class="overlay">
+<mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+</mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+
+<div class="main-content screenfixed">
+<div class="container-fluid">
+<div class="row" *ngIf="Entry_View" style="overflow-y: scroll;" [style.height.px]="myInnerHeight">
+ 
+    <div class="col-md-12 mt-2 pl-0">
+    <div class="dt-card mb-3 pb-1">         
+    <div class="dt-card__body mt-1 mb-0 pb-0">
+    <form class="mb-0">           
+    <div class="form-row" style="padding-left: 10px;">
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-3 col-sm-2 mb-2">
+        <input type="num" class="form-control" [(ngModel)]="Course_.Course_Name" name="Course_.Course_Name"  placeholder="">
+        </div>
+
+
+        
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Fees Type<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-2 col-sm-2 mb-1">
+        <select [(ngModel)]="Fees_Type" name="Fees_Type.Fees_Type" required class="form-control p-0 pl-1">
+        <option *ngFor="let Fees_Type of Fees_Type_Data" [ngValue]="Fees_Type">{{Fees_Type.Fees_Type_Name}}</option>
+        </select>
+        </div>  -->
+    
+        <!-- <div class="row col-md-12">
+        <label class="col-md-3 label-to-crect-all-names-to-divs down-label-name-to-all-sections">Course Type</label>
+        <select [(ngModel)]="Course_Type" id="Course_Type" name="Course_Type" required  class="col-md-8 input-text-item-sales-section-group-diary border-colour-width-crect-input-boxes mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn">
+        <option *ngFor="let Course_Type_ of Course_Type_Data" [ngValue]="Course_Type_">{{Course_Type_.Course_Type_Name}}</option>
+        </select> 
+        </div> -->
+        <!-- <div class="form-row" style="padding-left: 10px;"> -->
+            <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course Type</label>
+                <div class="col-md-2 col-sm-2 mb-2">
+                    <select [(ngModel)]="Course_Type" id="Course_Type" name="Course_Type" required  class="form-control p-0 pl-1">
+                        <option *ngFor="let Course_Type_ of Course_Type_Data" [ngValue]="Course_Type_">{{Course_Type_.Course_Type_Name}}</option>
+                        </select> 
+                </div> -->
+          
+            <!-- </div> -->
+    <!-- <div class="form-row" style="padding-left: 10px;"> -->
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right"> Amount<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2"> 
+             <input type="text" class="form-control" [(ngModel)]="Course_.Agent_Amount" name="Course_.Agent_Amount"  placeholder="">
+        </div> -->
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right"> One Time Amount<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2"> 
+             <input type="number" class="form-control" [(ngModel)]="Course_.Agent_Amount" name="Course_.Agent_Amount"  placeholder="">
+        </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right"> Installment Amount<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2"> 
+             <input type="number" class="form-control" [(ngModel)]="Course_.Total_Fees" name="Course_.Total_Fees"  placeholder="">
+        </div> -->
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">No Of Installment<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2"> 
+             <input type="number" class="form-control" [(ngModel)]="Course_.Total_Fees" name="Course_.Total_Fees"  placeholder="">
+        </div> -->
+    <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Total Fees<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2">
+        <input type="text" class="form-control" [(ngModel)]="Course_.Total_Fees" name="Course_.Total_Fees"  placeholder="">
+        </div> -->
+    </div>
+    <!-- </div> -->
+    </form>
+    </div>
+</div>
+</div>
+
+
+
+
+<!-- <div class="main-content"> -->
+    <div class="container-fluid">
+    <div class="row">
+     
+        <div class="col-md-12 mt-2 pl-0">
+        <div class="dt-card mb-3 pb-1">         
+        <div class="dt-card__body mt-1 mb-0 pb-0">
+            <form class="mb-0">  
+            <div class="dt-card__heading">
+                <h3><i class="icon icon-users icon-fw icon-lg"></i><b style="margin-bottom:20px;">Course Fees</b></h3>
+                <div classs="mb-2"></div><hr class="lineheader">
+            </div>
+                <div class="form-row" style="padding-left: 10px;">
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Fees Type<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-2 col-sm-2 mb-2">
+                <select [(ngModel)]="Fees_Type" id="Fees_Type" name="Fees_Type" required class="form-control p-0 pl-1">
+                <option *ngFor="let Fees_Type_ of Fees_Type_Data" [ngValue]="Fees_Type_">{{Fees_Type_.Fees_Type_Name}}
+                </option>
+                </select>                           
+                </div>
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Amount<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-2 col-sm-2 mb-2">
+                <input type="number" class="form-control" [(ngModel)]="Course_Fees.Amount"  name="Course_Fees.Amount"  placeholder="">
+                </div>
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Tax<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-1 col-sm-2 mb-2">
+                <input type="number" class="form-control" [(ngModel)]="Course_Fees.Tax"  name="Course_Fees.Tax"  placeholder="">
+                </div>
+
+                <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">No Of Instalment<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-1 col-sm-2 mb-2">
+                <input type="number" class="form-control"  [(ngModel)]="Course_Fees.No_Of_Instalment"  name="Course_Fees.No_Of_Instalment" placeholder="">
+                </div> -->
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Instalment  Period<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-1 col-sm-2 mb-2">
+                <input type="number" class="form-control"   [(ngModel)]="Course_Fees.Instalment_Period"  name="Course_Fees.Instalment_Period" placeholder="">
+                </div>
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Period<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-2 col-sm-2 mb-2">
+                <select [(ngModel)]="Period_Type" id="Period_Type" name="Period_Type" required class="form-control p-0 pl-1">
+                <option *ngFor="let Period_Type_ of Period_Type_Data" [ngValue]="Period_Type_">{{Period_Type_.Period_Name}}
+                </option>
+                </select>                           
+                </div>
+
+                </div>
+                <div class="col-md-1" class="addbutton-style"> 
+                    <button  type="submit" (click)="Plus_Course_Fees($event)"  class="other-button-style ">Add</button>     
+                </div>     
+            </form>
+        </div>
+
+        <div class="col-md-12" >
+        <div class="card-body">
+       <div class="table-responsive" style="overflow:scroll;height: 150px;">
+        <table class="table table-hover table-for-sale-search-section-diary">
+        <thead class="thead">
+        <th>Fees</th>   
+        <th>Amount</th>    
+        <th>Tax</th>   
+        <!-- <th>No Of Instalment</th> -->
+        <th>Instalment Period</th>
+        <th>Period</th>
+        <th [hidden]="Course_Edit==false">Edit</th>
+        <th [hidden]="Course_Delete==false">Delete</th>
+        </thead>
+        <tbody class="bk_tb_bg" *ngFor="let Course_Fees_ of Course_Fees_Data; let i = index">
+        <td class="td-padding">{{Course_Fees_["Fees_Type_Name"]}}</td>
+        <td class="td-padding">{{Course_Fees_["Amount"]}}</td>
+        <td class="td-padding">{{Course_Fees_["Tax"]}}</td>
+        <!-- <td class="td-padding">{{Course_Fees_["No_Of_Instalment"]}}</td>        -->
+        <td class="td-padding">{{Course_Fees_["Instalment_Period"]}}</td> 
+        <td class="td-padding">{{Course_Fees_["Period_Name"]}}</td> 
+            <td  class="td-padding">
+            <span class="icon-background2 mr-1"     (click)="Edit_Course_Fees(Course_Fees_,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+            </td>
+            <td class="td-padding"> 
+            <span class="icon-background3 mr-1"   (click)="Delete_Course_Fees(Course_Fees_,i)"  > <mat-icon class="text-red small" >close</mat-icon></span>
+            </td>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+            <div class="col-md-12 mt-2 pl-0">
+                <div class="dt-card mb-3 pb-1">         
+                <div class="dt-card__body mt-1 mb-0 pb-0">
+                    <form class="mb-0">  
+            <div class="dt-card__heading">
+                 <h3><i class="icon icon-users icon-fw icon-lg"></i><b style="margin-bottom:20px;">Course Syllabus</b></h3>
+                           <div classs="mb-2"></div>
+                           <hr class="lineheader">
+             </div>
+                    <!-- <div class="form-row" style="padding-left: 10px;"> -->
+                    <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Syllabus<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                    <div class="col-md-2 col-sm-2 mb-2" >
+                    <input type="text" disable [matAutocomplete]="autoSubject" [(ngModel)]="Subject" id ="Subject" maxlength="4000" name="Subject" 
+                    (click)="Search_Subject_Typeahead($event)" (keyup)="Search_Subject_Typeahead($event)" 
+                    class="form-control" />
+                    <mat-autocomplete #autoSubject="matAutocomplete" [displayWith]="display_Subject">
+                        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+                        <ng-container *ngIf="!issLoading">
+                            <mat-option *ngFor="let Subject of Subject_Data_Filter" [value]="Subject" >
+                                <span>{{Subject.Subject_Name}}</span>
+                            </mat-option>
+                        </ng-container>
+                    </mat-autocomplete>
+                </div> -->
+                <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Percentage <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                  <div class="col-md-2 col-sm-2 mb-2">
+                    <input type="number" class="form-control" [(ngModel)]="Course_Subject.Minimum_Mark"  name="Course_Subject.Minimum_Mark"  placeholder="">
+                    </div> -->
+ 
+            
+                <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Maximum Mark<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-2 col-sm-2 mb-2">
+                    <input type="number" class="form-control"  [(ngModel)]="Course_Subject.Maximum_Mark"  name="Course_Subject.Maximum_Mark"  placeholder="">
+                    </div>
+                </div>
+
+                    <div class="form-row" style="padding-left: 10px;">
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Exam Status<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                    <div class="col-md-2 col-sm-2 mb-2">
+                        <select [(ngModel)]="Online_Exam_Status" id="Online_Exam_Status" name="Online_Exam_Status"  required class="form-control p-0 pl-1">
+                            <option  *ngFor="let Online_Exam_Status1 of Online_Exam_Status_Data" [ngValue]="Online_Exam_Status1">{{Online_Exam_Status1.Online_Exam_Status_Name}}
+                            </option>
+                        </select>                           
+                     </div>
+
+                     <label class="col-md-0 col-sm-0 col-form-label text-sm-right">No Of Question<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                     <div class="col-md-2 col-sm-2 mb-2">
+                        <input type="text" class="form-control" [(ngModel)]="Course_Subject.No_of_Question"  name="Course_Subject.No_of_Question"placeholder="">
+                        </div>
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Exam Duration<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-2 col-sm-2 mb-2">
+                   <input type="text" class="form-control" [(ngModel)]="Course_Subject.Exam_Duration"  name="Course_Subject.Exam_Duration" placeholder="">
+                   </div> -->
+                <!-- <div class="col-md-1" style="float:right;"> 
+                    <button  type="submit" (click)="Plus_Course_Subject($event)"  class="other-button-style ">Add </button>           
+                </div>    -->
+                
+                
+                <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right" style="font-weight: 700!important;">
+                    Change in Student Details Also</label>  
+                <div class="col-md-0 col-sm-0 mb-1">
+                <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+                <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+                <label _ngcontent-xmy-c9="" class="form-check-label">
+                <input type='checkbox' class="form-check-input" name="Is_Check" [(ngModel)]="Is_Check"   />
+                <span _ngcontent-xmy-c9="" class="form-check-sign"  style="margin-top: 4px;">
+
+                  
+                    <span _ngcontent-xmy-c9="" class="check">
+                </span>
+                </span>
+                </label>
+                </div>
+                </div>  
+                </div>  -->
+                
+                <!-- </div>                    -->
+           
+           </form>
+        </div>
+        <div class="col-md-12" >
+        <div class="card-body">
+       <div class="table-responsive" style="overflow:scroll;height: 350px;">
+        <table class="table table-hover table-for-sale-search-section-diary">
+        <thead class="thead">
+        <th>Day</th>   
+        <th>Heading</th>
+        <th>Syllabus</th>   
+        <th>Task</th> 
+        <!-- <th>Percentage</th> -->
+        <!-- <th [hidden]="Course_Edit==false">Edit</th> -->
+        <th [hidden]="Course_Delete==false">Delete</th>
+        </thead>
+        <tbody class="bk_tb_bg" *ngFor="let Course_Subject_ of Course_Subject_Data; let i = index">
+        <!-- <td class="">{{Course_Subject_["Day"]}}</td>
+        <td class="">{{Course_Subject_["Heading"]}}</td>
+        <td class="">{{Course_Subject_["Subject_Name"]}}</td>
+        <td class="">{{Course_Subject_["Task"]}}</td> -->
+        <!-- <td class="">{{Course_Subject_["Minimum_Mark"]}}</td>    -->
+        <!-- <td  class="" >
+            <span class="icon-background2 mr-1"    (click)="Edit_Course_Subject(Course_Subject_,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+            </td> -->
+
+
+
+            <td class="col-md-1 "><div >
+                <!-- <input
+                  type="text"
+                  [(ngModel)]="Course_Subject_.Day"
+                  name="{{Course_Subject_.Day}}a{{Course_Subject_.Day}}"
+                  class="form-control"
+                  placeholder=""
+                /> -->
+
+                <textarea Input rows="3" cols="40"  class="form-control " [(ngModel)]="Course_Subject_.Day"  name="{{Course_Subject_.Day}}a{{Course_Subject_.Day}}"></textarea>
+
+
+                </div></td>
+
+
+                <td class="col-md-2 "><div >
+                  
+                  <textarea Input rows="3" cols="40"  class="form-control " [(ngModel)]="Course_Subject_.Heading"  name="{{Course_Subject_.Heading}}a{{Course_Subject_.Heading}}"></textarea>
+
+                  </div></td> 
+
+
+                  <td class="col-md-5 "><div >
+                   
+
+                    <textarea Input rows="3" cols="40"  class="form-control " [(ngModel)]="Course_Subject_.Subject_Name"  name="{{Course_Subject_.Subject_Name}}a{{Course_Subject_.Subject_Name}}"></textarea>
+
+
+                    </div></td> 
+
+                    <td class="col-md-5 "><div >
+                     
+
+                      <textarea Input rows="3" cols="40"  class="form-control " [(ngModel)]="Course_Subject_.Task"  name="{{Course_Subject_.Task}}a{{Course_Subject_.Task}}"></textarea>
+
+                      </div></td>  
+
+
+
+
+            <td class=""> 
+            <span class="icon-background3 mr-1"   (click)="Delete_Course_Subject(Course_Subject_,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+            </td>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<div class="col-md-12 pl-0 b-0 mt-1 mb-0 pb-0">
+    <div class="container-fluidbutton-save mb-2">
+    <div class="dt-card b-1 mt-0 mb-0">
+    <div class="dt-card__body mt-0 mb-0">
+    <div class="form-row mt-0 mb-0">
+    <div class="col-md-6 col-sm-6"></div>
+    <div class="col-md-12 col-sm-12">    
+         
+    <button class="close-button-style btnflot mr-0" type="submit"  (click)="Close_Click()">Close</button>
+    <button class="save-button-style btnflot" id="Save_Button" (click)="Save_Course()" type="submit">Save</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+
+<div class="row" *ngIf="!Entry_View" >
+   
+
+    <div class="col-md-12 pl-0  mt-2 mb-2">
+        <div class="dt-card mb-2 pb-1">         
+            <div class="dt-card__body mt-1 mb-0 pb-0">
+                <form class="mb-0">           
+                <div class="form-row" style="padding-left: 10px;">
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Course</label>
+                
+                    <div class="col-md-4 col-sm-3 mb-2">  
+                        <input type="text" class="form-control" [(ngModel)]="Course_Name_Search" name="Course_Type_Name_Search" placeholder="">
+                      
+                    </div>
+                    <!-- <div class="row col-md-3">
+                        <label class="col-md-3 label-to-crect-all-names-to-divs down-label-name-to-all-sections">Course Types</label>
+                        <select [(ngModel)]="Course_Type_Search" id="Course_Type_Search" name="Course_Type_Search" required
+                            class="col-md-8 input-text-item-sales-section-group-diary border-colour-width-crect-input-boxes mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn">
+                            <option *ngFor="let Course_Type_ of Course_Type_Data" [ngValue]="Course_Type_">{{Course_Type_.Course_Type_Name}}
+                            </option>
+                        </select>
+                    </div> -->
+  
+                    <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Course Type</label>
+                    <div class="col-md-3 col-sm-3 mb-2">  
+                        <select [(ngModel)]="Course_Type_Search"name="Course_Type_Search" required class="form-control p-0 pl-1">
+                            <option *ngFor="let Course_Type_ of Course_Type_Data" [ngValue]="Course_Type_">{{Course_Type_.Course_Type_Name}}</option>
+                            </select>                      
+                    </div> -->
+
+                    <div class="col-md-3 col-sm-2 mt-0" >                    
+                         <button (click)="Search_Course()" mat-raised-button type="submit" class="other-button-style pull-left mr-1 blue-btn">Search</button>
+                         <button (click)="Create_New()"  mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>        
+      </div> 
+   
+    <div class="col-md-12 pl-0 mt-0" >
+        <div class="dt-module ">            
+            <div class="dt-module__container">
+                <div class="dt-module__content ps-custom-scrollbar">
+                    <div class="dt-module__content-inner pl-0 pr-0 "style="overflow-y: scroll;"[style.height.px]="myTotalHeight">   
+                        <div class="dt-module__list pl-0 pr-0" >
+                         
+                            <div class="dt-module__list-item pb-2 pt-2"  *ngFor="let Course_Type1 of Course_Data; let i = index"> 
+                                <div class="dt-module__list-item-content">
+                                    <div class="user-detail">
+    
+                                        <span class="icon-background2 mr-1"[hidden]="Course_Edit==false"  (click)="Edit_Course(Course_Type1,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+                                        <span class="icon-background3 mr-1" [hidden]="Course_Delete==false"    (click)="Delete_Course(Course_Type1.Course_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+                                        
+                                        <span class="user-name">{{Course_Type1["Course_Name"]}}</span>
+                                        <!-- <span class="user-name">{{Course_Type1["Course_Type_Name"]}}</span> -->
+                            
+                                    </div>
+                             
+                                </div>                                
+                            </div>
+                    
+                        </div>
+                    </div>
+                  
+                </div>
+             
+            </div>
+           
+          </div>
+      </div> 
+
+      <label class="entry-num">Entries : {{Total_Entries}}</label>
+
+
+</div>
+</div>

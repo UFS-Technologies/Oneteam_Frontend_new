@@ -1,0 +1,269 @@
+<div *ngIf="issLoading" class="overlay">
+<mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+</mat-progress-spinner>
+</div>
+<div class="main-content">
+<div class="container-fluid">
+<div class="card-body set-height-scroll-bar-wole-block" style="height: 100%">
+
+  <div class="row" *ngIf="Entry_View">
+    <div class="col-md-12 pl-0 pr-0 mt-0 mb-2">
+    <div class="dt-card mt-2">
+    <div class="dt-card__header">
+    <div class="dt-card__heading">
+    </div>
+    </div>
+    <div class="dt-card__body">
+    <div class="mb-0"> 
+    <div class="form-row">
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-3 col-sm-3 mb-1">
+    <input type="text"  class="form-control"   [matAutocomplete]="auto_Course"    [(ngModel)]="Course_Data_Search" id="Course_Data_Search" name="Course_Data_Search" 
+    (click)="Search_Course_Typeahead($event)" (keyup)="Search_Course_Typeahead($event)"  (ngModelChange)="Course_Change()" />
+    </div>  
+    <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+    <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+    <ng-container *ngIf="!issLoading">
+    <mat-option *ngFor="let Course of course_Data" [value]="Course">
+    <span>{{Course.Course_Name}}</span>
+    </mat-option>
+    </ng-container>
+    </mat-autocomplete>  
+
+   <div class="col-md-1 col-sm-1"></div>                   
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Part<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+    <div class="col-md-3 col-sm-3 mb-1">
+    <input type="text"  class="form-control"  [matAutocomplete]="auto_Part"[(ngModel)]="Part_Data_Search" id="Part_Data_Search" name="Part_Data_Search"  
+    (click)="Search_Course_Part_Typeahead($event)" (ngModelChange)="Part_Change()" />
+    </div>
+    <mat-autocomplete #auto_Part="matAutocomplete" [displayWith]="display_Part">
+    <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+    <ng-container *ngIf="!issLoading">
+    <mat-option *ngFor="let Part of Part_Data" [value]="Part">
+    <span>{{Part.Part_Name}}</span>
+    </mat-option>
+    </ng-container>
+    </mat-autocomplete>  
+    </div>
+    <div class="form-row">
+    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Syllabus<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span> </label>
+    <div class="col-md-3 col-sm-3 mb-1">
+    <input type="text"  class="form-control"  id="Subject_Data_Search" name="Subject_Data_Search"  [matAutocomplete]="auto_Subject"
+    [(ngModel)]="Subject_Data_Search" (click)="Search_Part_Subject_Typeahead($event)" />
+    </div>
+    <mat-autocomplete #auto_Subject="matAutocomplete" [displayWith]="display_Subject">
+    <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+    <ng-container *ngIf="!issLoading">
+    <mat-option *ngFor="let Subject of Subject_Data" [value]="Subject">
+    <span>{{Subject.Subject_Name}}</span>
+    </mat-option>
+    </ng-container>
+    </mat-autocomplete>  
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  <div class="col-md-12 pl-0 pr-0 mt-0 mb-2">
+  <div class="dt-card mt-2" style="background-color: #ffff;">
+  <div class="card-body set-height-scroll-bar-wole-block" style="height: 100%">
+
+  <div class="form-row"> 
+  <div class="col-md-12"><h3><b>Excel format</b></h3><h5>Column names are case sesitive </h5>
+
+  <img src="one_team_assets/img/Question_Import.png" class="img-fluid login-logo-to-corect mb-2" alt="Responsive image"/><br>
+  <button mat-raised-button type="submit" 
+  id="Download"class="other-button-style btnflot pull-right mt-2" name="Download_Button" 
+  ><a style="color: white;" href="one_team_assets/img/Question_Import_Excel_Format.xlsx" download>Download Excel Format</a></button> 
+  </div>   
+  </div>
+
+  </div>
+  </div>
+  <div class="col-md-4 col-sm-0 pl-0 mb-1"> 
+  <div class="col-md-0"> 
+  <button class="other-button-style pull-left  mb-2  pl-2 pr-2"  type="button" style="background-color: #5d6071;margin-top: -15px;"  (click)="fileInput4.click()"><span>Choose File</span>
+  <input #fileInput4 type="file" name="Photo"  [(ngModel)]="File" (change)="incomingfile($event)" style="display:none;"  placeholder="Upload file" accept=".xlsx" /> </button>
+  </div>
+  <div class="col-md-6 pull-right" style="    margin-right: 200px;
+  margin-top: -7px;"> 
+  {{Display_File_Name_}}
+  </div>
+  </div>
+  </div>
+  <div class="col-md-12 pl-0 pr-0 mt-0 mb-2" *ngIf="Entry_View">
+  <div class="dt-card mt-2" style="background-color: #ffff;">
+  <div class="form-row"> 
+
+  <div  class="col-md-4">
+  <label class=" col-md-5"  ><b style="font-weight: 600;">Data in Excel</b></label>
+  </div>
+  <div class="col-md-12" >
+    <div class="card-body" >
+    <div class="table-responsive" [style.height.px]="myInnerHeight" style="overflow-y: scroll;height: 300px;"> 
+    <table class="table table-hover">
+    <thead class="bg-col-stock-add-diary">  
+    <th></th>
+      <th>Question Name</th> 
+      <th> Option 1 </th> 
+      <th> Option 2 </th>  
+      <th>Option 3</th>
+      <th>Option 4</th>
+      <th>Correct Answer</th>
+    </thead>
+    <tbody class="bk_tb_bg" *ngFor="let Question of Question_Data; let i = index">
+    <div class="col-md-1 mt-2">
+      <span class="icon-background3 mr-1"   (click)="Delete_Question_Import(Question.Question_Id,i)" > <mat-icon class="text-red small" style="cursor: pointer;">close</mat-icon></span>        
+    </div>
+      <td>{{Question["Question_Name"]}}</td>     
+      <td>{{Question["Option_1"]}}</td>
+      <td>{{Question["Option_2"]}}</td>
+      <td>{{Question["Option_3"]}}</td>
+      <td>{{Question["Option_4"]}}</td>
+      <td>{{Question["Correct_Answer"]}}</td>     
+    </tbody>
+    </table>
+    </div>
+    </div>
+    <label style="margin-left: 26px;">Total Entries:<b>{{Import_Length}}</b></label>
+  </div>
+
+
+  <div class="col-md-11 butn-crct-alghn-dwnwrd-users-srch-new" style="margin-left: 130px;">
+  <button mat-raised-button type="submit" id="Save_Button" class="other-button-style btnflot pull-right mr-3" (click)="Save_Question_Import_Master()">Import</button>
+  <button mat-raised-button type="submit" class="other-button-style btnflot pull-right mr-1" (click)="Close_Click()">Close</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+<div class="row" *ngIf="!Entry_View">
+<div class="container-import1 "> 
+  <div class="col-md-12">
+  <div class="dt-card">              
+  <div class="dt-card-body mt-2">
+  <div class="row">
+  <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+  <div class="col-md-2 col-sm-2 mb-1">
+  <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+  <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px;padding-top: 7px!important;">
+            <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" > >
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+
+</div>  
+  <div class="col-md-0 col-sm-0"></div>
+  <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+  <div class="col-md-2 col-sm-2 mb-1">
+  <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+  <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+        style="height: 40px !important;padding-top: 7px!important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""   [(ngModel)]="ToDate_" name="ToDate_">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+
+</div>
+  <div class="col-md-0 col-sm-0"></div>
+  <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course</label>
+  <div class="col-md-3 col-sm-3 mb-1">
+  <input type="text"  class="form-control"   [matAutocomplete]="auto_Course"id="Course_Data_Search1" name="Course_Data_Search1" 
+    [(ngModel)]="Course_Data_Search1" (click)="Search_Course_Typeahead($event)" (keyup)="Search_Course_Typeahead($event)"  (ngModelChange)="Course_Change()"/></div>  
+  <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+  <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+  <ng-container *ngIf="!issLoading">
+  <mat-option *ngFor="let Course of course_Data" [value]="Course">
+  <span>{{Course.Course_Name}}</span>
+  </mat-option>
+  </ng-container>
+  </mat-autocomplete>  
+  <div class="col-md-0 col-sm-0"></div>
+
+  <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Subject</label>
+  <div class="col-md-2 col-sm-2 mb-1">
+  <input type="text"  class="form-control"  id="Subject_Data_Search_1" name="Subject_Data_Search_1"  [matAutocomplete]="auto_Subjects"
+  [(ngModel)]="Subject_Data_Search_1" (click)="Search_Subject_Typeahead($event)" (input)="Search_Subject_Typeahead($event)" />
+  </div>
+  <mat-autocomplete #auto_Subjects="matAutocomplete" [displayWith]="display_Subject_1">
+  <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+  <ng-container *ngIf="!issLoading">
+  <mat-option *ngFor="let Subject_1 of Subject_Data_" [value]="Subject_1">
+  <span>{{Subject_1.Subject_Name}}</span>
+  </mat-option>
+  </ng-container>
+  </mat-autocomplete>  
+  <div class="col-md-0 col-sm-0"></div>
+
+  <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Part</label>
+  <div class="col-md-3 col-sm-3 mb-1">
+  <input type="text"  class="form-control"  id="Part_Data1_Search" name="Part_Data1_Search"  [matAutocomplete]="auto_Parts"
+  [(ngModel)]="Part_Data1_Search" (click)="Search_Part_Typeahead($event)" (input)="Search_Part_Typeahead($event)" />
+  </div>
+  <mat-autocomplete #auto_Parts="matAutocomplete" [displayWith]="display_part_1">
+  <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+  <ng-container *ngIf="!issLoading">
+  <mat-option *ngFor="let Part_1 of Part_Data1_" [value]="Part_1">
+  <span>{{Part_1.Part_Name}}</span>
+  </mat-option>
+  </ng-container>
+  </mat-autocomplete>  
+  <div class="col-md-3 col-sm-2 mt-0" >  
+    <button (click)="Create_New()"   mat-raised-button type="submit"  class="save-button-style btnflot pull-right ml-3 ">New Import</button>    
+    <button (click)="Search_Question_Import_Master()"  mat-raised-button type="submit"  class="other-button-style btnflot ml-3 ">Search</button>
+  </div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>   
+
+</div>
+<div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1">
+<div class="container-import"> 
+<div class="dt-card mb-0 pb-1 " style="background-color: #ffff;" >  
+<div class="table-responsive">
+<table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+<thead>
+<th>Sl No</th>
+<th>Date</th> 
+<th>Course</th>
+<th>Subject</th>
+<th>Part</th>
+<th></th>
+<th></th>
+<th></th>
+</thead>
+<tbody *ngFor="let Question_Import_Master1 of Question_Import_Master_Data; let i = index">          
+<tr>
+<td>{{Question_Import_Master1["Question_Import_Master_Id"]}}</td>
+<td>{{Question_Import_Master1["Date"]}}</td>
+<td>{{Question_Import_Master1["Course_Name"]}} </td>
+<td>{{Question_Import_Master1["Subject_Name"]}}</td>
+<td>{{Question_Import_Master1["Semester_Name"]}}</td>
+<td><span class="icon-background2 mr-1"  (click)="Edit_Question_Import_Master(Question_Import_Master1,i)" > <mat-icon class="text-green small" >edit</mat-icon></span> </td>
+<td> <span class="icon-background3 mr-1" (click)="Delete_Question_Import_Master(Question_Import_Master1.Question_Import_Master_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span> </td>
+</tr>
+</tbody>
+<!-- <label class="entry-num">Entries : {{Total_Entries}}</label> -->
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+

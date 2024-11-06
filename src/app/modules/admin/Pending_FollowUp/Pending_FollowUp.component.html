@@ -1,0 +1,423 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>                                     
+
+
+<div *ngIf="issLoading" class="overlay">
+  <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+  </mat-progress-spinner>
+</div>
+
+<div  class="main-content" [hidden]="Search_Div">
+<div class="container-fluid">
+ 
+<!-- <div class="seperation-for-down-butons" > -->
+
+      <div class="col-md-12 pl-0 pr-2 mt-1 " style="border: 1">
+        <div class="dt-card mb-0 pb-1 pt-1">         
+            <div class="dt-card__body mt-1 mb-1">
+                <div class="mb-0">          
+                  <div class="form-row" style="padding-left: 30px;">
+
+                    <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Date</label>  
+                    <div class="col-md-0 col-sm-0 mb-1">
+                    <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+                    <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+                    <label _ngcontent-xmy-c9="" class="form-check-label">
+                    <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+                    <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+                    </span>
+                    </span>
+                    </label>
+                    </div>
+                    </div>  
+                    </div>    
+                     <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+                    <div class="col-md-2 col-sm-2 mb-1">
+                    
+                    <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+                    style="height: 40px;padding-top: 7px!important;">
+                        <input matInput [matDatepicker]="dp1" placeholder=""[(ngModel)]="FromDate_" name="FromDate_" > 
+                        <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                        <mat-datepicker #dp1></mat-datepicker>
+                        </mat-form-field>
+                </div>  
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+                    <div class="col-md-2 col-sm-3 mb-1">
+                    
+                    <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+                    style="height: 40px !important;padding-top: 7px!important;">
+                    <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+                    <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+                    <mat-datepicker #dpdate></mat-datepicker>
+                    </mat-form-field>
+                    </div> -->
+
+                              
+                      <!-- <div class="col-md-1 col-sm-1"></div>      -->
+                      <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Date</label>  
+                      <div class="col-md-0 col-sm-0 mb-1">
+                      <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+                      <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+                      <label _ngcontent-xmy-c9="" class="form-check-label">
+                      <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+                      <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+                      </span>
+                      </span>
+                      </label>
+                      </div>
+                      </div>  
+                      </div>     -->
+                       <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+                      <div class="col-md-2 col-sm-2 mb-1"> -->
+                      <!-- <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="FromDate_" name="FromDate_" > -->
+                      <!-- <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+                      style="height: 40px;padding-top: 7px!important;">
+                          <input matInput [matDatepicker]="dp1" placeholder=""[(ngModel)]="FromDate_" name="FromDate_" > 
+                          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                          <mat-datepicker #dp1></mat-datepicker>
+                          </mat-form-field>
+                  </div>   -->
+                      <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+                      <div class="col-md-2 col-sm-3 mb-1"> -->
+                      <!-- <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="ToDate_" name="ToDate_"> -->
+                      <!-- <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;"
+                      style="height: 40px !important;padding-top: 7px!important;">
+                      <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+                      <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+                      <mat-datepicker #dpdate></mat-datepicker>
+                      </mat-form-field>
+                      </div> -->
+                      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Team Member</label>
+                      <div class="col-md-2 col-sm-2 mb-1">
+                        <select [(ngModel)]="User_Search" id="User_" required class="form-control p-0 pl-1">
+                          <option *ngFor="let User_T of Users_Data" [ngValue]="User_T">{{User_T.Users_Name}}</option>
+                          </select> 
+                      </div>
+              
+
+                      <div  class="col-md-0 col-sm-0">
+                        <button mat-raised-button type="submit" id="Registration_Report" (click)="View_Back()" class="other-button-style btnflot pull-right mr-2 ">Back</button>
+
+                        <button mat-raised-button type="submit" [hidden]="Export_View==false"  (click)="Export()" class="other-button-style btnflot pull-right mr-2  green-btn">EXPORT</button>
+                        <button (click)="Search_Lead_button2()" mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-2 blue-btn">Search</button>
+                      
+                      </div>
+              
+
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+  
+
+
+
+
+
+   
+    
+<!-- </div>     -->
+   
+
+<!-- <div class="row div-to-down-margin-crect-allighn-wole-scton"> -->
+  <!-- <div class="col-md-12 whole-portion-edit-section-lead-part" [style.height.px]="myInnerHeight" > -->
+    <div class="col-md-12 pl-0 pr-2 mt-1 " style="border: 1">
+      <div class="dt-card mb-0 pb-1 pt-1 pl-1 pr-1" style="background-color: #ffff;">   
+      <div class="card-body card-body-for-searchedit-lead-section   pb-1 pt-0 pl-1 pr-1" >
+
+                    <div class="table-responsive" 	style="overflow: scroll;"[style.height.px]="myInnerHeight">
+                    <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 100% !important;">
+                      <thead>
+                        <th style="width:1%!important"> No </th>
+                        <th style="width:1%!important">Team Member</th>
+                        <th style="width:1%!important">Branch</th>
+                        <th style="width:1%!important"> Student </th>
+                        <th style="width:1%!important"> Mobile</th>
+                        <th style="width:1%!important"> Year Of Passing</th>
+                        <th style="width:1%!important"> Followup On</th>    
+                        <th style="width:1%!important"> District</th>               
+                        <th style="width:1%!important"> Registered By</th>
+                      </thead>
+                      <tbody *ngFor="let Lead of Student_Data_Search; let i = index">
+                        <tr>
+                          <td style="width:1%!important">
+                          {{i+1}}
+                          </td>
+                          <td style="width:1%!important">
+                            {{Lead["To_Staff"]}}
+                            </td>
+                            <td>
+                              {{Lead["Branch"]}}
+                              </td>
+                          
+                            <td style="width:1%!important" class="icon-pointer"><a target="_blank" [routerLink]="['/Student']" (click)="Edit_Pending_FollowUp(Lead.Student_Id,i)" style="color: #357bfd; font-weight: 800;">{{Lead["Student"]}}</a></td>
+  
+                          
+                          <td style="width:1%!important">
+                          {{Lead["Mobile"]}}
+                          </td>
+
+                          <td style="width:1%!important">
+                            {{Lead["Year_Of_Passing"]}}
+                            </td>
+
+                          <td style="width:1%!important">
+                            {{Lead["Followup_On"]}}
+                            </td>
+                            <td style="width:1%!important">
+                              {{Lead["District_Name"]}}
+                              </td>
+                            <td style="width:1%!important">
+                              {{Lead["Registered_By"]}}
+                              </td>
+                            <!-- <td>
+                      <button _ngcontent-jry-c5="" _ngcontent-gxp-c5="" aria-describedby="cdk-describedby-message-0" cdk-describedby-host="" class="aligyn-crect-deprtnment btn btn-primary btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" mattooltip="Edit Task" ng-reflect-message="Edit Task" ng-reflect-position="above" type="button"><span class="mat-button-wrapper"><span _ngcontent-jry-c5="" class="mat-button-wrapper"><i _ngcontent-jry-c5="" _ngcontent-gxp-c5="" class="material-icons" (click)="Edit_Lead(Lead.Lead_Id,i)" >edit</i></span><div _ngcontent-jry-c5="" class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div _ngcontent-jry-c5="" class="mat-button-focus-overlay"></div></span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div class="mat-button-focus-overlay" ></div></button>
+                  </td> -->
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+               
+                <!-- </div> -->
+              <!-- </div>  -->
+          <!-- </div> -->
+        </div> 
+        <label style=" margin-left: 9;">Total Entries:<b>{{Total_Data}}</b></label>
+
+        </div> 
+    </div>
+  
+  <!-- </div> -->
+<!-- </div> -->
+        
+</div>  
+</div>
+  
+
+
+
+<div class="main-content" [hidden]="Summary_Div">
+  <div class="container-fluid" >
+ 
+  <!-- <div class="seperation-for-down-butons" > -->
+     <!-- <div class="row "> -->
+      <div class="col-md-12 pl-0 pr-2 mt-1" style="border: 1">
+        <div class="dt-card mb-0 pb-1 pt-1">         
+            <div class="dt-card__body mt-1 mb-1">
+                <div class="mb-0">          
+                  <div class="form-row" >
+
+                   
+
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right mt-2">Team Member</label>
+                    <!-- <div class="col-md-3 col-sm-3 mb-1  mt-2">
+                      <select [(ngModel)]="User_Search" id="User_" required class="form-control p-0 pl-1 ">
+                      <option *ngFor="let User_T of Users_Data" [ngValue]="User_T">{{User_T.Users_Name}}</option>
+                      </select>  
+                    </div>  -->
+
+                    <div class="col-md-3 col-lg-3 mb-1 mt-0 mat-fix">
+                      <mat-form-field name="Search_Team_Member_" appearance="outline" [color]="" class="" style="width: 100%; height: 38px;">
+                      
+                    <mat-select [formControl]="Search_Team_Member_" multiple style="width: 100% !important;margin: 2px 0px;" >
+                     <mat-select-trigger >
+                     <span *ngIf="Search_Team_Member_.value!=undefined &&  Search_Team_Member_.value!='' ">
+                     
+                      <span *ngIf="Search_Team_Member_.value?.length > 0" class="example-additional-selection" >
+                       <span *ngFor=" let Team_Memberl of Search_Team_Member_.value "> {{Team_Memberl.Users_Name}}</span>
+                       
+                      </span></span>
+                      </mat-select-trigger>
+                      <mat-option style="background-color: #ffff;" *ngFor="let Users_T of Users_Data" [value]="Users_T">{{Users_T.Users_Name}}</mat-option>
+                     </mat-select>
+                     </mat-form-field>
+                     </div> 
+
+                     
+
+                    <div class="col-md-0 col-sm-0 mb-1">
+                      <!-- <button (click)="Graph_View()"  [hidden]="Summary_Sub==false"  mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-1  mt-2">Graph</button> -->
+
+                      <button (click)="Export()"  [hidden]="Export_View==false" mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-1  mt-2 green-btn">Export</button>
+                      <button (click)="Search_Lead_button()" id="Registration_Report" mat-raised-button type="submit"  class="other-button-style btnflot pull-right mr-2  mt-2 blue-btn">Search</button>
+                      
+                      <button (click)="FollowUp_Summary()"[hidden]="Summary_Sub==true" mat-raised-button  type="submit"   class="other-button-style btnflot pull-right mr-1  mt-2">  Data
+                         </button>
+
+                  
+                    </div>
+                    
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    
+
+      <div *ngIf="Summary_Sub" class="col-md-12 pl-0 pr-2 mt-1" style="border: 1">
+        <div class="dt-card mb-0 pb-1 pb-1 pt-1 pl-1 pr-1" style="background-color: #ffff;">         
+          <div class="card-body card-body-for-searchedit-lead-section pb-1 pt-0 pl-1 pr-1"	style="overflow: scroll;"[style.height.px]="myInnerHeight" >
+            <!-- style="overflow: scroll;height: 729px;width: 1906px;" -->
+                <!-- <div class="mb-0">           
+                  <div class="form-row"> -->
+
+
+                    <!-- <div class="card card-plain"> -->
+                      <!-- <div class="card-body card-body-for-searchedit-lead-section"> -->
+                      <div class="table-responsive">
+                      <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+                        <thead>
+                          <th style="width:0%!important">
+                            No
+                          </th>                        
+                          <th style="width:7%!important">
+                            Team Member
+                          </th>   
+                          <th style="width:7%!important">
+                            Branch
+                          </th>                        
+                          <th style="width:2%!important">
+                          Pending
+                          </th>
+                          <th>                        
+                          </th>
+                          <!-- <th>
+                            Edit
+                          </th> -->
+                        </thead>
+                        <tbody *ngFor="let Lead of Student_Data_Search; let i = index">
+                          <tr>
+                            <td>
+                          {{i+1}}
+                            </td>
+                            
+                            <td>
+                              {{Lead["To_Staff"]}}
+                              </td>
+                              <td>
+                                {{Lead["Branch"]}}
+                                </td>
+                            
+                            <td>             
+                                {{Lead["Pending"]}} 
+                              </td>
+                              <td>
+                              <div> <button class="other-button-style" mat-raised-button type="submit" id="Registration_Report" (click)="Pending_FollowUp(Lead.Users_Id)">
+                                  View Details</button></div>
+                                  
+                              </td>
+                              <!-- <td>
+                        <button _ngcontent-jry-c5="" _ngcontent-gxp-c5="" aria-describedby="cdk-describedby-message-0" cdk-describedby-host="" class="aligyn-crect-deprtnment btn btn-primary btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" mattooltip="Edit Task" ng-reflect-message="Edit Task" ng-reflect-position="above" type="button"><span class="mat-button-wrapper"><span _ngcontent-jry-c5="" class="mat-button-wrapper"><i _ngcontent-jry-c5="" _ngcontent-gxp-c5="" class="material-icons" (click)="Edit_Lead(Lead.Lead_Id,i)" >edit</i></span><div _ngcontent-jry-c5="" class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div _ngcontent-jry-c5="" class="mat-button-focus-overlay"></div></span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div class="mat-button-focus-overlay" ></div></button>
+                    </td> -->
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- </div> -->
+                    <!-- </div> -->
+
+
+                  <!-- </div> -->
+                <!-- </div> -->
+            </div>
+            <label style=" margin-left:9px;">Pending FollowUps:<b>{{Missed_follow}}</b></label>
+
+        </div>
+      </div>
+
+
+    <!-- </div> -->
+  <!-- </div> -->
+
+  </div>  
+  </div>
+
+  <!-- <div *ngIf="Graph">
+    <div class="container-fluid3">
+      <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1">
+        <div class="dt-card mb-0 pb-1 ">         
+               <div class="form-row"> 
+      <div class="col-md-1"></div>
+      <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
+        <div class="card card-chart"   style="background-color: transparent;border:none">
+            <div >
+             
+                <label  style="background-color: transparent;">Pending Followup summary</label>
+  
+            </div>
+        </div>
+        <google-chart #chart [title]='Enquiry_Source_title' [type]="Enquiry_Source_type" [data]="Branchwise_data" [columnNames]="Branchwise_columnNames" [options]="Enquiry_Source_options" 
+        [width]="width" [height]="height">
+        
+        </google-chart>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="card card-chart"  style="background-color: transparent;border:none">
+          <div class="card-body">
+            <label  style="background-color: transparent;">Pending Followup Summary</label>
+          </div>
+        </div>
+        <google-chart #chart [title]='Enquiry_Source_title' [type]="Type_PIe" [data]="Branchwise_data" [columnNames]="Branchwise_columnNames" [options]="Enquiry_Source_options"
+        [width]="width" [height]="height">
+        </google-chart>
+    </div>
+  </div>
+  
+  </div>
+  </div>
+  </div>
+  </div> -->
+
+
+
+
+  <div *ngIf="Graph">
+              
+    <div class="container-fluid3">
+      <div class="col-md-12 pl-3 pr-9 mt-0" style="border: 1">
+        <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;">         
+        <div class="form-row"  style="margin-left: 1px;"> 
+   
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="cardnew ">
+            <div class="card-headernew">
+              <h4 class=""><b>Pending Followup Summary</b></h4>
+            </div>
+          <div class="card card-chart" style="background-color:transparent;border: none;">
+          </div>
+          <google-chart #chart  [title]='Enquiry_Source_title' [type]="Enquiry_Source_type" [data]="Branchwise_data" [columnNames]="Branchwise_columnNames" [options]="Enquiry_Source_options" 
+          [width]="width" [height]="height">
+         </google-chart>
+          </div>
+        </div>
+  
+  
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <div class="cardnew ">
+            <div class="card-headernew">
+              <h4 class=""><b>Pending Followup Summary</b></h4>
+            </div>
+          <div class="card card-chart" style="background-color:transparent;border: none;">
+        </div>
+        <google-chart #chart [title]='Enquiry_Source_title' [type]="Type_PIe" [data]="Branchwise_data" [columnNames]="Branchwise_columnNames" [options]="Enquiry_Source_options" 
+        [width]="width" [height]="height">
+                      
+        </google-chart>
+        </div>
+      </div>
+  
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+  

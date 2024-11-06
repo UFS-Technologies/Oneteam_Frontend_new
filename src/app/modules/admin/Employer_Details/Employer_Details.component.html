@@ -1,0 +1,365 @@
+ <div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+    </div>
+    <div class="main-content">
+<div class="container-fluid">
+<div class="row" *ngIf="Entry_View">
+ 
+
+<div class="col-xl-12 pl-0 mt-1">
+    <div class="dt-card" style="background-color:#ffff;">
+    <div class="card-body">
+    <div class="row">
+     <div class="col-xl-12 pl-0 mt-1" >
+
+
+
+        <div class="form-row  mb-2">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Company<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+            <!-- <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Employer_Details_.Company_Name"  name="Employer_Details_.Company_Name" class="form-control" placeholder="" >
+            </div>   -->
+
+         <div class="col-md-4 col-sm-4 mb-1">
+         <input Input type="text"  class="form-control" [matAutocomplete]="autoc11" placeholder="" [(ngModel)]="Comapany_Employeedetails_"  name="Comapany_Employeedetails_"  
+         (click)="Search_Company_Typeahead_New($event)" (keyup)="Search_Company_Typeahead_New($event)">
+        </div> 
+        <mat-autocomplete #autoc11="matAutocomplete" [displayWith]="display_Company_Typeahead">
+            <mat-option *ngIf="issLoading">
+                <mat-spinner diameter="500"></mat-spinner>
+            </mat-option>
+            <ng-container *ngIf="!issLoading" >
+                <mat-option *ngFor="let Company_T12 of Company_List_Report_Data_first1_Filter" [value]="Company_T12">
+                    <span name="Company_T12.Company_Name">{{Company_T12.Company_Name}}</span>
+                </mat-option>
+            </ng-container>
+        </mat-autocomplete>
+ 
+
+
+
+
+            <div class="col-md-1 col-sm-1"></div>  
+                
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Contact Person <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Employer_Details_.Contact_Person"   name="Employer_Details_.Contact_Person"  class="form-control" placeholder="">
+            </div>  
+        </div>
+        
+        <div class="form-row  mb-2">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Contact Number <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Employer_Details_.Contact_Number"  name="Employer_Details_.Contact_Number" class="form-control" placeholder="" >
+            </div>  
+            <div class="col-md-1 col-sm-1"></div>  
+                
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Email Id <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Employer_Details_.Email_Id"   name="Employer_Details_.Email_Id"  class="form-control" placeholder="" >
+            </div>  
+        </div>
+
+        <div class="form-row  mb-2">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Address</label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Employer_Details_.Company_Location" name="Employer_Details_.Company_Location" class="form-control" placeholder="" >
+            </div>  
+            <div class="col-md-1 col-sm-1"></div>  
+                
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Website</label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Employer_Details_.Website"   name="Employer_Details_.Website" class="form-control" placeholder="" >
+            </div>  
+        </div>
+      
+       
+           
+          
+            <div class="col-md-12" style="top: 10px;">
+                <div class="col-md-12 ml-5">
+                    <button mat-raised-button type="submit"class="close-button-style pull-right mr-1 mb-2 " (click)="Close_Click()">Close</button>
+                    <button mat-raised-button type="submit" [hidden]="Employer_Details_Save==false" id="Save_Button" class="save-button-style pull-right mr-1" *ngIf="Employer_Details_Save" (click)="Save_Employer_Details()">Save</button>
+                    
+                </div>
+            </div>
+    
+    </div> 
+    
+    
+    
+    
+    
+    </div>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+<!-- <div class="" *ngIf="!Entry_View" >   
+
+  <div class="col-md-12 pl-0  mt-2 mb-2">
+    <div class="dt-card mb-2 pb-1">         
+        <div class="dt-card__body mt-1 mb-0 pb-0">
+            <form class="mb-0">           
+            <div class="form-row" style="padding-left: 10px;">
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Search Company</label>
+            
+                <div class="col-md-3 col-sm-3 mb-2">  
+                    <input type="text" class="form-control" [(ngModel)]="Search_User_Name_" name="Search_User_Name_"  placeholder="">
+                  
+                </div>
+                
+                <div class="col-md-2 col-sm-2 mt-0" >                    
+                     <button  (click)="Search_Employer_Details()" mat-raised-button type="submit" class="other-button-style pull-left mr-1 blue-btn">Search</button>
+                     <button (click)="Create_New()"  mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+
+                    </div>
+            </div>
+        </form>
+        </div>
+    </div>        
+  </div> 
+
+<div class="col-md-12 pl-0 mt-0" >
+    <div class="dt-module " >            
+        <div class="dt-module__container">
+            <div class="dt-module__content ps-custom-scrollbar">
+                <div class="dt-module__content-inner pl-0 pr-0 "style="overflow-y: scroll;"[style.height.px]="myTotalHeight">   
+                    <div class="dt-module__list pl-0 pr-0" >
+                     
+                        <div class="dt-module__list-item pb-2 pt-2"  *ngFor="let Employer_Details_1 of Employer_Details_Data; let i = index"> 
+                            <div class="dt-module__list-item-content">
+                                <div class="user-detail">
+
+                                    <span class="icon-background2 mr-1" [hidden]="Employer_Details_Edit==false" *ngIf="Employer_Details_Edit" (click)="Edit_Employer_Details(Employer_Details_1,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+                                    <span class="icon-background3 mr-1" [hidden]="Employer_Details_Delete==false" *ngIf="Employer_Details_Delete"   (click)="Delete_Employer_Details(Employer_Details_1.Employer_Details_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+                                    
+                                    <span class="user-name">{{Employer_Details_1["Company_Name"]}}</span>
+                                    <span class="dt-separator-v">&nbsp;</span> 
+                                    <span class="user-name">{{Employer_Details_1["Contact_Person"]}}</span>
+                        
+                                </div>
+                         
+                            </div>                                
+                        </div>
+                
+                    </div>
+                </div>
+              
+            </div>
+         
+        </div>
+       
+      </div>
+  </div> 
+
+
+
+  
+  <label class="entry-num">Entries : {{Total_Entries}}</label>
+
+ 
+
+</div> -->
+
+
+
+
+<div class="" *ngIf="!Entry_View" >
+
+    <div class="col-md-12 pl-3 pr-5 mt-1" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body" >
+    <div class="mb-0">          
+    <div class="form-row">
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Entry Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Is_Date" [(ngModel)]="Is_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>   
+
+
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+        <mat-form-field class="form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px;padding-top: 7px!important;">
+            <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="FromDate_" name="FromDate_" >
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+
+    </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-2 mb-1 wd_d">
+       <mat-form-field class=" form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+        style="height: 40px !important;padding-top: 7px!important;">
+        <input matInput [matDatepicker]="dpdate" placeholder=""  [(ngModel)]="ToDate_" name="ToDate_">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+      
+
+
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Company</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <input Input type="text"  class="form-control" [matAutocomplete]="autoc5" placeholder="" [(ngModel)]="Employeedetails_"  name="Employeedetails_"  
+        (click)="Search_Company_Typeahead($event)" (keyup)="Search_Company_Typeahead($event)">
+       </div> 
+       <mat-autocomplete #autoc5="matAutocomplete" [displayWith]="display_Company">
+           <mat-option *ngIf="issLoading">
+               <mat-spinner diameter="500"></mat-spinner>
+           </mat-option>
+           <ng-container *ngIf="!issLoading">
+               <mat-option *ngFor="let Company_T of Employeedetails_Data_Filter" [value]="Company_T">
+                   <span name="Company_T.Company_Name">{{Company_T.Company_Name}}</span>
+               </mat-option>
+           </ng-container>
+       </mat-autocomplete>
+
+
+  
+      
+         <div class="col-md-0 col-sm-0">  
+            <button mat-raised-button type="submit"  [hidden]="Export_View==false" (click)="Export()"class="other-button-style btnflot pull mr-1 green-btn"><i></i>EXPORT</button>
+        <button (click)="Search_Company_List_Report(2)" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 blue-btn">Search</button>
+        <!-- <button  (click)="Search_Employer_Details()" mat-raised-button type="submit" class="other-button-style pull-left mr-1 blue-btn">Search</button> -->
+            <button (click)="Create_New()"  mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+
+    </div> 
+    
+    
+    </div>
+    </div>
+    </div>        
+    </div>
+
+   
+
+
+    <div class="col-md-12 pl-0 pr-0 mt-1" style="border: 1" >
+    <div class="dt-card mb-0  pb-1 pt-1 pl-1 pr-1" style="background-color: white;" > 
+    <div class="card-body card-body-for-searchedit-lead-section  pb-1 pt-0 pl-1 pr-1" >
+        <div class="table-responsive" 	style="overflow-y: scroll;"[style.height.px]="myInnerHeight">
+      <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+       
+     <thead>  
+        <th style="width:0%!important;">No</th>
+
+        <th style="width:0%!important;">Edit</th>
+        <th style="width:0%!important;">Delete</th>
+
+        <th style="width:30%!important;">Company Name</th>  
+        <th style="width:30%!important;">Contact person Name</th>  
+        <th  style="width:7%!important;" >Email Id</th>   
+        <th > Contact Number</th>    
+        <th >First Added Date</th>    
+     </thead>
+    <tbody  *ngFor="let Company_List_Report_Data_T of Company_List_Report_Data; let i = index" >
+
+    <tr>
+        <td>{{i+1}}</td>
+
+        <td><span class="icon-background2 mr-1" [hidden]="Employer_Details_Edit==false" *ngIf="Employer_Details_Edit" (click)="Edit_Employer_Details(Company_List_Report_Data_T,i)" > <mat-icon class="text-green small" >edit</mat-icon></span></td>
+        <td> <span class="icon-background3 mr-1" [hidden]="Employer_Details_Delete==false" *ngIf="Employer_Details_Delete"   (click)="Delete_Employer_Details(Company_List_Report_Data_T.Employer_Details_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span></td>
+
+        <td>{{Company_List_Report_Data_T["Company_Name"]}}</td>
+        <td>{{Company_List_Report_Data_T["Contact_Person"]}}</td>
+        <td>{{Company_List_Report_Data_T["Email_Id"]}}</td>
+        <td>{{Company_List_Report_Data_T["Contact_Number"]}}</td>
+        <td>{{Company_List_Report_Data_T["Entry_Date"]}}</td>
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+        
+         </div>
+
+
+        <div class="row" style="text-align: center">
+          <div class="col-md-4">
+              <label class="entry-num">Entries : {{Total_Entries}}</label>
+          </div>
+          <div class="col-md-4 buttons-next-previous">
+              <button
+              mat-raised-button
+              type="submit"
+              (click)="previous_Click()"
+              class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-1"
+              style="background: none"
+          >
+              <i
+                  class="fa fa-chevron-left"
+                  aria-hidden="true"
+                  style="color: #5f6368"
+              ></i>
+          </button>
+          <button
+              mat-raised-button
+              type="submit"
+              (click)="Next_Click()"
+              class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-1"
+              style="background: none"
+          >
+              <i
+                  class="fa fa-chevron-right"
+                  aria-hidden="true"
+                  style="color: #5f6368"
+              ></i>
+          </button>
+          </div>
+          </div>
+          
+         
+    </div>
+    </div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
