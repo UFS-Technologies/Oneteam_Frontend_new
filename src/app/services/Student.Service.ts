@@ -528,6 +528,14 @@ Upload_Resume(
 		);
 	}
 
+	Search_Batch_Typeahead_Report_New1(Batch_Name,Login_User,Trainer): Observable<any> {
+		var Search_Data = { Batch_Name: Batch_Name,Login_User:Login_User,Trainer:Trainer };
+		return this.http.get(
+			environment.BasePath + "Student/Search_Batch_Typeahead_Report_New1/",
+			{ params: Search_Data }
+		);
+	}
+
 
 
 	Search_Batch_Typeahead_1(Batch_Name, Course_Id): Observable<any> {

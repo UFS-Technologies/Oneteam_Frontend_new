@@ -654,7 +654,7 @@ Search_Batch_Typeahead_Report_New()
 {
     debugger
     this.issLoading = true;
-    this.Student_Service_.Search_Batch_Typeahead_Report_New('',this.Login_User,this.Trainer).subscribe(Rows => {
+    this.Student_Service_.Search_Batch_Typeahead_Report_New1('',this.Login_User,this.Trainer).subscribe(Rows => {
         if (Rows != null) {
             debugger
             this.Batch_Data = Rows[0];

@@ -396,7 +396,7 @@ Batch_Typeahead_Service(Value,Course_Id)
         this.issLoading = true;
         
         // this.Student_Service_.Search_Batch_Typeahead_1('',this.Course_Search.Course_Id).subscribe(Rows =>
-        this.Student_Service_.Search_Batch_Typeahead_Attendance1('',Course_Id,this.Login_User).subscribe(Rows => {
+        this.Student_Service_.Search_Batch_Typeahead_Attendance('',Course_Id,this.Login_User).subscribe(Rows => {
     if (Rows != null) 
     {
         this.Batch_Data = Rows[0];
