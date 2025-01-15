@@ -517,9 +517,9 @@ Save_Users()
         this.Users_.User_Sub_Data = this.User_Sub_Data_Temp; 
 
     this.issLoading=true;
-    
+    debugger
     this.Users_Service_.Save_Users(this.Users_).subscribe(Save_status => {
-        
+        debugger
     if(Number(Save_status[0].Users_Id_)>0)
     {
     const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Saved',Type:"false"}});

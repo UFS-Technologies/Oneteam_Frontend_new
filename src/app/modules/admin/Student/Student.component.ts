@@ -516,6 +516,8 @@ Year_Of_Pass_Data: Year_Of_Pass[];
  Dm_Whatsapp_:Course_Whatsapp = new Course_Whatsapp();
  Fees_Whatsapp_:Fees_Whatsapp =new Fees_Whatsapp();
 
+ Save_Whatsapp_1_:Save_Whatsapp = new Save_Whatsapp();
+
  followup_user_id_ : number;
  Password_View: boolean = false;
  Password_button_View: boolean = false;
@@ -537,6 +539,8 @@ Year_Of_Pass_Data: Year_Of_Pass[];
  Sms_Temp: Sms = new Sms();
  Sms_Data: Sms[];
 
+ Offline_class_preference_ :number=0;
+whatsapp_msg_status :number =0;
 
 constructor(
 public Batch_Service_: Batch_Service,
@@ -1239,6 +1243,8 @@ this.View_Follow_ = true;
 this.Student_Id = 0;
 this.Student_Id_Edit = 0;
 
+this.whatsapp_msg_status=0;
+
 this.Course_Id_Edit = 0;
 this.Mail_sms_Status = 0;
 this.Student_.Registered =false;
@@ -1434,7 +1440,7 @@ this.Disable_Visiblility=false;
 
 this.Activate_Visiblility=false;
 this.Deactivate_Visiblility=false;
-
+this.Offline_class_preference_ =0;
 this.Movedtoblacklist_Visiblility=false;
 this.Removedfromblacklist_Visiblility=false;
 
@@ -1472,6 +1478,8 @@ if (
     this.Student_.Parent_spouse_idcard = "";
     this.Display_Photo_2_ = "";
     this.ImageFile_psid_view="";
+
+   
 
 
 }
@@ -2451,6 +2459,7 @@ this.Student_.Id_Proof_Name =this.Id_Proof_.Id_Proof_Name;
 
 this.Student_.Year_Of_Pass_Id =this.Year_Of_Pass_.Year_Of_Pass_Id;
 this.Student_.Year_Of_Passing =this.Year_Of_Pass_.Year_Of_Pass_Name;
+this.Student_.Offline_class_preference=this.Offline_class_preference_;
 
 // this.Student_.Resume_Status_Id =this.Resume_Status_.Resume_Status_Id;
 // this.Student_.Resume_Status_Name =this.Resume_Status_.Resume_Status_Name;
@@ -2821,6 +2830,7 @@ data: { Message: "Saved", Type: "false" },
 this.Save_Call_Status = false;
 this.Clr_Student_Followup();
 
+
 debugger
 this.Flag_Followup=0;
 //debugger
@@ -2842,6 +2852,39 @@ var user_id =this.followup_user_id_;
 this.Get_ToStaff_WhatsappMobile(user_id)
 // this.Save_Student_Whatsapp();
 };
+
+
+// whatsapp course msg start
+
+console.log(Save_status[0][0].Course_Id_,'d')
+  if(Save_status[0][0].WhatsApp_Msg_Status_ == 0 && Save_status[0][0].Course_Id_ ==1)
+  {
+  this.api_brochure_python_arjun_jan2025(Save_status[0][0].Student_Name_,Save_status[0][0].Whatsapp_,Save_status[0][0].Course_Name_,Save_status[0][0].to_staff_name_,
+  Save_status[0][0].to_staff_mobile_no_,Save_status[0][0].Course_Id_,Save_status[0][0].Student_Id_ );
+  }
+
+  if(Save_status[0][0].WhatsApp_Msg_Status_ == 0 && Save_status[0][0].Course_Id_ ==2)
+  {
+  this.api_dm_brochure_arjun_jan2025(Save_status[0][0].Student_Name_,Save_status[0][0].Whatsapp_,Save_status[0][0].Course_Name_,Save_status[0][0].to_staff_name_,
+  Save_status[0][0].to_staff_mobile_no_,Save_status[0][0].Course_Id_ ,Save_status[0][0].Student_Id_);
+  }
+
+  if(Save_status[0][0].WhatsApp_Msg_Status_ == 0 && Save_status[0][0].Course_Id_ ==6||Save_status[0][0].Course_Id_ ==14)
+  {
+  this.api_brochure_mernstack_arjun_jan2025(Save_status[0][0].Student_Name_,Save_status[0][0].Whatsapp_,Save_status[0][0].Course_Name_,Save_status[0][0].to_staff_name_,
+  Save_status[0][0].to_staff_mobile_no_,Save_status[0][0].Course_Id_ ,Save_status[0][0].Student_Id_);
+  }
+
+  if(Save_status[0][0].WhatsApp_Msg_Status_ == 0 && Save_status[0][0].Course_Id_ ==3)
+  {
+  this.api_brochure_softwaretesting_arjun_jan2025(Save_status[0][0].Student_Name_,Save_status[0][0].Whatsapp_,Save_status[0][0].Course_Name_,Save_status[0][0].to_staff_name_,
+  Save_status[0][0].to_staff_mobile_no_,Save_status[0][0].Course_Id_,Save_status[0][0].Student_Id_ );
+  }
+
+// whatsapp course msg end
+ 
+
+
 
 if (
 this.Mail_sms_Status == 0 &&
@@ -3754,6 +3797,7 @@ Edit_Student(Student_Id_Temp, Mail_Status_, Status, index) {
 //alert(Mail_Status_)
 this.Clr_Student();
 this.Student_EditIndex = index;
+this.whatsapp_msg_status =1;
 
 this.Placement_button_View=true;
 
@@ -3972,7 +4016,7 @@ this.Deactivate_Visiblility = false;
         }
     
     
-    
+        this.Offline_class_preference_ = this.Student_.Offline_class_preference_id ;
 
 
 
@@ -7347,7 +7391,142 @@ sendSms(V1,V2,V3) {
     //     );
     //   }
 
+//     api_brochure_python_arjun_jan2025(student,whatsapp,course,to_staff_name_,to_staff_mobile_,Course_Id)
+//     {
+//       debugger
+// this.Save_Whatsapp_1_.whatsAppBusinessId = "108714478695876";
+// this.Save_Whatsapp_1_.phoneNumberId = "103915675851161";
+// this.Save_Whatsapp_1_.from = "919562813713";
+// this.Save_Whatsapp_1_.to = ""+whatsapp+"";
+// this.Save_Whatsapp_1_.student = student;
+// this.Save_Whatsapp_1_.tostaff =  to_staff_name_ ;
+// this.Save_Whatsapp_1_.tostaff_mobile =  to_staff_mobile_ ;
+// this.Save_Whatsapp_1_.Course =  course ;
+// this.Save_Whatsapp_1_.Course_Id =  Course_Id ;
 
+// this.Save_Whatsapp_1_.button=null
+
+// this.Student_Service_.api_brochure_course_whatsapp(this.Save_Whatsapp_1_).subscribe(Save_status => {
+// debugger
+
+//  var msg =Save_status[0];
+
+// 	  return;
+
+// },
+// );
+//     }
+
+
+
+
+api_brochure_python_arjun_jan2025(student,whatsapp,course,to_staff_name_,to_staff_mobile_,Course_Id,Student_Id)
+{
+  debugger
+this.Save_Whatsapp_1_.whatsAppBusinessId = "108714478695876";
+this.Save_Whatsapp_1_.phoneNumberId = "103915675851161";
+this.Save_Whatsapp_1_.from = "919562813713";
+this.Save_Whatsapp_1_.to = "91"+whatsapp+"";
+this.Save_Whatsapp_1_.student = student;
+this.Save_Whatsapp_1_.tostaff =  to_staff_name_ ;
+this.Save_Whatsapp_1_.tostaff_mobile =  to_staff_mobile_ ;
+this.Save_Whatsapp_1_.Course =  course ;
+this.Save_Whatsapp_1_.Course_Id =  Course_Id ;
+this.Save_Whatsapp_1_.Student_Id =  Student_Id ;
+
+this.Save_Whatsapp_1_.button=null
+
+this.Student_Service_.api_brochure_python_arjun_jan2025(this.Save_Whatsapp_1_).subscribe(Save_status => {
+debugger
+
+var msg =Save_status[0];
+
+return;
+
+},
+);
+}
+
+api_dm_brochure_arjun_jan2025(student,whatsapp,course,to_staff_name_,to_staff_mobile_,Course_Id,Student_Id)
+{
+  debugger
+this.Save_Whatsapp_1_.whatsAppBusinessId = "108714478695876";
+this.Save_Whatsapp_1_.phoneNumberId = "103915675851161";
+this.Save_Whatsapp_1_.from = "919562813713";
+this.Save_Whatsapp_1_.to = "91"+whatsapp+"";
+this.Save_Whatsapp_1_.student = student;
+this.Save_Whatsapp_1_.tostaff =  to_staff_name_ ;
+this.Save_Whatsapp_1_.tostaff_mobile =  to_staff_mobile_ ;
+this.Save_Whatsapp_1_.Course =  course ;
+this.Save_Whatsapp_1_.Course_Id =  Course_Id ;
+this.Save_Whatsapp_1_.Student_Id =  Student_Id ;
+
+this.Save_Whatsapp_1_.button=null
+
+this.Student_Service_.api_dm_brochure_arjun_jan2025(this.Save_Whatsapp_1_).subscribe(Save_status => {
+debugger
+
+var msg =Save_status[0];
+
+return;
+
+},
+);
+}
+
+api_brochure_mernstack_arjun_jan2025(student,whatsapp,course,to_staff_name_,to_staff_mobile_,Course_Id,Student_Id)
+{
+  debugger
+this.Save_Whatsapp_1_.whatsAppBusinessId = "108714478695876";
+this.Save_Whatsapp_1_.phoneNumberId = "103915675851161";
+this.Save_Whatsapp_1_.from = "919562813713";
+this.Save_Whatsapp_1_.to = "91"+whatsapp+"";
+this.Save_Whatsapp_1_.student = student;
+this.Save_Whatsapp_1_.tostaff =  to_staff_name_ ;
+this.Save_Whatsapp_1_.tostaff_mobile =  to_staff_mobile_ ;
+this.Save_Whatsapp_1_.Course =  course ;
+this.Save_Whatsapp_1_.Course_Id =  Course_Id ;
+this.Save_Whatsapp_1_.Student_Id =  Student_Id ;
+
+this.Save_Whatsapp_1_.button=null
+
+this.Student_Service_.api_brochure_mernstack_arjun_jan2025(this.Save_Whatsapp_1_).subscribe(Save_status => {
+debugger
+
+var msg =Save_status[0];
+
+return;
+
+},
+);
+}
+
+api_brochure_softwaretesting_arjun_jan2025(student,whatsapp,course,to_staff_name_,to_staff_mobile_,Course_Id,Student_Id)
+{
+  debugger
+this.Save_Whatsapp_1_.whatsAppBusinessId = "108714478695876";
+this.Save_Whatsapp_1_.phoneNumberId = "103915675851161";
+this.Save_Whatsapp_1_.from = "919562813713";
+this.Save_Whatsapp_1_.to = "91"+whatsapp+"";
+this.Save_Whatsapp_1_.student = student;
+this.Save_Whatsapp_1_.tostaff =  to_staff_name_ ;
+this.Save_Whatsapp_1_.tostaff_mobile =  to_staff_mobile_ ;
+this.Save_Whatsapp_1_.Course =  course ;
+this.Save_Whatsapp_1_.Course_Id =  Course_Id ;
+this.Save_Whatsapp_1_.Student_Id =  Student_Id ;
+
+this.Save_Whatsapp_1_.button=null
+
+this.Student_Service_.api_brochure_softwaretesting_arjun_jan2025(this.Save_Whatsapp_1_).subscribe(Save_status => {
+debugger
+
+var msg =Save_status[0];
+
+return;
+
+},
+);
+}
 
 
  

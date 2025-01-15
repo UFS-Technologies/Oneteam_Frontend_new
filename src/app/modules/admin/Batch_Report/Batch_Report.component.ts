@@ -158,7 +158,7 @@ Page_Load()
     this.myInnerHeight = (window.innerHeight);
     this.myTotalHeight=this.myInnerHeight -200;
     this.myTotalHeight=this.myTotalHeight-40;
-    this.myInnerHeight = this.myInnerHeight - 215;
+    this.myInnerHeight = this.myInnerHeight - 265;
 
     this.Faculty_Temp.Users_Id = this.Login_User;
     this.Faculty_Temp.Users_Name = this.login_user_name;
@@ -502,7 +502,7 @@ Get_Login_User_Type()
         if (Rows != null) {
             debugger
             this.Login_User_Type_Data = Rows[0];
-            if( this.Login_User_Type_Data[0].User_Type==1 ||this.Login_User_Type_Data[0].Role_Id==4)
+            if( this.Login_User_Type_Data[0].User_Type==1 ||this.Login_User_Type_Data[0].Role_Id==4||this.Login_User_Type_Data[0].Role_Id==12)
             {
                 this.faculty_edit =1
             }

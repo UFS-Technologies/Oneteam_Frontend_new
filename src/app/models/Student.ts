@@ -115,6 +115,8 @@ attendance_percentage:any;
 Parent_spouse_name:string;
 Parent_spouse_contact_no:string;
 Parent_spouse_idcard:string;
+Offline_class_preference :number;
+Offline_class_preference_id :number;
 
 
 constructor(values: Object = {})  

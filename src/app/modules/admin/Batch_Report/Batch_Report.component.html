@@ -150,8 +150,8 @@
     <div class="col-md-12 pl-3 pr-5 pb-1 pt-1 pl-1 pr-1" style="border: 1" *ngIf="isDesktopMenu()">
     <div class="dt-card mb-0 pb-1 pt-0 pl-1 pr-1" style="background-color: white;" >  
 
-    <div class="card-body card-body-for-searchedit-lead-section" style="overflow: scroll;" [style.height.px]="myInnerHeight">
-    <div class="table-responsive"> <table class="table table-hover table-for-sale-search-section-diary">
+    <div class="card-body card-body-for-searchedit-lead-section" >
+    <div class="table-responsive" style="overflow: scroll;" [style.height.px]="myInnerHeight"> <table class="table table-hover table-for-sale-search-section-diary">
     <thead>
     <!-- <th >Date</th>  -->
     
@@ -177,6 +177,9 @@
     <th style="width:7%!important">Registered On </th> 
     <th style="width:2%!important">Lap Details </th>
     <th style="width:2%!important">Branch </th>
+
+    <th style="width:2%!important">Parent/Spouse Name </th>
+    <th style="width:2%!important">Parent/Spouse Contact No </th>
     <!-- <th style="width:2%!important">District </th> -->
 
     </thead>
@@ -208,6 +211,9 @@
     <td  class="">{{Student_t["Registered_On"]}}</td>
     <td  class="">{{Student_t["Lapdetails"]}}</td>
     <td  class="">{{Student_t["Branch_Name"]}}</td>
+
+    <td  class="">{{Student_t["Parent_spouse_name"]}}</td>
+    <td  class="">{{Student_t["Parent_spouse_contact_no"]}}</td>
     <!-- <td  class="">{{Student_t["District_Name"]}}</td> -->
 
     </tr>

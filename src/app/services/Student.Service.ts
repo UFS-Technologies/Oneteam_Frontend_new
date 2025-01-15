@@ -103,6 +103,7 @@ debugger
 			postData.append("Parent_spouse_name", Main_Array.Student.Parent_spouse_name);
 			postData.append("Parent_spouse_contact_no", Main_Array.Student.Parent_spouse_contact_no);
 			postData.append("Parent_spouse_idcard", Main_Array.Student.Parent_spouse_idcard);
+			postData.append("Offline_class_preference", Main_Array.Student.Offline_class_preference);
 
 			// postData.append("Resume_Status_Id", Main_Array.Student.Resume_Status_Id);
 			// postData.append("Resume_Status_Name", Main_Array.Student.Resume_Status_Name);
@@ -1494,6 +1495,38 @@ Save_Student_Whatsapp(Save_Whatsapp_)
 	debugger
 return this.http.post(environment.BasePath +'Student/Save_Student_Whatsapp/',Save_Whatsapp_);
 }
+
+// api_brochure_course_whatsapp(Save_Whatsapp_)
+// {
+// 	debugger 
+// return this.http.post(environment.BasePath +'Student/api_brochure_course_whatsapp/',Save_Whatsapp_);
+// }
+
+
+api_brochure_python_arjun_jan2025(Save_Whatsapp_)
+{
+	debugger 
+return this.http.post(environment.BasePath +'Student/api_brochure_python_arjun_jan2025/',Save_Whatsapp_);
+}
+
+api_dm_brochure_arjun_jan2025(Save_Whatsapp_)
+{
+	debugger 
+return this.http.post(environment.BasePath +'Student/api_dm_brochure_arjun_jan2025/',Save_Whatsapp_);
+}
+
+api_brochure_mernstack_arjun_jan2025(Save_Whatsapp_)
+{
+	debugger 
+return this.http.post(environment.BasePath +'Student/api_brochure_mernstack_arjun_jan2025/',Save_Whatsapp_);
+}
+
+api_brochure_softwaretesting_arjun_jan2025(Save_Whatsapp_)
+{
+	debugger 
+return this.http.post(environment.BasePath +'Student/api_brochure_softwaretesting_arjun_jan2025/',Save_Whatsapp_);
+}
+
 
 Get_ToStaff_Mobile(userid) {
 debugger

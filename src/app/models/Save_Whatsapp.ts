@@ -17,6 +17,10 @@ export class Save_Whatsapp
     button:string;
     student:string;
     tostaff:string;
+    tostaff_mobile:string;
+    Course:string;
+    Course_Id:number;
+    Student_Id:number;
 
 constructor(values: Object = {})  
 {
