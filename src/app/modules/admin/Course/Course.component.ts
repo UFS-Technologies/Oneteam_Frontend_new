@@ -637,6 +637,7 @@ Save_Course()
 }
 Edit_Course(Course_e:Course,index)
 {
+    debugger
     this.Entry_View=true;
     this.Course_=Course_e;
     this.Course_=Object.assign({},Course_e);
@@ -658,7 +659,7 @@ Edit_Course(Course_e:Course,index)
 
     this.issLoading = true;
     this.Course_Service_.Get_Course(this.Course_.Course_Id).subscribe(Rows => {
-        
+        debugger
          this.Course_Fees_Data = Rows[0]
         this.Course_Subject_Data = Rows[1]
         this.issLoading = false;

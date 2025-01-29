@@ -538,6 +538,7 @@ Year_Of_Pass_Data: Year_Of_Pass[];
  Sms_: Sms = new Sms();
  Sms_Temp: Sms = new Sms();
  Sms_Data: Sms[];
+ to_staff_mobile_no_:string;
 
  Offline_class_preference_ :number=0;
 whatsapp_msg_status :number =0;
@@ -2583,6 +2584,10 @@ return;
 // }
 // }
 //debugger;
+
+this.Student_.Whatsapp = this.Student_.Whatsapp.replace(/\s+/g, "");
+
+
 if (
 this.Student_.Whatsapp != "" ||
 this.Student_.Whatsapp != null ||
@@ -2844,7 +2849,7 @@ this.Flag_Followup=0;
 // if (this.Mail_sms_Status == 0 && (this.Status_Id == 18 || this.Status_Id == 22)
 // ){this.Save_Student_Whatsapp()};
 
-//debugger
+debugger
 if (this.Mail_sms_Status == 0 && !(this.Status_Id == 18 || this.Status_Id == 22))
 { 
   //debugger
@@ -2853,9 +2858,9 @@ this.Get_ToStaff_WhatsappMobile(user_id)
 // this.Save_Student_Whatsapp();
 };
 
-
+this.to_staff_mobile_no_ =Save_status[0][0].to_staff_mobile_no_
 // whatsapp course msg start
-
+debugger
 console.log(Save_status[0][0].Course_Id_,'d')
   if(Save_status[0][0].WhatsApp_Msg_Status_ == 0 && Save_status[0][0].Course_Id_ ==1)
   {
@@ -5003,7 +5008,7 @@ this.Student_Service_.Save_Student_Course(this.Student_Course_).subscribe(
 debugger
 if (Number(Save_status[0].Student_Course_Id_) > 0) {
 this.Save_Call_Status = false;
-
+this.to_staff_mobile_no_=Save_status[0].to_userid_phone_;
 if (this.Student_Course_Id_Edit == 0) {
   //debugger
 if (this.Student_Course_.Course_Id ==2){this.Save_Dm_Course_Whatsapp()};
@@ -5697,9 +5702,10 @@ var BalanceAmount = "Nill";
 } else {
 var Instalment_Date = Save_status[3][0].Instalment_Date;
 var BalanceAmount = Save_status[3][0].BalanceAmount;
+var to_userid_phone = Save_status[3][0].to_userid_phone_;
 }
 debugger
-this.Fees_Payment_Whatsapp(Save_status[0][0].Amount_,BalanceAmount,Instalment_Date )
+this.Fees_Payment_Whatsapp(Save_status[0][0].Amount_,BalanceAmount,Instalment_Date,to_userid_phone )
 this.Student_Service_.Send_Receipt_Sms_Email(
 Save_status[0][0].Phone_,
 Save_status[0][0].Email_,
@@ -6576,7 +6582,7 @@ Download_Resume_File(File_Name,StudentId) {
 
     Get_ToStaff_WhatsappMobile(userid)
     {
-      //debugger
+      debugger
         this.issLoading = true;
         this.Student_Service_.Get_ToStaff_Mobile(userid).subscribe(
         (Rows) => {
@@ -6681,7 +6687,7 @@ this.Save_Whatsapp_.from = "919562813713";
 this.Save_Whatsapp_.to = ""+this.Student_.Whatsapp+"";
 this.Save_Whatsapp_.student = this.Student_.Student_Name;
 // this.Save_Whatsapp_.tostaff =  this.ToStaff_Mobile ;
-this.Save_Whatsapp_.tostaff =  ToStaff_Mobile ;
+this.Save_Whatsapp_.tostaff =  this.to_staff_mobile_no_ ;
 this.Save_Whatsapp_.type = "template";
 this.Save_Whatsapp_.templateName = "api_enquiry_arjun_19thjan2023";
 this.Save_Whatsapp_.templateId = "677119067230818";
@@ -6727,7 +6733,7 @@ this.Python_Whatsapp_.phoneNumberId = "103915675851161";
 this.Python_Whatsapp_.from = "919562813713";
 this.Python_Whatsapp_.to = this.Student_.Whatsapp;
 this.Python_Whatsapp_.student = this.Student_.Student_Name;
-this.Python_Whatsapp_.tostaff =this.ToStaff_Mobile;
+this.Python_Whatsapp_.tostaff =this.to_staff_mobile_no_;
 this.Python_Whatsapp_.trainer_name = this.Student_Course_.Faculty_Name;
 this.Python_Whatsapp_.batch_start_date = this.Student_Course_.Start_Date;
 this.Python_Whatsapp_.type = "template";
@@ -6780,7 +6786,7 @@ this.Dm_Whatsapp_.phoneNumberId = "103915675851161";
 this.Dm_Whatsapp_.from = "919562813713";
 this.Dm_Whatsapp_.to = this.Student_.Whatsapp;
 this.Dm_Whatsapp_.student = this.Student_.Student_Name;
-this.Dm_Whatsapp_.tostaff =this.ToStaff_Mobile;
+this.Dm_Whatsapp_.tostaff =this.to_staff_mobile_no_;
 this.Dm_Whatsapp_.trainer_name = this.Student_Course_.Faculty_Name;
 this.Dm_Whatsapp_.batch_start_date = this.Student_Course_.Start_Date;
 this.Dm_Whatsapp_.type = "template";
@@ -6831,7 +6837,7 @@ this.Testing_Whatsapp_.phoneNumberId = "103915675851161";
 this.Testing_Whatsapp_.from = "919562813713";
 this.Testing_Whatsapp_.to = this.Student_.Whatsapp;
 this.Testing_Whatsapp_.student = this.Student_.Student_Name;
-this.Testing_Whatsapp_.tostaff =this.ToStaff_Mobile;
+this.Testing_Whatsapp_.tostaff =this.to_staff_mobile_no_;
 this.Testing_Whatsapp_.trainer_name = this.Student_Course_.Faculty_Name;
 this.Testing_Whatsapp_.batch_start_date = this.Student_Course_.Start_Date;
 this.Testing_Whatsapp_.type = "template";
@@ -6884,7 +6890,7 @@ this.Python_Whatsapp_.phoneNumberId = "103915675851161";
 this.Python_Whatsapp_.from = "919562813713";
 this.Python_Whatsapp_.to = to;
 this.Python_Whatsapp_.student = student;
-this.Python_Whatsapp_.tostaff =this.ToStaff_Mobile;
+this.Python_Whatsapp_.tostaff =this.to_staff_mobile_no_;
 this.Python_Whatsapp_.trainer_name = this.Student_Course_.Faculty_Name;
 this.Python_Whatsapp_.batch_start_date = this.Student_Course_.Start_Date;
 this.Python_Whatsapp_.type = "template";
@@ -6932,7 +6938,7 @@ this.Dm_Whatsapp_.phoneNumberId = "103915675851161";
 this.Dm_Whatsapp_.from = "919562813713";
 this.Dm_Whatsapp_.to = to;
 this.Dm_Whatsapp_.student = student;
-this.Dm_Whatsapp_.tostaff =this.ToStaff_Mobile;
+this.Dm_Whatsapp_.tostaff =this.to_staff_mobile_no_;
 this.Dm_Whatsapp_.trainer_name = this.Student_Course_.Faculty_Name;
 this.Dm_Whatsapp_.batch_start_date = this.Student_Course_.Start_Date;
 this.Dm_Whatsapp_.type = "template";
@@ -6975,7 +6981,7 @@ this.Testing_Whatsapp_.phoneNumberId = "103915675851161";
 this.Testing_Whatsapp_.from = "919562813713";
 this.Testing_Whatsapp_.to = to;
 this.Testing_Whatsapp_.student = student;
-this.Testing_Whatsapp_.tostaff =this.ToStaff_Mobile;
+this.Testing_Whatsapp_.tostaff =this.to_staff_mobile_no_;
 this.Testing_Whatsapp_.trainer_name = this.Student_Course_.Faculty_Name;
 this.Testing_Whatsapp_.batch_start_date = this.Student_Course_.Start_Date;
 this.Testing_Whatsapp_.type = "template";
@@ -7009,7 +7015,7 @@ this.Student_Service_.Testing_Fees_Whatsapp(this.Testing_Whatsapp_).subscribe(Sa
 
 
 
-Fees_Payment_Whatsapp(amount,balance_amnt,due_date)
+Fees_Payment_Whatsapp(amount,balance_amnt,due_date,to_userid_phone)
 
 {
 debugger
@@ -7020,7 +7026,7 @@ this.Fees_Whatsapp_.phoneNumberId = "103915675851161";
 this.Fees_Whatsapp_.from = "919562813713";
 this.Fees_Whatsapp_.to = this.Student_.Whatsapp;
 this.Fees_Whatsapp_.student = this.Student_.Student_Name;
-this.Fees_Whatsapp_.tostaff =this.ToStaff_Mobile;
+this.Fees_Whatsapp_.tostaff =to_userid_phone;
 this.Fees_Whatsapp_.trainer_name = this.Student_Course_.Faculty_Name;
 this.Fees_Whatsapp_.next_payment_date = due_date;
 this.Fees_Whatsapp_.payment_amount = amount;
