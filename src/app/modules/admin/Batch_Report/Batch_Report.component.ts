@@ -47,6 +47,11 @@ export class Batch_ReportComponent implements OnInit {
     Export_Permission:any;
     Export_View :boolean =false;
 
+    // Track which student's file is being viewed
+currentViewedStudentId: number | null = null;
+agreementFileUrl: string | null = null;
+
+
     year: any;
     month: any;
     day: any;
@@ -92,6 +97,12 @@ export class Batch_ReportComponent implements OnInit {
     Attendance_Master_Data:Attendance_Master[];
 
     Total_Amount:number=0;
+
+
+    selectedFile: string | null = null;
+selectedFileName: string | null = null;
+fileUrl: string | null = null;
+
 
     Search_Name: "";
 
@@ -551,6 +562,29 @@ Search_Batch_Typeahead_Report_New()
             this.issLoading = false;
         });
 }
+
+viewStudentAgreement(studentId: number): void {
+    // Set the current student being viewed
+    this.currentViewedStudentId = studentId;
+    
+    // Find the student in your data
+    const student = this.Batch_Report_Data.find(s => s.Student_Id === studentId);
+    
+    if (student && student.Agreement_File) {
+      // Construct the file URL (modify the base path as needed for your application)
+      const baseUrl = 'assets/uploads'; // or your API endpoint
+      this.agreementFileUrl = `${baseUrl}/${student.Agreement_File}`;
+      console.log('this.agreementFileUrl : ', this.agreementFileUrl );
+    } else {
+      this.agreementFileUrl = null;
+      // Show an error message if needed
+    }
+  }
+  closeViewer(): void {
+    this.selectedFile = null;
+    this.selectedFileName = null;
+    this.fileUrl = null;
+  }
 Search_Branch_Typeahead(event: any) {
 	//debugger
 		var Value = "";

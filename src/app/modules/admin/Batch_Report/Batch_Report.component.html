@@ -146,6 +146,14 @@
     </div>
     </div>        
     </div>
+    <!-- File viewer section -->
+<div *ngIf="currentViewedStudentId && agreementFileUrl" class="file-viewer mt-3 p-3 border">
+    
+    <div class="text-right mb-2">
+      <button class="btn btn-sm btn-secondary" (click)="currentViewedStudentId = null; agreementFileUrl = null">Close</button>
+    </div>
+    <img [src]="agreementFileUrl" class="img-fluid" alt="Student Agreement">
+  </div>
 
     <div class="col-md-12 pl-3 pr-5 pb-1 pt-1 pl-1 pr-1" style="border: 1" *ngIf="isDesktopMenu()">
     <div class="dt-card mb-0 pb-1 pt-0 pl-1 pr-1" style="background-color: white;" >  
@@ -180,6 +188,7 @@
 
     <th style="width:2%!important">Parent/Spouse Name </th>
     <th style="width:2%!important">Parent/Spouse Contact No </th>
+    <th style="width:2%!important">Agreement File</th>
     <!-- <th style="width:2%!important">District </th> -->
 
     </thead>
@@ -197,6 +206,8 @@
         <td  class="">{{Student_t["Faculty"]}}</td>
         <td  class="">{{Student_t["StartDate"]}}</td>
         <td  class="">{{Student_t["End_Date"]}}</td>
+
+        
         <!-- <td  class="">{{Student_t["DueDate"]}}</td>
         <td  class="">{{Student_t["Due_Amount"]}}</td> -->
     
@@ -214,8 +225,13 @@
 
     <td  class="">{{Student_t["Parent_spouse_name"]}}</td>
     <td  class="">{{Student_t["Parent_spouse_contact_no"]}}</td>
+    
     <!-- <td  class="">{{Student_t["District_Name"]}}</td> -->
-
+    <td class="">
+        <button class="btn btn-primary btn-sm" (click)="viewStudentAgreement(Student_t.Student_Id)">
+          View
+        </button>
+      </td>
     </tr>
     </tbody>
     </table>

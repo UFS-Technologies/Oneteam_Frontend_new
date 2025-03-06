@@ -6707,15 +6707,21 @@ this.Save_Whatsapp_.body={
   },
   this.Save_Whatsapp_.button=null
 
-this.Student_Service_.Save_Student_Whatsapp(this.Save_Whatsapp_).subscribe(Save_status => {
-debugger
 
- var msg =Save_status[0];
+  if(this.Save_Whatsapp_.to != null && this.Save_Whatsapp_.to != undefined && this.Save_Whatsapp_.to != "")  
+  {
+    this.Student_Service_.Save_Student_Whatsapp(this.Save_Whatsapp_).subscribe(Save_status => {
+      debugger
+      
+       var msg =Save_status[0];
+      
+          return;
+      
+      },
+      );
+  }
 
-	  return;
-
-},
-);}
+}
 
 
 
